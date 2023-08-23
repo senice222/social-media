@@ -41,8 +41,8 @@ For more detailed instructions, check out the [Getting Started Guide](docs/getti
 
 This project utilizes the following technologies:
 
-- Frontend: React, Redux, Ant Design
-- Backend: Node.js, Express, MongoDB
+- Frontend: React, TypeScript, Ant Design
+- Backend: Nest.js, Express, MongoDB
 - Real-time updates: WebSockets (Socket.io)
 - Authentication: JSON Web Tokens (JWT)
 
