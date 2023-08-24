@@ -1,13 +1,12 @@
 import {
     Schema,
     SchemaFactory,
-    Prop, InjectModel
+    Prop,
 } from "@nestjs/mongoose";
 import mongoose, {
-    Document, Model
+    Document,
 } from 'mongoose';
-import {User, UserDocument} from "../../user/schemas/users.schema";
-import { CommentI } from "../interfaces/comment.interface";
+import { CommentI } from "../../comments/interfaces/commentI";
 
 export type PostDocument = Post & Document
 
@@ -26,7 +25,7 @@ export class Post {
     comments: CommentI[];
 
     @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User'})
-    ownerId: mongoose.Schema.Types.ObjectId
-};
+    ownerId: string
+}
 
 export const PostSchema = SchemaFactory.createForClass(Post);
