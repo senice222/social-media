@@ -12,15 +12,20 @@ export class PostsController {
     constructor(private readonly postsService: PostsService, private readonly commentsService: CommentsService) { }
 
     @UseGuards(AuthGuard('jwt'))
-    @Get(':id')
+    @Get('getOnePost/:id')
     getOnePost(@Param('id') id) {
-        return this.commentsService.getPosts(id)
+        return this.postsService.getOnePost(id)
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('')
+    getAllPosts() {
+        return this.postsService.getAllPosts()
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Post('create')
     createPost(@Body(ValidationPipe) body: CreatePostsDto, @UserId() id: string) {
-        console.log(id)
         return this.postsService.createPost(body, id)
     }
     @UseGuards(AuthGuard('jwt'))

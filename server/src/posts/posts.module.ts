@@ -6,18 +6,15 @@ import {Post, PostSchema} from "./schemas/post.schema";
 import {JwtModule} from "@nestjs/jwt";
 import {jwtConstants} from "../auth/constants";
 import {User, UserSchema} from "../user/schemas/users.schema";
-
+import {CommentsModule} from "../comments/comments.module";
 
 @Module({
     imports: [
-        MongooseModule.forFeature([{
-            name: Post.name,
-            schema: PostSchema
-        }]),
-        MongooseModule.forFeature([{
-            name: User.name,
-            schema: UserSchema
-        }]),
+        CommentsModule,
+        MongooseModule.forFeature([
+            { name: 'Post', schema: PostSchema },
+            { name: 'User', schema: UserSchema },
+        ]),
         JwtModule.register({
             secret: jwtConstants.secret,
             signOptions: {

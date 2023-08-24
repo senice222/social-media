@@ -8,7 +8,6 @@ import {TokenModule} from "./token/token.module";
 import {MailModule} from "./mail/mail.module";
 import { CommentsModule } from './comments/comments.module';
 
-
 @Module({
     imports: [
         configModule,

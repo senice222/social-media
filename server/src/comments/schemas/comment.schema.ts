@@ -11,7 +11,7 @@ export class Comment {
     commentText: string;
 
     @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-    ownerId: string; // Автор комментария
+    userId: string; // Автор комментария
 
     @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Post' })
     postId: string; // Пост, к которому относится комментарий

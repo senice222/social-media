@@ -30,11 +30,11 @@ export class CommentsService {
 
     // Создаем новый комментарий
     const newComment = new this.commentModel({
-      content: commentDto.commentText,
+      commentText: commentDto.commentText,
       userId: user._id,
       postId: post._id,
     });
-
+    console.log(newComment)
     // Сохраняем комментарий
     await newComment.save();
 
@@ -43,12 +43,6 @@ export class CommentsService {
 
     // Сохраняем обновленный пост
     await post.save();
-
     return post;
   }
-
-  async getPosts(id: mongoose.Schema.Types.ObjectId): Promise<User> {
-    return this.userModel.findById(id).populate('createdPosts');
-  }
-
 }
