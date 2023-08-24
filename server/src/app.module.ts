@@ -6,6 +6,7 @@ import {configModule} from "./configure.root";
 import {UserModule} from "./user/user.module";
 import {TokenModule} from "./token/token.module";
 import {MailModule} from "./mail/mail.module";
+import { CommentsModule } from './comments/comments.module';
 
 
 @Module({
@@ -17,7 +18,8 @@ import {MailModule} from "./mail/mail.module";
         TokenModule,
         MailModule,
         MongooseModule
-            .forRoot('mongodb+srv://admin:admin@cluster0.4deuyex.mongodb.net/?retryWrites=true&w=majority')]
+            .forRoot('mongodb+srv://admin:admin@cluster0.4deuyex.mongodb.net/?retryWrites=true&w=majority'),
+        CommentsModule]
 
 })
 

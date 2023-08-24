@@ -1,19 +1,20 @@
-import {Body, Controller, Get, Request, Post, UseGuards, Param, Delete, ValidationPipe, Put} from "@nestjs/common";
+import {Body, Controller, Get,  Post, UseGuards, Param, Delete, ValidationPipe, Put} from "@nestjs/common";
 import {PostsService} from "./posts.service";
 import {AuthGuard} from "@nestjs/passport";
 import {CreatePostsDto} from "./dto/create-posts.dto";
-import { CommentDto } from "./dto/create-comment.dto";
+import { CommentDto } from "../comments/dto/create-comment.dto";
 import {UserId} from "../decorators/user-id.decorator";
+import {CommentsService} from '../comments/comments.service';
 
 
 @Controller('posts')
 export class PostsController {
-    constructor(private readonly postsService: PostsService) { }
+    constructor(private readonly postsService: PostsService, private readonly commentsService: CommentsService) { }
 
     @UseGuards(AuthGuard('jwt'))
     @Get(':id')
     getOnePost(@Param('id') id) {
-        return this.postsService.getPosts(id)
+        return this.commentsService.getPosts(id)
     }
 
     @UseGuards(AuthGuard('jwt'))
@@ -37,6 +38,6 @@ export class PostsController {
     @UseGuards(AuthGuard('jwt'))
     @Post('addComment/:postId')
     addComment(@Param('postId') postId: string, @UserId() id, @Body() commentDto: CommentDto) {
-        return this.postsService.addComment(postId, id, commentDto)
+        return this.commentsService.createComment(postId, id, commentDto)
     }
 }

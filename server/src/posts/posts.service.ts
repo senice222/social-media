@@ -1,10 +1,9 @@
 import {BadRequestException, Injectable} from "@nestjs/common";
 import {InjectModel} from "@nestjs/mongoose";
-import mongoose, {Model} from "mongoose";
+import  {Model} from "mongoose";
 import {Post, PostDocument} from "./schemas/post.schema";
 import {CreatePostsDto} from "./dto/create-posts.dto";
 import {User, UserDocument} from "../user/schemas/users.schema";
-import { CommentDto } from "./dto/create-comment.dto";
 
 @Injectable()
 export class PostsService {
@@ -13,10 +12,7 @@ export class PostsService {
         @InjectModel(User.name) private userModel: Model<UserDocument>
     )  { }
 
-    async getPosts(id: mongoose.Schema.Types.ObjectId): Promise<User> {
-        const user = await this.userModel.findById(id).populate('createdPosts')
-        return user
-    }
+
 
     async createPost(dto: CreatePostsDto, userId: string): Promise<Post> {
         const post = await this.postModel.create({...dto, ownerId: userId})
@@ -28,7 +24,7 @@ export class PostsService {
 
         return post
     }
-    async deletePost(postId: mongoose.Schema.Types.ObjectId, userId: string): Promise<Post> {
+    async deletePost(postId: string, userId: string): Promise<Post> {
         const post = await this.postModel.findById(postId)
 
         if ( post.ownerId.toString() === userId.toString() ) {
@@ -57,12 +53,5 @@ export class PostsService {
             console.log(e)
         }
     }
-    async addComment(postId: string, ownerId: string, commentDto: CommentDto): Promise<Post> {
-        const post = await this.postModel.findById(postId)
-        post.comments.push({...commentDto, ownerId})
 
-        await post.save()
-
-        return post
-    }
 }
