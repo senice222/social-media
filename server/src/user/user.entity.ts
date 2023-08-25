@@ -16,7 +16,7 @@ export class UserEntity {
     @IsString()
     readonly password: string;
 
-    readonly avatar: string | null;
+    readonly avatar: string;
     readonly status: string;
     readonly createdPosts: Post[];
     readonly chats: [];

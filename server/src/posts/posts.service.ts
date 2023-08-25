@@ -28,8 +28,8 @@ export class PostsService {
     }
 
 
-    async createPost(dto: CreatePostsDto, userId: string): Promise<Post> {
-        const post = await this.postModel.create({...dto, ownerId: userId})
+    async createPost(dto: CreatePostsDto, userId: string, files: string[]): Promise<Post> {
+        const post = await this.postModel.create({...dto, owner: userId, urls: files})
         const user = await this.userModel.findById(userId)
 
         user.createdPosts.push(post._id)
@@ -42,7 +42,7 @@ export class PostsService {
     async deletePost(postId: string, userId: string): Promise<Post> {
         const post = await this.postModel.findById(postId)
 
-        if (post.ownerId.toString() === userId.toString()) {
+        if (post.owner.toString() === userId.toString()) {
             await this.postModel.findByIdAndDelete(post._id)
             await this.userModel.findByIdAndUpdate(userId, {
                 $pull: {createdPosts: postId}

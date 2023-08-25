@@ -22,7 +22,7 @@ export class User {
     @Prop({type: String, enum: statusEnum, default: statusEnum.pending})
     status: statusEnum
 
-    @Prop({type: String})
+    @Prop({required: true, type: String})
     avatar: string
 
     @Prop()

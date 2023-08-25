@@ -12,20 +12,23 @@ export type PostDocument = Post & Document
 
 @Schema()
 export class Post {
-    // @Prop({ required: true })
+    @Prop({ required: true })
     title: string;
 
-    // @Prop({ required: true })
+    @Prop({ required: true })
     content: string;
 
-    // @Prop()
+    @Prop()
     likes: string[];
 
     @Prop({default: []})
     comments: CommentI[];
 
-    @Prop({ required: false, type: mongoose.Schema.Types.ObjectId, ref: 'User'})
-    ownerId: string
+    @Prop()
+    urls: string[]
+
+    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'User'})
+    owner: string
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

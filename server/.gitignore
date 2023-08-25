@@ -395,6 +395,7 @@ Temporary Items
 =======
 # Local
 *.development
+uploads
 dist
 .webpack
 .serverless/**/*.zip

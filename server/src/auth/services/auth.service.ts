@@ -33,9 +33,9 @@ export class AuthService {
         this.clientAppUrl = this.configService.get<string>('FE_APP_URL')
     }
 
-    async signUp(createUserDto: CreateUserDto): Promise<boolean> {
+    async signUp(createUserDto: CreateUserDto, avatar: string): Promise<boolean> {
         try {
-            const user = await this.userService.create(createUserDto)
+            const user = await this.userService.create({...createUserDto, avatar})
 
             await this.sendConfirmation(user)
             return true
