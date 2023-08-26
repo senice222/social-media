@@ -1,12 +1,16 @@
-
-import style from './App.module.scss'
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import './styles/App.scss'
+import Auth from "./pages/auth/Auth.tsx";
 
 function App() {
 
     return (
-        <>
-            <p className={style.number}>123</p>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path={'/registration'} element={<Auth />}/>
+            </Routes>
+        </BrowserRouter>
+
     )
 }
 
