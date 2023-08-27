@@ -1,8 +1,8 @@
 import styles from './Auth.module.scss'
 import {Button, Form, Input} from "antd";
 
-
 const LoginForm = () => {
+
     const onSubmit = async (values: any) => {
         console.log(values)
     };

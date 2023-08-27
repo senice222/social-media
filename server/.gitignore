@@ -394,7 +394,7 @@ Temporary Items
 
 =======
 # Local
-*.development
+.env.development
 uploads
 dist
 .webpack
