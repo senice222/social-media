@@ -25,7 +25,6 @@ const AuthSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(registerUser.fulfilled, (state, action: PayloadAction<any>) => {
-                console.log(action.payload)
                 state.data = action.payload;
                 state.status = 'success'; // Update the status as needed
             })

@@ -1,27 +1,33 @@
 import styles from './Auth.module.scss'
-import {Button, Form, Input, Upload, UploadFile, UploadProps} from "antd";
+import {Button, Form, Input, notification, Upload, UploadFile, UploadProps} from "antd";
 import {useState} from "react";
 import { UploadOutlined } from '@ant-design/icons';
 import {AuthDto} from "../../api/auth/authDto.ts";
 import {registerUser} from "../../store/slices/AuthSlice.ts";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
+import {useAppDispatch} from "../../hooks/redux.ts";
 
 
 const RegisterForm = () => {
     const [fileList, setFileList] = useState<UploadFile[]>()
     const dispatch = useAppDispatch()
-    const data = useAppSelector(state => state.auth.data)
 
     const onSubmit = async  (values: AuthDto) => {
-        dispatch(registerUser(values));
+        try {
+            dispatch(registerUser(values));
+            notification.success({
+                message: "You successfully created your account.",
+                description: "Confirm your account on E-Mail",
+                duration: 2.5
+            })
+        } catch (e) {
+            console.log(e)
+        }
     };
-    console.log(data)
 
     const handleChange: UploadProps['onChange'] = (info) => {
         let newFileList = [...info.fileList];
         setFileList(newFileList);
     };
-
 
     return (
         <div className={styles.formBlock}>
@@ -46,7 +52,7 @@ const RegisterForm = () => {
                 </Form.Item>
 
                 <Form.Item
-                    label="Username"
+                    label="Name"
                     name="username"
                     rules={[
                         {

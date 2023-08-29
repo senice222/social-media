@@ -36,7 +36,6 @@ export class AuthService {
     async signUp(createUserDto: CreateUserDto, avatar: string): Promise<string> {
         try {
             const user = await this.userService.create({...createUserDto, avatar})
-
             await this.sendConfirmation(user)
             return 'success'
         } catch (e) {
@@ -82,8 +81,6 @@ export class AuthService {
         try {
             const data = await this.verifyToken(token);
             const user = await this.userService.getUserById(data._id)
-
-            await this.tokenService.deleteToken(data._id, token);
 
             if (user && user.status === statusEnum.pending) {
                 user.status = statusEnum.active;

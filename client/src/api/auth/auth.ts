@@ -15,3 +15,11 @@ export const register = async (values: AuthDto): Promise<Boolean> => {
     const { data } = await axios.post('auth/signUp', formData, config)
     return data
 }
+export const confirm = async (token: string) => {
+    const {data} = await axios.get('auth/confirm', {
+        params: {
+            token: token,
+        },
+    })
+    return data
+}

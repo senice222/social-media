@@ -37,6 +37,7 @@ export class AuthController {
 
     @Get("/confirm")
     async confirm(@Query(ValidationPipe) query: ConfirmAccountDto): Promise<boolean> {
+        console.log(query)
         await this.authService.confirm(query.token)
         return true
     }
