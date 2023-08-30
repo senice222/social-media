@@ -1,11 +1,13 @@
 .container {
   display: flex;
   justify-content: space-between;
-  height: 56px;
+  align-items: center;
+  height: 65px;
   background: white;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 20px 6px rgba(0, 0, 0, 0.05); /* Updated box shadow with lower opacity */
 
-  .leftContainer {
+
+.leftContainer {
     display: flex;
 
     .search {
@@ -20,10 +22,61 @@
     }
   }
   .middleContainer {
-    .home {
-      height: 30px;
-      width: 30px;
+
+    .icons {
+      margin-top: 13px;
+      margin-right: 300px;
+      display: flex;
+
+      .homeDiv {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 12px;
+        padding-top: 5px;
+        width: 130px;
+        height: 40px;
+
+        .home {
+          user-select: none;
+          height: 30px;
+          width: 30px;
+        }
+      }
+
+      .friendsDiv {
+        cursor: pointer;
+        margin-left: 15px;
+        margin-bottom: 12px;
+        padding-top: 5px;
+        width: 130px;
+        height: 40px;
+
+        .friends {
+          user-select: none;
+          margin-left: 50px;
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .homeDiv:hover {
+        background: #F0F2F5;
+        border-radius: 5px;
+        transition: .2s;
+      }
+      .friendsDiv:hover {
+        background: #F0F2F5;
+        border-radius: 5px;
+        transition: .2s;
+      }
     }
+
   }
 
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%
+  }
 }
