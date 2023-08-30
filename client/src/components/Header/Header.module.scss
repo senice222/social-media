@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+  background: white;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+
+  .leftContainer {
+    display: flex;
+
+    .search {
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+    .img {
+      margin-top: 5px;
+      margin-left: 30px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+  .middleContainer {
+    .home {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+}

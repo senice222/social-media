@@ -13,3 +13,14 @@
     z-index: -1;
   }
 
+.mainBlock {
+  width: 400px;
+  margin: 150px auto;
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+
+  }
+
+}

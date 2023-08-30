@@ -1,8 +1,8 @@
-import styles from './Auth.module.scss'
+import styles from '../../pages/auth/Auth.module.scss'
 import {Button, Form, Input, notification, Upload, UploadFile, UploadProps} from "antd";
 import {useState} from "react";
 import { UploadOutlined } from '@ant-design/icons';
-import {AuthDto} from "../../api/auth/authDto.ts";
+import {AuthDto} from "../../api/auth/auth.dto.ts";
 import {registerUser} from "../../store/slices/AuthSlice.ts";
 import {useAppDispatch} from "../../hooks/redux.ts";
 

@@ -19,14 +19,13 @@ const Confirm = () => {
                     notification.success({
                         message: "You successfully confirmed.",
                         description: "Redirecting to the home page...",
-                        duration: 1.5,
+                        duration: 1,
                     });
                     setTimeout(() => {
                         navigate('/');
-                    }, 1500);
-                } else {
-                    throw new Error('Something went wrong')
+                    }, 1000);
                 }
+                throw new Error('Something went wrong')
             } catch (e) {
                 console.log(e);
             }
@@ -36,9 +35,10 @@ const Confirm = () => {
 
 
     return (
-        <div>
-            <p>123</p>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+            <h1>Redirecting...</h1>
         </div>
+
     );
 };
 

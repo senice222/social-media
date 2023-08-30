@@ -1,4 +1,4 @@
-import {AuthDto} from "./authDto.ts";
+import {AuthDto} from "./auth.dto.ts";
 import axios from "../../core/axios.ts";
 
 export const register = async (values: AuthDto): Promise<Boolean> => {

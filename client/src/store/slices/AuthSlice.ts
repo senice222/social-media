@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Data} from "../../interfaces/AuthI.ts";
 import * as Api from '../../api/index.ts'
-import {AuthDto} from "../../api/auth/authDto.ts";
+import {AuthDto} from "../../api/auth/auth.dto.ts";
 
 export const registerUser = createAsyncThunk('auth/registerUser', async (values: AuthDto) => {
     await Api.auth.register(values)

@@ -1,4 +1,4 @@
-import styles from './Auth.module.scss'
+import styles from '../../pages/auth/Auth.module.scss'
 import {Button, Form, Input} from "antd";
 
 const LoginForm = () => {

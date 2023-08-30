@@ -29,3 +29,6 @@ export interface Data {
     data: Root | null,
     status: 'loading' | 'success' | 'error'
 }
+export interface IReadableUser extends Root {
+    accessToken?: string
+}
