@@ -27,7 +27,7 @@ export class UsersController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Get('/me/currentUser')
+    @Get('/me')
     getMe(@UserId() id: string) {
         return this.userService.getUserById(id)
     }

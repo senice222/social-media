@@ -1,4 +1,4 @@
-export interface Root {
+export interface User {
     _id: string
     email: string
     username: string
@@ -8,7 +8,9 @@ export interface Root {
     avatar: string
     chats: any[]
 }
-
+export interface IReadableUser extends User {
+    accessToken?: string
+}
 export interface CreatedPost {
     _id: string
     description: string
@@ -25,10 +27,12 @@ export interface Comment {
     _id: string
     __v: number
 }
-export interface Data {
-    data: Root | null,
+export interface RegisterAndLogin {
+    data: IReadableUser | string | null;
     status: 'loading' | 'success' | 'error'
 }
-export interface IReadableUser extends Root {
-    accessToken?: string
+
+export interface GetMeData {
+    data: User | null,
+    status: 'loading' | 'success' | 'error'
 }
