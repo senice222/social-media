@@ -8,8 +8,7 @@ const Header = () => {
     const { Search } = Input;
 
     const onSearch = (value: string) => console.log(value);
-
-
+    
     return (
         <div className={style.container}>
             <div className={style.leftContainer}>

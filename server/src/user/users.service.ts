@@ -33,7 +33,4 @@ export class UsersService {
         return await createdUser.save();
     }
 
-    async uploadUserAvatar(file: Express.Multer.File): Promise<Express.Multer.File> {
-        return file
-    }
 }
