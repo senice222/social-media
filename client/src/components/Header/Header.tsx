@@ -1,34 +1,45 @@
 import style from './Header.module.scss'
-import { Input } from 'antd';
+import {Input} from 'antd';
 import facebook from '../../assets/2021_Facebook_icon.svg.png'
-import home from '../../assets/icons8-home-50.png'
-import friends from '../../assets/icons8-friends-50.png'
+import msg from '../../assets/icons8-message-50.png'
+import not from '../../assets/icons8-notification-48.png'
+import avatar from '../../assets/user_727399.png'
+import {NavLink, useLocation} from "react-router-dom";
 
 const Header = () => {
-    const { Search } = Input;
+    const {Search} = Input;
+    const location = useLocation()
 
     const onSearch = (value: string) => console.log(value);
-    
+
     return (
         <div className={style.container}>
             <div className={style.leftContainer}>
                 <img src={facebook} className={style.img} alt="/"/>
-                <Search className={style.search} placeholder="input search text" onSearch={onSearch} enterButton />
+                <Search className={style.search} placeholder="input search text" onSearch={onSearch} enterButton/>
 
             </div>
             <div className={style.middleContainer}>
-                <div className={style.icons}>
-                    <div className={style.homeDiv}>
-                        <img src={home} className={style.home} alt="/"/>
-                    </div>
-                    <div className={style.friendsDiv}>
-                        <img src={friends} className={style.friends} alt="/"/>
-                    </div>
-
+                <div className={style.links}>
+                    <NavLink className={location.pathname === '/' ? style.active : style.link}
+                             to={'/'}>
+                        <p>Home</p>
+                    </NavLink>
+                    <NavLink className={location.pathname === '/friends' ? style.active : style.link}
+                             to={'/friends'}>
+                        <p>Friends</p>
+                    </NavLink>
                 </div>
             </div>
             <div className={style.rightContainer}>
-                3
+                <div className={style.msgCircle}>
+                    <img src={msg} alt="/" className={style.msg}/>
+                </div>
+                <div className={style.msgCircle}>
+                    <img src={not} alt="/" className={style.msg}/>
+                </div>
+                <img src={avatar} alt="/" className={style.user}/>
+
             </div>
         </div>
     );

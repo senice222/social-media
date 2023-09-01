@@ -5,11 +5,11 @@ import Confirm from "./pages/auth/Confirm.tsx";
 import { Navigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import Home from "./pages/Home.tsx";
-import {ProtectedRouteI} from "./interfaces/ProtectedRouteI.ts";
+import {Children} from "./interfaces/ProtectedRouteI.ts";
 
 function App() {
 
-    const ProtectedRoute = ({ children }: ProtectedRouteI) => {
+    const ProtectedRoute = ({ children }: Children) => {
         const token = Cookies.get('token')
 
         if (!token) {

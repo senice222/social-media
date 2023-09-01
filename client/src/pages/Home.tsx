@@ -1,10 +1,10 @@
-import Header from "../components/Header/Header.tsx";
+import Layout from "../layouts/Layout.tsx";
 
 const Home = () => {
     return (
-        <>
-            <Header />
-        </>
+        <Layout>
+            
+        </Layout>
     );
 };
 export default Home
