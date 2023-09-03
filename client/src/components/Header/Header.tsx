@@ -13,34 +13,45 @@ const Header = () => {
     const onSearch = (value: string) => console.log(value);
 
     return (
-        <div className={style.container}>
-            <div className={style.leftContainer}>
-                <img src={facebook} className={style.img} alt="/"/>
-                <Search className={style.search} placeholder="input search text" onSearch={onSearch} enterButton/>
-
-            </div>
-            <div className={style.middleContainer}>
-                <div className={style.links}>
-                    <NavLink className={location.pathname === '/' ? style.active : style.link}
-                             to={'/'}>
-                        <p>Home</p>
-                    </NavLink>
-                    <NavLink className={location.pathname === '/friends' ? style.active : style.link}
-                             to={'/friends'}>
-                        <p>Friends</p>
-                    </NavLink>
+        <div className={style.headerContainer}>
+            <nav className={style.header}>
+                <div className={style.leftContainer}>
+                    <img src={facebook} className={style.img} alt="/" />
+                    <Search
+                        className={style.search}
+                        placeholder="Input search text"
+                        onSearch={onSearch}
+                        enterButton
+                    />
                 </div>
-            </div>
-            <div className={style.rightContainer}>
-                <div className={style.msgCircle}>
-                    <img src={msg} alt="/" className={style.msg}/>
+                <div className={style.middleContainer}>
+                    <div className={style.links}>
+                        <NavLink
+                            className={location.pathname === '/' ? style.active : style.link}
+                            to={'/'}
+                        >
+                            <p>Home</p>
+                        </NavLink>
+                        <NavLink
+                            className={
+                                location.pathname === '/friends' ? style.active : style.link
+                            }
+                            to={'/friends'}
+                        >
+                            <p>Friends</p>
+                        </NavLink>
+                    </div>
                 </div>
-                <div className={style.msgCircle}>
-                    <img src={not} alt="/" className={style.msg}/>
+                <div className={style.rightContainer}>
+                    <div className={style.msgCircle}>
+                        <img src={msg} alt="/" className={style.msg} />
+                    </div>
+                    <div className={style.msgCircle}>
+                        <img src={not} alt="/" className={style.msg} />
+                    </div>
+                    <img src={avatar} alt="/" className={style.user} />
                 </div>
-                <img src={avatar} alt="/" className={style.user}/>
-
-            </div>
+            </nav>
         </div>
     );
 };
