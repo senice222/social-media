@@ -5,16 +5,11 @@ import friends from '../../assets/friends.png'
 import group from '../../assets/group.png'
 import market from '../../assets/marketplace.png'
 import watch from '../../assets/watch.png'
-import shortcut1 from '../../assets/shortcut-1.png'
-import shortcut2 from '../../assets/shortcut-2.png'
-import shortcut3 from '../../assets/shortcut-3.png'
-import shortcut4 from '../../assets/shortcut-4.png'
+import {Children} from "../../interfaces/ProtectedRouteI.ts";
+import Shortcuts from "../Shortcuts/Shortcuts.tsx";
+import RightSidebar from "../RightSidebar/RightSidebar.tsx";
 
-
-
-import ContentList from "../Content/ContentList.tsx";
-
-const Sidebar = () => {
+const Sidebar = ({children}: Children) => {
     return (
         <div className={style.container}>
 
@@ -49,32 +44,14 @@ const Sidebar = () => {
                     <NavLink className={style.lastChild} to={'/'}>See more</NavLink>
                 </div>
 
-                <div className={style.shortCutLinks}>
-                    <p>Your Shortcuts</p>
-                    <NavLink to={'/'}>
-                        <img src={shortcut1} alt="/"/> Web developers
-                    </NavLink>
-
-                    <NavLink to={'/'}>
-                        <img src={shortcut2} alt="/"/> Web Design course
-                    </NavLink>
-
-                    <NavLink to={'/'}>
-                        <img src={shortcut3} alt="/"/> Full Stack development
-                    </NavLink>
-
-                    <NavLink to={'/'}>
-                        <img src={shortcut4} alt="/"/> Website experts
-                    </NavLink>
-                </div>
-
+                <Shortcuts />
             </div>
 
-            <div className={style.mainContent}>
-                <ContentList />
+            <div className={style.middleSide}>
+                {children}
             </div>
 
-            <div className={style.rightSideBar}>right sidebar</div>
+            <RightSidebar />
         </div>
     );
 };
