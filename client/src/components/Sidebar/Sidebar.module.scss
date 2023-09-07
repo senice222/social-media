@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding: 80px 5%;
-
+  height: auto;
 
   .leftSideBar {
     flex-basis: 25%;
@@ -39,12 +39,9 @@
         font-size: 18px;
       }
 
-      a:last-child {
-        color: #1876f2;
-      }
-
       .lastChild {
         margin-left: 10px;
+        color: #1876f2
       }
 
       img {
@@ -56,15 +53,4 @@
 
   }
 
-  .rightSideBar {
-    flex-basis: 25%;
-    position: sticky;
-    top: 70px;
-    align-self: flex-start;
-
-  }
-
-  .mainContent {
-    flex-basis: 47%;
-  }
 }

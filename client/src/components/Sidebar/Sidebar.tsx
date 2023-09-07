@@ -47,9 +47,7 @@ const Sidebar = ({children}: Children) => {
                 <Shortcuts />
             </div>
 
-            <div className={style.middleSide}>
-                {children}
-            </div>
+            <div style={{width: '100%', marginRight: '15px'}}>{children}</div>
 
             <RightSidebar />
         </div>

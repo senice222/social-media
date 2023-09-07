@@ -1,0 +1,59 @@
+
+.middleSide {
+  width: 100%;
+  background: #FFF;
+  margin-right: 50px;
+  border-radius: 6px;
+  padding: 20px;
+  color: #626262;
+
+  .userProfile {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 45px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      color: #626262
+    }
+
+  }
+
+  .postInputContainer {
+    padding-left: 55px;
+    padding-top: 20px;
+
+    .addPostLink {
+      display: flex;
+      margin-top: 10px;
+
+      a {
+        display: flex;
+        align-items: center;
+        color: #626262;
+        margin-right: 30px;
+        font-size: 13px;
+
+        img {
+          width: 20px;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    textarea {
+      width: 100%;
+      outline: none;
+      border: 0;
+      border-bottom: 1px solid #ccc;
+      background: transparent;
+      resize: none;
+    }
+  }
+}
