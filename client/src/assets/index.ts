@@ -1,0 +1,1 @@
+export * as img from '../assets'

@@ -1,59 +1,92 @@
 
-.middleSide {
+.postContainer {
   width: 100%;
-  background: #FFF;
-  margin-right: 50px;
-  border-radius: 6px;
+  background: #FFFFFF;
   padding: 20px;
   color: #626262;
+  margin: 10px;
+  border-radius: 6px;
+
+  .postRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      font-size: 40px;
+      user-select: none;
+      color: #9a9a9a;
+    }
+
+    .activityIcons {
+      img {
+        cursor: pointer;
+        width: 18px;
+        margin-right: 10px;
+      }
+      div {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 30px;
+      }
+    }
+    .postProfileIcon {
+      display: flex;
+      align-items: center;
+      img {
+        width: 20px;
+        border-radius: 50%;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .postImg {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 5px;
+  }
+
+  .postText {
+    color: #9a9a9a;
+    margin: 15px 0;
+    font-size: 15px;
+
+    span {
+      color: #626262;
+      font-weight: 500;
+    }
+    a {
+      color: #1876f2;
+    }
+  }
 
   .userProfile {
     display: flex;
     align-items: center;
 
     img {
+      cursor: pointer;
       width: 45px;
       border-radius: 50%;
       margin-right: 10px;
     }
 
+    span {
+      font-size: 13px;
+      color: #9a9a9a
+    }
+
     p {
+      cursor: pointer;
       font-size: 18px;
       font-weight: 500;
-      color: #626262
+      color: #626262;
+      transition: .1s
     }
-
-  }
-
-  .postInputContainer {
-    padding-left: 55px;
-    padding-top: 20px;
-
-    .addPostLink {
-      display: flex;
-      margin-top: 10px;
-
-      a {
-        display: flex;
-        align-items: center;
-        color: #626262;
-        margin-right: 30px;
-        font-size: 13px;
-
-        img {
-          width: 20px;
-          margin-right: 10px;
-        }
-      }
-    }
-
-    textarea {
-      width: 100%;
-      outline: none;
-      border: 0;
-      border-bottom: 1px solid #ccc;
-      background: transparent;
-      resize: none;
+    p:hover {
+      color: #9a9a9a;
     }
   }
 }

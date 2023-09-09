@@ -8,7 +8,7 @@ import watch from '../../assets/watch.png'
 import {Children} from "../../interfaces/ProtectedRouteI.ts";
 import Shortcuts from "../Shortcuts/Shortcuts.tsx";
 import RightSidebar from "../RightSidebar/RightSidebar.tsx";
-
+ 
 const Sidebar = ({children}: Children) => {
     return (
         <div className={style.container}>

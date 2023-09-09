@@ -29,10 +29,11 @@ export interface Comment {
 }
 export interface RegisterAndLogin {
     data: IReadableUser | string | null;
-    status: 'loading' | 'success' | 'error'
+    status: 'loading' | 'success' | 'error' | null
 }
 
+
 export interface GetMeData {
-    data: User | null,
-    status: 'loading' | 'success' | 'error'
+    user: User | null,
+    status: 'loading' | 'success' | 'error' | null
 }

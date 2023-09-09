@@ -7,8 +7,8 @@ export const getMe = createAsyncThunk('/getMe', async () => {
 })
 
 const initialState: GetMeData = {
-    data: null,
-    status: 'success'
+    user: null,
+    status: null
 }
 
 const UserSlice = createSlice({
@@ -19,15 +19,15 @@ const UserSlice = createSlice({
         builder
             // get me
             .addCase(getMe.pending, (state) => {
-                state.data = null
+                state.user = null
                 state.status = 'loading';
             })
             .addCase(getMe.fulfilled, (state, action: PayloadAction<any>) => {
-                state.data = action.payload;
+                state.user = action.payload;
                 state.status = 'success'; // Update the status as needed
             })
             .addCase(getMe.rejected, (state) => {
-                state.data = null
+                state.user = null
                 state.status = 'error';
             });
     },

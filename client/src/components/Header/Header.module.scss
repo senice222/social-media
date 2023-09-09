@@ -7,7 +7,7 @@
   position: fixed;
   top: 0;
   z-index: 100;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.05); /* Updated box shadow with lower opacity */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05); /* Updated box shadow with lower opacity */
   width: 100%;
 
   .leftContainer {
