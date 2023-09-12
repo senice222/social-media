@@ -3,12 +3,13 @@ import {
     Controller,
     Get,
     Post,
+    Query,
     UseGuards,
     Param,
     Delete,
     ValidationPipe,
     Put,
-    UseInterceptors, ParseFilePipe, MaxFileSizeValidator, UploadedFiles
+    UseInterceptors, UploadedFiles
 } from "@nestjs/common";
 import {PostsService} from "./posts.service";
 import {AuthGuard} from "@nestjs/passport";
@@ -16,7 +17,7 @@ import {CreatePostsDto} from "./dto/create-posts.dto";
 import {CommentDto} from "../comments/dto/create-comment.dto";
 import {UserId} from "../decorators/user-id.decorator";
 import {CommentsService} from '../comments/comments.service';
-import {FileInterceptor, FilesInterceptor} from "@nestjs/platform-express";
+import {FilesInterceptor} from "@nestjs/platform-express";
 import {fileStorage} from "../auth/storage";
 
 
@@ -38,12 +39,27 @@ export class PostsController {
     }
 
     @UseGuards(AuthGuard('jwt'))
+    @Get()
+    async getPosts(
+      @Query('page') page: number = 1, // Номер текущей страницы (по умолчанию 1)
+      @Query('perPage') perPage: number = 5, // Количество статей на страницу (по умолчанию 5)
+    ) {
+      const { posts, total, totalPages } = await this.postsService.getPaginatedPosts(page, perPage);
+      return {
+        posts,
+        currentPage: page,
+        totalPosts: total,
+        totalPages,
+      };
+    }
+
+    @UseGuards(AuthGuard('jwt'))
     @Post('create')
     @UseInterceptors(FilesInterceptor('avatar', 5, {
         storage: fileStorage,
     }))
     createPost(
-        @UploadedFiles() files: Express.Multer.File[], // Remove ParseFilePipe from here
+        @UploadedFiles() files: Express.Multer.File[], 
         @Body(ValidationPipe) body: CreatePostsDto,
         @UserId() id: string
     ) {

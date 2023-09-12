@@ -4,6 +4,7 @@ import {Model} from "mongoose";
 import {Post, PostDocument} from "./schemas/post.schema";
 import {CreatePostsDto} from "./dto/create-posts.dto";
 import {User, UserDocument} from "../user/schemas/users.schema";
+import { Paginated } from "./interfaces/paginated.post";
 
 @Injectable()
 export class PostsService {
@@ -21,12 +22,25 @@ export class PostsService {
         return this.postModel.findById(id).populate({
             path: 'comments',
             populate: {
-                path: 'userId', // Populating the userId field in comments
-                model: this.userModel, // Specify the User model
+                path: 'userId',
+                model: this.userModel, 
             },
         })
     }
-
+    
+    async getPaginatedPosts(page: number, perPage: number): Promise<Paginated> {
+        const total = await this.postModel.countDocuments().exec();
+        const totalPages = Math.ceil(total / perPage);
+        const skip = (page - 1) * perPage;
+    
+        const posts = await this.postModel.find().skip(skip).limit(perPage).exec();
+    
+        return {
+          posts,
+          total,
+          totalPages,
+        };
+      }
 
     async createPost(dto: CreatePostsDto, userId: string, files: string[]): Promise<Post> {
         const post = await this.postModel.create({...dto, owner: userId, urls: files})
