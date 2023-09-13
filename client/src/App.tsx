@@ -21,8 +21,8 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path={'/auth'} element={<Auth />}/>
-                <Route path={"/auth/confirm"} element={<Confirm />} />
+                <Route path={'/Auth'} element={<Auth />}/>
+                <Route path={"/Auth/confirm"} element={<Confirm />} />
 
                 <Route
                     path={'/'}

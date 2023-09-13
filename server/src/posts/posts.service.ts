@@ -32,15 +32,14 @@ export class PostsService {
         const total = await this.postModel.countDocuments().exec();
         const totalPages = Math.ceil(total / perPage);
         const skip = (page - 1) * perPage;
-    
-        const posts = await this.postModel.find().skip(skip).limit(perPage).exec();
+        const posts = await this.postModel.find().skip(skip).limit(perPage).exec()
     
         return {
           posts,
           total,
           totalPages,
         };
-      }
+    }
 
     async createPost(dto: CreatePostsDto, userId: string, files: string[]): Promise<Post> {
         const post = await this.postModel.create({...dto, owner: userId, urls: files})

@@ -1,6 +1,6 @@
 import {Tabs} from "antd";
-import LoginForm from "../../components/auth/LoginForm.tsx";
-import RegisterForm from "../../components/auth/RegisterForm.tsx";
+import LoginForm from "../../components/Auth/LoginForm.tsx";
+import RegisterForm from "../../components/Auth/RegisterForm.tsx";
 import style from './Auth.module.scss'
 
 const AuthPage = () => {

@@ -45,6 +45,7 @@ export class PostsController {
       @Query('perPage') perPage: number = 5, // Количество статей на страницу (по умолчанию 5)
     ) {
       const { posts, total, totalPages } = await this.postsService.getPaginatedPosts(page, perPage);
+      
       return {
         posts,
         currentPage: page,
