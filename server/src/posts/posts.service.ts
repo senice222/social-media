@@ -32,7 +32,13 @@ export class PostsService {
         const total = await this.postModel.countDocuments().exec();
         const totalPages = Math.ceil(total / perPage);
         const skip = (page - 1) * perPage;
-        const posts = await this.postModel.find().skip(skip).limit(perPage).exec()
+        const posts = await this.postModel.find().skip(skip).limit(perPage).populate({
+            path: 'comments',
+            populate: {
+                path: 'userId',
+                model: this.userModel,
+            },
+        })
     
         return {
           posts,

@@ -39,7 +39,7 @@ export class PostsController {
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Get()
+    @Get('getPaginatedPosts')
     async getPosts(
       @Query('page') page: number = 1, // Номер текущей страницы (по умолчанию 1)
       @Query('perPage') perPage: number = 5, // Количество статей на страницу (по умолчанию 5)
