@@ -11,7 +11,7 @@ const RegisterForm = () => {
     const [fileList, setFileList] = useState<UploadFile[]>()
     const dispatch = useAppDispatch()
 
-    const onSubmit = async  (values: AuthDto) => {
+    const onSubmit = async (values: AuthDto) => {
         try {
             dispatch(registerUser(values));
             notification.success({

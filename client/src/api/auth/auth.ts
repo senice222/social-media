@@ -1,5 +1,6 @@
 import {AuthDto} from "./auth.dto.ts";
 import axios from "../../core/axios.ts";
+import Cookies from "js-cookie";
 
 export const register = async (values: AuthDto): Promise<Boolean> => {
     const formData = new FormData();
@@ -21,5 +22,6 @@ export const confirm = async (token: string) => {
             token: token,
         },
     })
+    Cookies.set('token', token);
     return data
 }
