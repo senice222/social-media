@@ -12,8 +12,6 @@ export type PostDocument = Post & Document
 
 @Schema()
 export class Post {
-    @Prop({ required: true })
-    title: string;
 
     @Prop({ required: true })
     content: string;
@@ -29,6 +27,9 @@ export class Post {
 
     @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'User'})
     owner: string
+
+    @Prop({ default: Date.now })
+    createdAt: string;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

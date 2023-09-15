@@ -7,6 +7,7 @@ import {UserModule} from "./user/user.module";
 import {TokenModule} from "./token/token.module";
 import {MailModule} from "./mail/mail.module";
 import { CommentsModule } from './comments/comments.module';
+import {DateModule} from "./date/date.module";
 
 @Module({
     imports: [
@@ -18,7 +19,9 @@ import { CommentsModule } from './comments/comments.module';
         MailModule,
         MongooseModule
             .forRoot('mongodb+srv://admin:admin@cluster0.4deuyex.mongodb.net/?retryWrites=true&w=majority'),
-        CommentsModule]
+        CommentsModule,
+        DateModule
+    ]
 
 })
 

@@ -7,6 +7,7 @@ import {JwtModule} from "@nestjs/jwt";
 import {jwtConstants} from "../auth/constants";
 import {User, UserSchema} from "../user/schemas/users.schema";
 import {CommentsModule} from "../comments/comments.module";
+import {DateService} from "../date/date.service";
 
 @Module({
     imports: [
@@ -22,7 +23,7 @@ import {CommentsModule} from "../comments/comments.module";
             },
         }),
     ],
-    providers: [PostsService],
+    providers: [PostsService, DateService],
     controllers: [PostsController]
 })
 export class PostsModule { }

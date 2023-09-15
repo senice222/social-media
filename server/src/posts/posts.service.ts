@@ -5,12 +5,14 @@ import {Post, PostDocument} from "./schemas/post.schema";
 import {CreatePostsDto} from "./dto/create-posts.dto";
 import {User, UserDocument} from "../user/schemas/users.schema";
 import { Paginated } from "./interfaces/paginated.post";
+import {DateService} from "../date/date.service";
 
 @Injectable()
 export class PostsService {
     constructor(
         @InjectModel(Post.name) private postModel: Model<PostDocument>,
-        @InjectModel(User.name) private userModel: Model<UserDocument>
+        @InjectModel(User.name) private userModel: Model<UserDocument>,
+        private readonly dateService: DateService
     ) {
     }
 
@@ -29,26 +31,27 @@ export class PostsService {
     }
     
     async getPaginatedPosts(page: number, perPage: number): Promise<Paginated> {
-        const total = await this.postModel.countDocuments().exec();
-        const totalPages = Math.ceil(total / perPage);
-        const skip = (page - 1) * perPage;
+        const total = await this.postModel.countDocuments().exec()
+        const totalPages = Math.ceil(total / perPage)
+        const skip = (page - 1) * perPage
         const posts = await this.postModel.find().skip(skip).limit(perPage).populate({
             path: 'comments',
             populate: {
                 path: 'userId',
                 model: this.userModel,
-            },
-        })
+            }
+        }).populate('owner')
     
         return {
           posts,
           total,
           totalPages,
-        };
+        }
     }
 
     async createPost(dto: CreatePostsDto, userId: string, files: string[]): Promise<Post> {
-        const post = await this.postModel.create({...dto, owner: userId, urls: files})
+        const createdAt = this.dateService.formatDate(new Date());
+        const post = await this.postModel.create({...dto, owner: userId, urls: files, createdAt})
         const user = await this.userModel.findById(userId)
 
         user.createdPosts.push(post._id)
