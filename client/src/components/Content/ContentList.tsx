@@ -9,7 +9,7 @@ import Pagination from "../Pagination/Pagination.tsx";
 
 const ContentList = () => {
     const dispatch = useAppDispatch();
-    const {currentPage, posts} = useAppSelector((state) => state.posts);
+    const {posts, currentPage} = useAppSelector((state) => state.posts);
 
     useEffect(() => {
         dispatch(loadPosts({ page: currentPage, perPage: 5 }));

@@ -13,19 +13,22 @@ const PostsSlice = createSlice({
     initialState,
     reducers: {
         setPosts(state, action: PayloadAction<Post[]>) {
-            state.posts = action.payload;
+            state.posts = action.payload
+        },
+        updatePosts(state, action: PayloadAction<Post[]>) {
+            state.posts = [...state.posts, ...action.payload]
         },
         setCurrentPage(state, action: PayloadAction<number>) {
-            state.currentPage = action.payload;
+            state.currentPage = action.payload
         },
         setTotalPosts(state, action: PayloadAction<number>) {
-            state.totalPosts = action.payload;
+            state.totalPosts = action.payload
         },
         setTotalPages(state, action: PayloadAction<number>) {
-            state.totalPages = action.payload;
+            state.totalPages = action.payload
         },
     },
-});
+})
 
-export const { setPosts, setCurrentPage, setTotalPosts, setTotalPages } = PostsSlice.actions;
-export default PostsSlice.reducer;
+export const { setPosts, setCurrentPage, setTotalPosts, setTotalPages, updatePosts } = PostsSlice.actions
+export default PostsSlice.reducer

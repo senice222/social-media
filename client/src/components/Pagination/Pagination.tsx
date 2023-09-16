@@ -12,8 +12,8 @@ const Pagination = () => {
                 Предыдущая
             </button>
             <span>
-                            Страница {currentPage} из {totalPages}
-                        </span>
+                Страница {currentPage} из {totalPages}
+            </span>
             <button onClick={() => dispatch(setCurrentPage(currentPage + 1))}
                     disabled={currentPage === totalPages}>
                 Следующая
