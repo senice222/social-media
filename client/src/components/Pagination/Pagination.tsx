@@ -6,18 +6,35 @@ const Pagination = () => {
     const dispatch = useAppDispatch();
     const {currentPage, totalPages} = useAppSelector((state) => state.posts);
 
+    const handlePageClick = (pageNumber: number) => {
+        dispatch(setCurrentPage(pageNumber))
+    }
+
+    const renderPageButtons = () => {
+        const pageButtons = []
+
+        for (let page = 1; page <= totalPages; page++) {
+            pageButtons.push(
+                <button
+                    key={page}
+                    onClick={() => handlePageClick(page)}
+                    disabled={currentPage === page}
+                >
+                    {page}
+                </button>
+            )
+        }
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // Добавляет плавную анимацию прокрутки
+        });
+
+        return pageButtons
+    }
+
     return (
         <div className={style.paginationCon}>
-            <button onClick={() => dispatch(setCurrentPage(currentPage - 1))} disabled={currentPage === 1}>
-                Предыдущая
-            </button>
-            <span>
-                Страница {currentPage} из {totalPages}
-            </span>
-            <button onClick={() => dispatch(setCurrentPage(currentPage + 1))}
-                    disabled={currentPage === totalPages}>
-                Следующая
-            </button>
+            {renderPageButtons()}
         </div>
     );
 };

@@ -18,7 +18,7 @@ const ContentItem: React.FC<PostWithoutId> = ({content, likes, comments, owner, 
                     <div className={style.userProfile}>
                         <img src={profilePic} alt={'/'}/>
                         <div>
-                            <p>{owner.username}</p>
+                            <p>{owner && owner.username}</p>
                             <span>{createdAt}</span>
                         </div>
                     </div>
@@ -31,9 +31,9 @@ const ContentItem: React.FC<PostWithoutId> = ({content, likes, comments, owner, 
 
                 <div className={style.postRow}>
                     <div className={style.activityIcons}>
-                        <div> <img src={like} alt="/"/> {likes ? likes.length : 0} </div>
-                        <div> <img src={comment} alt="/"/> {comments ? comments.length : 0} </div>
-                        <div> <img src={share} alt="/"/> 20 </div>
+                        <div><img src={like} alt="/"/> {likes ? likes.length : 0} </div>
+                        <div><img src={comment} alt="/"/> {comments ? comments.length : 0} </div>
+                        <div><img src={share} alt="/"/> 20</div>
                     </div>
                     <div className={style.postProfileIcon}>
                         <img src={profilePic} alt="/"/>

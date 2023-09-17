@@ -4,7 +4,7 @@ import CreatePost from "../CreatePost/CreatePost.tsx";
 import ContentItem from "./ContentItem.tsx";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
 import {useEffect} from "react";
-import {loadPosts} from "../../store/slices/Posts/postThunks.ts";
+import {loadPosts} from "../../store/slices/Posts/post.thunks.ts";
 import Pagination from "../Pagination/Pagination.tsx";
 
 const ContentList = () => {
