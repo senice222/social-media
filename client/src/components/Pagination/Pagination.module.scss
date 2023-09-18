@@ -1,4 +1,9 @@
 .paginationCon {
   display: flex;
   justify-content: center;
+
+  .btnPagination {
+    cursor: pointer;
+    margin-right: 10px;
+  }
 }

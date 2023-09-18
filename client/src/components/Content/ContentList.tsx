@@ -5,7 +5,7 @@ import ContentItem from "./ContentItem.tsx";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
 import {useEffect} from "react";
 import {loadPosts} from "../../store/slices/Posts/post.thunks.ts";
-import Pagination from "../Pagination/Pagination.tsx";
+import PaginationComponent from "../Pagination/Pagination.tsx";
 
 const ContentList = () => {
     const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ const ContentList = () => {
                     </React.Fragment>
                 ))
             }
-            <Pagination />
+            <PaginationComponent />
         </div>
     );
 };

@@ -5,7 +5,7 @@ const initialState: InitialState = {
     posts: [], // array of posts
     currentPage: 1,
     totalPosts: 0,
-    totalPages: 1
+    totalPages: 0
 }
 
 const PostsSlice = createSlice({
