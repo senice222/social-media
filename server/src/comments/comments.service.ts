@@ -40,4 +40,15 @@ export class CommentsService {
         await post.save();
         return post;
     }
+    async getPostComments(postId: string): Promise<Comment[]> {
+        const post = await this.postModel.findById(postId).populate({
+            path: 'comments',
+            populate: {
+                path: 'userId',
+                model: this.userModel,
+            },
+        })
+
+        return post.comments
+    }
 }

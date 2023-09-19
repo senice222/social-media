@@ -1,14 +1,15 @@
 import React from 'react'
 import style from './Content.module.scss'
-import profilePic from "../../assets/profile-pic.png";
+import profilePic from "../../../assets/profile-pic.png";
 import {NavLink} from "react-router-dom";
-import postImg from '../../assets/feed-image-1.png'
-import like from '../../assets/like-blue.png'
-import comment from '../../assets/comments.png'
-import share from '../../assets/share.png'
-import {PostWithoutId} from "../../interfaces/PostsI.ts";
+import postImg from '../../../assets/feed-image-1.png'
+import like from '../../../assets/like-blue.png'
+import comment from '../../../assets/comments.png'
+import share from '../../../assets/share.png'
+import {Post} from "../../../interfaces/PostsI.ts";
+import CommentItem from "../Comments/CommentItem.tsx";
 
-const ContentItem: React.FC<PostWithoutId> = ({content, likes, comments, owner, createdAt}) => {
+const ContentItem: React.FC<Post> = ({_id, content, likes, comments, owner, createdAt}) => {
 
     return (
         <div className={style.middleSide}>
@@ -39,8 +40,11 @@ const ContentItem: React.FC<PostWithoutId> = ({content, likes, comments, owner, 
                         <img src={profilePic} alt="/"/>
                     </div>
                 </div>
+                <CommentItem
+                    _id={_id}
+                    comments={comments}
+                />
             </div>
-
         </div>
     );
 };

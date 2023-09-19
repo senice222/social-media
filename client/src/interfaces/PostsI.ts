@@ -9,7 +9,6 @@ export interface Post {
     owner: User,
     createdAt: string
 }
-export interface PostWithoutId extends Omit<Post, '_id'> { }
 
 export interface FunctionArguments {
     page: number,
@@ -22,6 +21,11 @@ export interface Comment {
     postId: string,
     _id: string
 }
+export interface CommentProps {
+    _id: string;
+    comments: Comment[]
+}
+
 export interface InitialState {
     posts: Post[],
     currentPage: number,

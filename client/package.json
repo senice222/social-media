@@ -25,6 +25,7 @@
     "react-router-dom": "^6.15.0",
     "react-simplemde-editor": "^5.2.0",
     "sass": "^1.66.1",
+    "swr": "^2.2.2",
     "web-vitals": "^3.4.0"
   },
   "devDependencies": {

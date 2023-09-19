@@ -9,11 +9,16 @@ const PaginationComponent = () => {
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, pageNumber: number) => {
         dispatch(setCurrentPage(pageNumber));
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // adds smooth scroll
+        });
     }
 
     return (
         <div className={style.paginationCon}>
-            <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} />
+            <Pagination color="primary" count={totalPages} page={currentPage} onChange={handlePageChange} />
         </div>
     );
 };

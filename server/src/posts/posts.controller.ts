@@ -70,7 +70,7 @@ export class PostsController {
 
 
     @UseGuards(AuthGuard('jwt'))
-    @Delete(':postId')
+    @Delete('deletePost/:postId')
     deletePost(@Param('postId') postId, @UserId() id: string) {
         return this.postsService.deletePost(postId, id)
     }
@@ -85,5 +85,11 @@ export class PostsController {
     @Post('addComment/:postId')
     addComment(@Param('postId') postId: string, @UserId() id, @Body() commentDto: CommentDto) {
         return this.commentsService.createComment(postId, id, commentDto)
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('comments/:id')
+    getPostComments(@Param('id') id: string) {
+        return this.commentsService.getPostComments(id)
     }
 }
