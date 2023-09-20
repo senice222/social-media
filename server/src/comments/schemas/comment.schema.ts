@@ -15,6 +15,9 @@ export class Comment {
 
     @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Post' })
     postId: string; // Пост, к которому относится комментарий
+
+    @Prop({ default: Date.now })
+    createdAt: string
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Comment);

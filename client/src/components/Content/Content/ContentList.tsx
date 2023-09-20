@@ -5,7 +5,8 @@ import ContentItem from "./ContentItem.tsx";
 import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks.ts";
 import {useEffect} from "react";
 import {loadPosts} from "../../../store/slices/Posts/post.thunks.ts";
-import PaginationComponent from "../../Pagination/Pagination.tsx";
+import PaginationComponent from "./Pagination/Pagination.tsx";
+import {Post} from "../../../interfaces/PostsI.ts";
 
 const ContentList = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ const ContentList = () => {
         <div className={style.middleSide}>
             <CreatePost/>
             {
-                posts.map((item, i) => (
+                posts.map((item: Post, i: number) => (
                     <React.Fragment key={i}>
                         <ContentItem
                             _id={item._id}

@@ -1,22 +1,26 @@
 import {Injectable} from '@nestjs/common';
-import mongoose, {Model} from 'mongoose';
+import {Model} from 'mongoose';
 import {User, UserDocument} from '../user/schemas/users.schema';
 import {InjectModel} from '@nestjs/mongoose';
 import {Post, PostDocument} from '../posts/schemas/post.schema';
 import {Comment, CommentDocument} from './schemas/comment.schema';
 import {CommentDto} from './dto/create-comment.dto';
+import {DateService} from "../date/date.service";
 
 @Injectable()
 export class CommentsService {
     constructor(
         @InjectModel(Post.name) private postModel: Model<PostDocument>,
         @InjectModel(User.name) private userModel: Model<UserDocument>,
-        @InjectModel(Comment.name) private commentModel: Model<CommentDocument>
+        @InjectModel(Comment.name) private commentModel: Model<CommentDocument>,
+        private readonly dateService: DateService
+
     ) {
     }
 
     async createComment(postId: string, ownerId: string, commentDto: CommentDto): Promise<Post> {
         const post = await this.postModel.findById(postId);
+        const createdAt = this.dateService.formatDate(new Date());
 
         if (!post) {
             throw new Error('Post not found');
@@ -32,6 +36,7 @@ export class CommentsService {
             commentText: commentDto.commentText,
             userId: user._id,
             postId: post._id,
+            createdAt
         });
         await newComment.save();
 
@@ -40,6 +45,7 @@ export class CommentsService {
         await post.save();
         return post;
     }
+
     async getPostComments(postId: string): Promise<Comment[]> {
         const post = await this.postModel.findById(postId).populate({
             path: 'comments',
