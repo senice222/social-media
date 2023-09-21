@@ -1,0 +1,23 @@
+.commentInput {
+  height: 35px;
+  border: none;
+  font-size: 15px;
+  outline: none;
+  border-bottom: 1px solid #626262;
+}
+.commentBtn {
+  margin-left: 10px;
+  border: none;
+  height: 35px;
+  width: 35px;
+  outline: none;
+  cursor: pointer;
+  background: #FFFFFF;
+  font-size: 17px;
+  margin-top: 15px;
+  color: #0094F4;
+  transition: .1s;
+}
+.commentBtn:hover {
+  color: black;
+}

@@ -22,6 +22,18 @@ export interface Comment {
     createdAt: string;
     _id: string
 }
+export interface CommentItemProps {
+    username: string,
+    commentText: string,
+    createdAt: string,
+    avatar: string
+}
+export interface CreateCommentProps {
+    setComment: (comment: string) => void,
+    comment: string,
+    onCreateComment: () => void;
+}
+
 export interface CommentProps {
     _id: string;
     comments: Comment[]

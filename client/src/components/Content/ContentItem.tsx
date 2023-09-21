@@ -1,13 +1,13 @@
 import React from 'react'
 import style from './Content.module.scss'
-import profilePic from "../../../assets/profile-pic.png";
+import profilePic from "../../assets/profile-pic.png";
 import {NavLink} from "react-router-dom";
-import postImg from '../../../assets/feed-image-1.png'
-import like from '../../../assets/like-blue.png'
-import comment from '../../../assets/comments.png'
-import share from '../../../assets/share.png'
-import {Post} from "../../../interfaces/PostsI.ts";
-import CommentItem from "../Comments/CommentItem.tsx";
+import postImg from '../../assets/feed-image-1.png'
+import like from '../../assets/like-blue.png'
+import comment from '../../assets/comments.png'
+import share from '../../assets/share.png'
+import {Post} from "../../interfaces/PostsI.ts";
+import CommentsList from "../Comments/CommentsList.tsx";
 
 const ContentItem: React.FC<Post> = ({_id, content, likes, comments, owner, createdAt}) => {
 
@@ -40,7 +40,7 @@ const ContentItem: React.FC<Post> = ({_id, content, likes, comments, owner, crea
                         <img src={profilePic} alt="/"/>
                     </div>
                 </div>
-                <CommentItem
+                <CommentsList
                     _id={_id}
                     comments={comments}
                 />
