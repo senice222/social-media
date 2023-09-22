@@ -22,8 +22,10 @@
     p {
       cursor: pointer;
       font-size: 18px;
-      font-weight: 500;
-      color: #626262;
+      //font-weight: 500;
+      //color: #626262;
+      font-weight: bold;
+      color: #102A43;
       transition: .1s
     }
     p:hover {
