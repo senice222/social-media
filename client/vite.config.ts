@@ -8,7 +8,7 @@ export default defineConfig({
         react(),
         VitePluginFonts({
             google: {
-                families: ['Poppins'],
+                families: ['Poppins', 'Inter'],
             },
         }),
     ],
