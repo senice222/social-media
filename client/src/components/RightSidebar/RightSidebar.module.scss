@@ -11,6 +11,13 @@
   border-radius: 4px;
   color: #626262;
 
+  .sideBarTitle {
+    h4 {
+      color: #102A43;
+      font-weight: bold;
+    }
+  }
+
   .event {
     display: flex;
     margin-top: 10px;

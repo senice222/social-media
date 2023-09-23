@@ -76,7 +76,7 @@ export class PostsService {
         return post._id
     }
 
-    async like(paramsPostId: string, userId: string) {
+    async like(paramsPostId: string, userId: string): Promise<Post> {
         try {
             const post = await this.postModel.findById(paramsPostId)
 

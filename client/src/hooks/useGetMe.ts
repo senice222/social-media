@@ -1,14 +1,23 @@
 import {useAppDispatch, useAppSelector} from "./reduxHooks.ts";
 import {useEffect} from "react";
 import {getMe} from "../store/slices/UserSlice.ts";
+import {GetUserByHook} from "../interfaces/AuthI.ts";
 
-export const useGetMe = async () => {
-    const currentUser = useAppSelector(state => state.user.user)
-    const dispatch = useAppDispatch()
+export const useGetMe = (): GetUserByHook => {
+    const currentUser = useAppSelector((state) => state.user.user);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getMe())
-    }, [dispatch])
+        const fetchCurrentUser = async () => {
+            try {
+                await dispatch(getMe());
+            } catch (error) {
+                console.error("Error fetching current user:", error);
+            }
+        };
 
-    return { currentUser }
-}
+        fetchCurrentUser();
+    }, [dispatch]);
+
+    return { currentUser };
+};

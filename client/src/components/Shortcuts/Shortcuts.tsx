@@ -8,7 +8,7 @@ import shortcut4 from "../../assets/shortcut-4.png";
 const Shortcuts = () => {
     return (
         <div className={style.shortCutLinks}>
-            <p>Your Shortcuts</p>
+            <h3>Your Shortcuts</h3>
 
             <div>
                 <NavLink to={'/'}>

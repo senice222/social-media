@@ -8,9 +8,11 @@ export interface User {
     avatar: string
     chats: any[]
 }
+
 export interface IReadableUser extends User {
     accessToken?: string
 }
+
 export interface CreatedPost {
     _id: string
     description: string
@@ -27,6 +29,7 @@ export interface Comment {
     _id: string
     __v: number
 }
+
 export interface RegisterAndLogin {
     data: IReadableUser | string | null;
     status: 'loading' | 'success' | 'error' | null
@@ -36,4 +39,7 @@ export interface RegisterAndLogin {
 export interface GetMeData {
     user: User | null,
     status: 'loading' | 'success' | 'error' | null
+}
+export interface GetUserByHook {
+    currentUser: User | null
 }

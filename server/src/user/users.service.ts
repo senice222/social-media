@@ -18,13 +18,11 @@ export class UsersService {
     }
 
     async getUserByEmail(email: string): Promise<UserI>  {
-        const user = await this.userModel.findOne({email}).exec()
-        return user
+        return await this.userModel.findOne({email}).exec()
     }
 
     async getUserById(id: string): Promise<UserI> {
-        const user = await this.userModel.findById(id).populate('createdPosts')
-        return user
+        return await this.userModel.findById(id).populate('createdPosts')
     }
 
     async create(createUserDto: CreateUserDto): Promise<UserI> {

@@ -3,7 +3,7 @@ import {GetMeData} from "../../interfaces/AuthI.ts";
 import * as Api from '../../api/index.ts'
 
 export const getMe = createAsyncThunk('/getMe', async () => {
-    await Api.user.getMe()
+    return await Api.user.getMe()
 })
 
 const initialState: GetMeData = {
@@ -24,7 +24,7 @@ const UserSlice = createSlice({
             })
             .addCase(getMe.fulfilled, (state, action: PayloadAction<any>) => {
                 state.user = action.payload;
-                state.status = 'success'; // Update the status as needed
+                state.status = 'success';
             })
             .addCase(getMe.rejected, (state) => {
                 state.user = null
