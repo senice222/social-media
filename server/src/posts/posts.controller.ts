@@ -92,4 +92,9 @@ export class PostsController {
     getPostComments(@Param('id') id: string) {
         return this.commentsService.getPostComments(id)
     }
+    @UseGuards(AuthGuard('jwt'))
+    @Get('likes/:id')
+    getPostLikes(@Param('id') id: string) {
+        return this.commentsService.getPostLikes(id)
+    }
 }

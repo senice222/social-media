@@ -7,13 +7,16 @@ import blueLike from '../../assets/like-blue.png'
 import like from '../../assets/like.png'
 import comment from '../../assets/comments.png'
 import share from '../../assets/share.png'
-import {Post} from "../../interfaces/PostsI.ts";
+import {Post, likes} from "../../interfaces/PostsI.ts";
 import CommentsList from "../Comments/CommentsList.tsx";
 import {useGetMe} from "../../hooks/useGetMe.ts";
+import {usePostLikes} from "../../hooks/usePostLikes.ts";
 
-const ContentItem: React.FC<Post> = ({_id, content, likes, comments, owner, createdAt}) => {
+const ContentItem: React.FC<Post> = ({_id, content, comments, owner, createdAt}) => {
     const { currentUser } = useGetMe()
-    const isUserLiked = likes.some(item => item === currentUser?._id)
+    const { likes, handleLike } = usePostLikes(_id)
+
+    const isUserLiked = likes?.length > 0 && likes.some((item: likes) => item.id === currentUser?._id)
 
     return (
         <div className={style.middleSide}>
@@ -35,9 +38,15 @@ const ContentItem: React.FC<Post> = ({_id, content, likes, comments, owner, crea
 
                 <div className={style.postRow}>
                     <div className={style.activityIcons}>
-                        <div><img src={isUserLiked ? blueLike : like} alt="/"/> {likes ? likes.length : 0} </div>
-                        <div><img src={comment} alt="/"/> {comments ? comments.length : 0} </div>
-                        <div><img src={share} alt="/"/> 20</div>
+                        <div onClick={handleLike}>
+                            <img src={isUserLiked ? blueLike : like} alt="/"/> {likes ? likes.length : 0}
+                        </div>
+                        <div>
+                            <img src={comment} alt="/"/> {comments ? comments.length : 0}
+                        </div>
+                        <div>
+                            <img src={share} alt="/"/> 20
+                        </div>
                     </div>
                     <div className={style.postProfileIcon}>
                         <img src={profilePic} alt="/"/>

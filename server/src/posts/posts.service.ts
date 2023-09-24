@@ -79,11 +79,11 @@ export class PostsService {
     async like(paramsPostId: string, userId: string): Promise<Post> {
         try {
             const post = await this.postModel.findById(paramsPostId)
-
-            if (!post.likes.includes(userId)) {
-                await this.postModel.updateOne({_id: post._id}, {$push: {likes: userId}})
+            const isIncludes = post.likes.some(item => item.id === userId)
+            if (!isIncludes) {
+                await this.postModel.updateOne({_id: post._id}, {$push: {likes: {id: userId}}})
             } else {
-                await this.postModel.updateOne({_id: post._id}, {$pull: {likes: userId}})
+                await this.postModel.updateOne({_id: post._id}, {$pull: {likes: {id: userId}}})
             }
             return post
         } catch (e) {

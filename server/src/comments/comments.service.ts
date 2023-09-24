@@ -57,4 +57,9 @@ export class CommentsService {
 
         return post.comments
     }
+    async getPostLikes(postId: string): Promise<any> {
+        const post = await this.postModel.findById(postId)
+
+        return post.likes
+    }
 }

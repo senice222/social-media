@@ -7,6 +7,7 @@ import mongoose, {
     Document,
 } from 'mongoose';
 import { CommentI } from "../../comments/interfaces/commentI";
+import {likes} from "../interfaces/likes";
 
 export type PostDocument = Post & Document
 
@@ -16,8 +17,8 @@ export class Post {
     @Prop({ required: true })
     content: string;
 
-    @Prop()
-    likes: string[];
+    @Prop({default: []})
+    likes: likes[];
 
     @Prop({default: []})
     comments: CommentI[];

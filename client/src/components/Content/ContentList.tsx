@@ -26,7 +26,6 @@ const ContentList = () => {
                         <ContentItem
                             _id={item._id}
                             content={item.content}
-                            likes={item.likes}
                             comments={item.comments}
                             urls={item.urls}
                             createdAt={item.createdAt}

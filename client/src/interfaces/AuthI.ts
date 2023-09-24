@@ -1,3 +1,5 @@
+import {CreatedPost} from "./PostsI.ts";
+
 export interface User {
     _id: string
     email: string
@@ -13,22 +15,6 @@ export interface IReadableUser extends User {
     accessToken?: string
 }
 
-export interface CreatedPost {
-    _id: string
-    description: string
-    urls: string[]
-    likes: any[]
-    comments: Comment[]
-    owner: string
-}
-
-export interface Comment {
-    commentText: string
-    userId: string
-    postId: string
-    _id: string
-    __v: number
-}
 
 export interface RegisterAndLogin {
     data: IReadableUser | string | null;

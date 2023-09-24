@@ -5,6 +5,9 @@ export const createComment = async (postId: string, commentText: string) => {
         commentText
     }
 
-    const {data} = await axios.post(`posts/addComment/${postId}`, commentObj)
-    return data
+    return (await axios.post(`posts/addComment/${postId}`, commentObj)).data
+}
+
+export const like = async (postId: string) => {
+    return (await axios.put(`posts/like/${postId}`)).data
 }

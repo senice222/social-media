@@ -27,7 +27,7 @@ const PostsSlice = createSlice({
         setTotalPages(state, action: PayloadAction<number>) {
             state.totalPages = action.payload
         },
-    },
+    }
 })
 
 export const { setPosts, setCurrentPage, setTotalPosts, setTotalPages, updatePosts } = PostsSlice.actions
