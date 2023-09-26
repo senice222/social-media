@@ -45,7 +45,6 @@ export interface CreateCommentProps {
 
 export interface CommentProps {
     _id: string;
-    comments: Comment[]
 }
 export interface CommentPaginationProps {
     currentPage: number;

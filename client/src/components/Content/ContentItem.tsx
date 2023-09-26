@@ -55,7 +55,6 @@ const ContentItem: React.FC<Post> = ({_id, content, comments, owner, createdAt})
 
                 <CommentsList
                     _id={_id}
-                    comments={comments}
                 />
             </div>
         </div>

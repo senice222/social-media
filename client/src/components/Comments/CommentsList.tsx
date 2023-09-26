@@ -1,9 +1,9 @@
 import style from './Comment.module.scss'
 import {FC, useState} from "react";
 import {Comment, CommentProps} from "../../interfaces/PostsI.ts";
-import CommentsPagination from "../CommentsPagination/CommentsPagination.tsx";
+import CommentsPagination from "./CommentsPagination/CommentsPagination.tsx";
 import CommentItem from "./CommentItem.tsx";
-import CreateComment from "../CreateComment/CreateComment.tsx";
+import CreateComment from "./CreateComment/CreateComment.tsx";
 import {usePostComments} from "../../hooks/usePostComments.ts";
 
 const CommentsList: FC<CommentProps> = ({_id}) => {
@@ -27,7 +27,6 @@ const CommentsList: FC<CommentProps> = ({_id}) => {
             <>
                 {
                     currentComments ? (
-
                         currentComments.map((comment: Comment, i: number) => (
                             <CommentItem
                                 key={i}
@@ -37,13 +36,11 @@ const CommentsList: FC<CommentProps> = ({_id}) => {
                                 username={comment.userId.username}
                             />
                         ))
-
                     ) : (
                         <p>Loading comments...</p>
                     )
                 }
             </>
-
             <CommentsPagination
                 setCurrentPage={setCurrentPage}
                 totalPages={totalPages}

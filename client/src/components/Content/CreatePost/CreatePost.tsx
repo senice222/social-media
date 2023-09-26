@@ -1,8 +1,8 @@
 import style from './CreatePost.module.scss'
-import profilePic from '../../assets/profile-pic.png'
-import photo from "../../assets/photo.png";
-import feeling from "../../assets/feeling.png";
-import video from "../../assets/live-video.png";
+import profilePic from '../../../assets/profile-pic.png'
+import photo from "../../../assets/photo.png";
+import feeling from "../../../assets/feeling.png";
+import video from "../../../assets/live-video.png";
 import {NavLink} from "react-router-dom";
 
 const CreatePost = () => {

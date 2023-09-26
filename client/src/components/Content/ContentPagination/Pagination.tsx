@@ -1,6 +1,6 @@
 import style from './Pagination.module.scss'
-import {setCurrentPage} from "../../store/slices/Posts/PostsSlice.ts";
-import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks.ts";
+import {setCurrentPage} from "../../../store/slices/Posts/PostsSlice.ts";
+import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks.ts";
 import Pagination from '@mui/material/Pagination';
 
 const PaginationComponent = () => {

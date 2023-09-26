@@ -15,9 +15,6 @@ const PostsSlice = createSlice({
         setPosts(state, action: PayloadAction<Post[]>) {
             state.posts = action.payload
         },
-        updatePosts(state, action: PayloadAction<Post[]>) {
-            state.posts = [...state.posts, ...action.payload]
-        },
         setCurrentPage(state, action: PayloadAction<number>) {
             state.currentPage = action.payload
         },
@@ -30,5 +27,5 @@ const PostsSlice = createSlice({
     }
 })
 
-export const { setPosts, setCurrentPage, setTotalPosts, setTotalPages, updatePosts } = PostsSlice.actions
+export const { setPosts, setCurrentPage, setTotalPosts, setTotalPages } = PostsSlice.actions
 export default PostsSlice.reducer
