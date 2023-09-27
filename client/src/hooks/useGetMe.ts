@@ -15,7 +15,7 @@ export const useGetMe = (): GetUserByHook => {
                 console.error("Error fetching current user:", error);
             }
         };
-
+        
         fetchCurrentUser();
     }, [dispatch]);
 

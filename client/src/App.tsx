@@ -1,7 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './styles/App.scss'
-import Auth from "./pages/auth/Auth.tsx";
-import Confirm from "./pages/auth/Confirm.tsx";
+import Auth from "./pages/Auth/Auth.tsx";
+import Confirm from "./pages/Auth/Confirm.tsx";
 import { Navigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import Home from "./pages/Home.tsx";
