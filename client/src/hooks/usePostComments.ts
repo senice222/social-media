@@ -4,7 +4,7 @@ import {fetcher} from "../core/axios.ts";
 import {SetStateAction, Dispatch} from "react";
 
 export const usePostComments = (_id: string, comment: string, setComment: Dispatch<SetStateAction<string>>) => {
-    const {data: comments, mutate: mutateComments} = useSWR(`posts/comments/${_id}`, fetcher)
+    const { data: comments, mutate: mutateComments } = useSWR(`posts/comments/${_id}`, fetcher)
 
     const handleComment = async () => {
         try {
@@ -16,5 +16,5 @@ export const usePostComments = (_id: string, comment: string, setComment: Dispat
         }
     }
 
-    return {comments, handleComment}
+    return { comments, handleComment }
 }

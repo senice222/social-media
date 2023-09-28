@@ -6,11 +6,13 @@ export const usePostLikes = (postId: string) => {
     const { data: likes, mutate: mutateLikes } = useSWR(`posts/likes/${postId}`, fetcher);
 
     const handleLike = async () => {
-        await Api.posts.like(postId);
-
-        mutateLikes();
-
-        mutate(`/posts/likes/${postId}`);
+        try {
+            await Api.posts.like(postId);
+            mutateLikes();
+            mutate(`/posts/likes/${postId}`);
+        } catch (e) {
+            console.log(e)
+        }
     }
     return { likes, handleLike };
 };
