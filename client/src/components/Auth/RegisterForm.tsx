@@ -70,7 +70,7 @@ const RegisterForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: "Укажите пароль",
+                            message: "Enter your password",
                         },
                     ]}
                 >
@@ -83,7 +83,7 @@ const RegisterForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: "Укажите вашу аватарку",
+                            message: "Enter your avatar",
                         },
                     ]}
                 >

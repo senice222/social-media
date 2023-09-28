@@ -4,8 +4,18 @@ import photo from "../../../assets/photo.png";
 import feeling from "../../../assets/feeling.png";
 import video from "../../../assets/live-video.png";
 import {NavLink} from "react-router-dom";
+import {useState} from "react";
+import * as Api from '../../../api'
 
 const CreatePost = () => {
+    const [content, setContent] = useState<string>('');
+
+    const handleCreatePost = async () => {
+        await Api.posts.createPost(content)
+        setContent('')
+        window.location.reload()
+    }
+
     return (
         <div className={style.middleSide}>
             <div className={style.userProfile}>
@@ -16,7 +26,19 @@ const CreatePost = () => {
             </div>
 
             <div className={style.postInputContainer}>
-                <textarea rows={3} placeholder={"What's on your mind, John?"}></textarea>
+                <textarea value={content}
+                          onChange={(e) => setContent(e.target.value)}
+                          rows={3}
+                          placeholder={"What's on your mind, John?"}
+                          onKeyDown={(e) => {
+                              if (e.key === 'Enter' && !e.shiftKey) {
+                                  e.preventDefault();
+                                  handleCreatePost();
+                              }
+                          }}
+                >
+
+                </textarea>
 
                 <div className={style.addPostLink}>
                     <NavLink to={'/'}>

@@ -6,6 +6,7 @@ import { Navigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import Home from "./pages/Home.tsx";
 import {Children} from "./interfaces/ProtectedRouteI.ts";
+import Profile from "./pages/Profile/Profile.tsx";
 
 function App() {
 
@@ -30,6 +31,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <Home/>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path={'/profile'}
+                    element={
+                        <ProtectedRoute>
+                            <Profile />
                         </ProtectedRoute>
                     }
                 />

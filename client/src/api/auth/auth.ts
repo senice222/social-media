@@ -2,7 +2,7 @@ import {AuthDto} from "./auth.dto.ts";
 import axios from "../../core/axios.ts";
 import Cookies from "js-cookie";
 
-export const register = async (values: AuthDto): Promise<Boolean> => {
+export const register = async (values: AuthDto) => {
     const formData = new FormData();
     formData.append("email", values.email)
     formData.append("username", values.username)
@@ -13,8 +13,12 @@ export const register = async (values: AuthDto): Promise<Boolean> => {
         headers: { "Content-Type": "multipart/form-data" },
     };
 
-    const { data } = await axios.post('auth/signUp', formData, config)
-    return data
+    try {
+        const { data } = await axios.post('auth/signUp', formData, config)
+        return data
+    } catch (e) {
+        console.log(e)
+    }
 }
 export const confirm = async (token: string) => {
     const {data} = await axios.get('auth/confirm', {
