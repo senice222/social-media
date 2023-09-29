@@ -1,10 +1,10 @@
 import style from './Comment.module.scss'
 import {FC, useState} from "react";
-import {Comment, CommentProps} from "../../interfaces/PostsI.ts";
 import CommentsPagination from "./CommentsPagination/CommentsPagination.tsx";
 import CommentItem from "./CommentItem.tsx";
 import CreateComment from "./CreateComment/CreateComment.tsx";
 import {usePostComments} from "../../hooks/usePostComments.ts";
+import {CommentProps, Comment} from "../../interfaces/CommentsI.ts";
 
 const CommentsList: FC<CommentProps> = ({_id}) => {
     const [comment, setComment] = useState<string>('')

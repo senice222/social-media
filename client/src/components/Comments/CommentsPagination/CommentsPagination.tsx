@@ -1,7 +1,7 @@
 import {ChangeEvent, FC} from "react";
-import {CommentPaginationProps} from "../../../interfaces/PostsI.ts";
 import Pagination from "@mui/material/Pagination";
 import style from './CommentsPagination.module.scss'
+import {CommentPaginationProps} from "../../../interfaces/CommentsI.ts";
 
 const CommentsPagination: FC<CommentPaginationProps> = ({ setCurrentPage, currentPage, totalPages }) => {
 

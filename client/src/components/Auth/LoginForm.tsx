@@ -1,10 +1,31 @@
 import styles from '../../pages/auth/Auth.module.scss'
-import {Button, Form, Input} from "antd";
+import {Button, Form, Input, notification} from "antd";
+import {LoginDto} from "../../api/auth/auth.dto.ts";
+import {useAppDispatch} from "../../hooks/reduxHooks.ts";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {loginUser} from "../../store/slices/Auth/thunks/auth.thunks.ts";
 
 const LoginForm = () => {
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+    const [err, setErr] = useState<boolean>(false);
 
-    const onSubmit = async (values: any) => {
-        console.log(values)
+    const onSubmit = async (values: LoginDto) => {
+        try {
+            dispatch(loginUser(values));
+            notification.success({
+                message: "Success!",
+                description: "You successfully entered.",
+                duration: 1.5
+            })
+            setTimeout(() => {
+                navigate('/');
+            }, 1500);
+        } catch (e) {
+            console.log(e)
+            setErr(true)
+        }
     };
 
     return (
@@ -52,6 +73,7 @@ const LoginForm = () => {
                         Login
                     </Button>
                 </Form.Item>
+                {err && 'Error..'}
             </Form>
         </div>
     );

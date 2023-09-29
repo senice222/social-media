@@ -1,6 +1,6 @@
 import style from "./CreateComment.module.scss";
 import {FC} from "react";
-import {CreateCommentProps} from "../../../interfaces/PostsI.ts";
+import {CreateCommentProps} from "../../../interfaces/CommentsI.ts";
 
 const CreateComment: FC<CreateCommentProps> = ({ setComment, comment, onCreateComment}) => {
 

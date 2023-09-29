@@ -3,8 +3,8 @@ import {Button, Form, Input, notification, Upload, UploadFile, UploadProps} from
 import {useState} from "react";
 import { UploadOutlined } from '@ant-design/icons';
 import {AuthDto} from "../../api/auth/auth.dto.ts";
-import {registerUser} from "../../store/slices/AuthSlice.ts";
 import {useAppDispatch} from "../../hooks/reduxHooks.ts";
+import {registerUser} from "../../store/slices/Auth/thunks/auth.thunks.ts";
 
 
 const RegisterForm = () => {

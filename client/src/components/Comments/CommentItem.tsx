@@ -1,6 +1,6 @@
 import style from "./Comment.module.scss";
-import {CommentItemProps} from "../../interfaces/PostsI.ts";
 import {FC} from "react";
+import {CommentItemProps} from "../../interfaces/CommentsI.ts";
 
 const CommentItem: FC<CommentItemProps> = ({username, commentText, createdAt, avatar}) => {
     return (

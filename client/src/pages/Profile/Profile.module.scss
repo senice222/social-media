@@ -1,0 +1,26 @@
+.profileContainer {
+  display: flex;
+  justify-content: center;
+
+  .profile {
+    width: 53vw;
+    height: 80vh;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* Пример тени */
+    background: #ffffff;
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+      margin: 20px;
+      .userAvatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+      h3 {
+        margin-left: 15px;
+      }
+    }
+  }
+}

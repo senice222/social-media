@@ -1,10 +1,6 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {GetMeData} from "../../interfaces/AuthI.ts";
-import * as Api from '../../api/index.ts'
-
-export const getMe = createAsyncThunk('/getMe', async () => {
-    return await Api.user.getMe()
-})
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {GetMeData} from "../../../interfaces/AuthI.ts";
+import {getMe} from "./thunks/user.thunks.ts";
 
 const initialState: GetMeData = {
     user: null,

@@ -1,7 +1,7 @@
 import {AnyAction, Dispatch} from '@reduxjs/toolkit';
-import axios from '../../../core/axios.ts';
-import { setPosts, setCurrentPage, setTotalPosts, setTotalPages } from './PostsSlice.ts';
-import {FunctionArguments} from "../../../interfaces/PostsI.ts";
+import axios from '../../../../core/axios.ts';
+import { setPosts, setCurrentPage, setTotalPosts, setTotalPages } from '../PostsSlice.ts';
+import {FunctionArguments} from "../../../../interfaces/PostsI.ts";
 
 export const loadPosts = ({ page, perPage }: FunctionArguments) => async (dispatch: Dispatch<AnyAction>) => {
     try {

@@ -1,4 +1,4 @@
-import {AuthDto} from "./auth.dto.ts";
+import {AuthDto, LoginDto} from "./auth.dto.ts";
 import axios from "../../core/axios.ts";
 import Cookies from "js-cookie";
 
@@ -20,6 +20,17 @@ export const register = async (values: AuthDto) => {
         console.log(e)
     }
 }
+
+export const login = async (values: LoginDto) => {
+    try {
+        const { data } = await axios.post('auth/signIn', values)
+        Cookies.set('token', data.accessToken);
+        return data
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 export const confirm = async (token: string) => {
     const {data} = await axios.get('auth/confirm', {
         params: {

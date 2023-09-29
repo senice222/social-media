@@ -1,11 +1,6 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RegisterAndLogin} from "../../interfaces/AuthI.ts";
-import * as Api from '../../api/index.ts'
-import {AuthDto} from "../../api/auth/auth.dto.ts";
-
-export const registerUser = createAsyncThunk('Auth/registerUser', async (values: AuthDto) => {
-    await Api.auth.register(values)
-});
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {RegisterAndLogin} from "../../../interfaces/AuthI.ts";
+import {loginUser, registerUser} from "./thunks/auth.thunks.ts";
 
 const initialState: RegisterAndLogin = {
     data: null,
@@ -28,6 +23,20 @@ const UserSlice = createSlice({
                 state.status = 'success'; // Update the status as needed
             })
             .addCase(registerUser.rejected, (state) => {
+                state.data = null
+                state.status = 'error';
+            });
+            // user login
+        builder.addCase(loginUser.pending, (state) => {
+                state.data = null
+                state.status = 'loading';
+            })
+            .addCase(loginUser.fulfilled, (state, action: PayloadAction<any>) => {
+                console.log(action)
+                state.data = action.payload;
+                state.status = 'success'; // Update the status as needed
+            })
+            .addCase(loginUser.rejected, (state) => {
                 state.data = null
                 state.status = 'error';
             });
