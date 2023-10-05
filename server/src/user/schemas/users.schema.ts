@@ -20,13 +20,16 @@ export class User {
     createdPosts: Post[];
 
     @Prop({type: String, enum: statusEnum, default: statusEnum.pending})
-    status: statusEnum
+    status: statusEnum;
 
     @Prop({required: true, type: String})
-    avatar: string
+    avatar: string;
 
     @Prop()
     chats: [];
+
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
+    friends: User[];
 };
 
 export const UserSchema = SchemaFactory.createForClass(User);

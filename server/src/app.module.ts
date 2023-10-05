@@ -8,6 +8,7 @@ import {TokenModule} from "./token/token.module";
 import {MailModule} from "./mail/mail.module";
 import { CommentsModule } from './comments/comments.module';
 import {DateModule} from "./date/date.module";
+import {FriendRequestsModule} from "./friends/friend-requests.module";
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import {DateModule} from "./date/date.module";
         AuthModule,
         TokenModule,
         MailModule,
+        FriendRequestsModule,
         MongooseModule
             .forRoot('mongodb+srv://admin:admin@cluster0.4deuyex.mongodb.net/?retryWrites=true&w=majority'),
         CommentsModule,
