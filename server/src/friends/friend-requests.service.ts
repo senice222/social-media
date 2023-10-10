@@ -27,11 +27,11 @@ export class FriendRequestsService {
         if (status === 'accepted') {
             const { fromUser, toUser } = friendRequest
 
-            // Add the sender to the receiver's friends list
             await this.userModel.findByIdAndUpdate(fromUser, { $push: { friends: toUser } });
 
-            // Add the receiver to the sender's friends list
             await this.userModel.findByIdAndUpdate(toUser, { $push: { friends: fromUser } });
+        } else {
+            await this.friendRequestModel.findByIdAndDelete(requestId)
         }
 
         return friendRequest;

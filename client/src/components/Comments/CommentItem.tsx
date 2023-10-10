@@ -3,6 +3,7 @@ import {FC} from "react";
 import {CommentItemProps} from "../../interfaces/CommentsI.ts";
 
 const CommentItem: FC<CommentItemProps> = ({username, commentText, createdAt, avatar}) => {
+
     return (
         <div className={style.comment}>
             <div className={style.userInfo}>

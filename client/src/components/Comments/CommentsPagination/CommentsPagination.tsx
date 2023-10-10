@@ -11,11 +11,13 @@ const CommentsPagination: FC<CommentPaginationProps> = ({ setCurrentPage, curren
 
     return (
         <div className={style.paginationContainer}>
-            {totalPages !== 1 && <Pagination color="primary"
+            {
+                totalPages !== 1 && <Pagination color="primary"
                                              count={totalPages}
                                              page={currentPage}
                                              onChange={paginate}
-            />}
+                                    />
+            }
         </div>
     );
 };

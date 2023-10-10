@@ -4,7 +4,7 @@ import {GetUserByHook} from "../interfaces/AuthI.ts";
 import {getMe} from "../store/slices/User/thunks/user.thunks.ts";
 
 export const useGetMe = (): GetUserByHook => {
-    const currentUser = useAppSelector((state) => state.user.user);
+    const currentUser = useAppSelector(state => state.user.user);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
