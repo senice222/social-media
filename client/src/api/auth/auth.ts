@@ -10,8 +10,8 @@ export const register = async (values: AuthDto) => {
     formData.append("avatar", values.avatar.file.originFileObj)
 
     const config = {
-        headers: { "Content-Type": "multipart/form-data" },
-    };
+        headers: { "Content-Type": "multipart/form-data" }
+    }
 
     try {
         const { data } = await axios.post('auth/signUp', formData, config)
@@ -24,7 +24,7 @@ export const register = async (values: AuthDto) => {
 export const login = async (values: LoginDto) => {
     try {
         const { data } = await axios.post('auth/signIn', values)
-        Cookies.set('token', data.accessToken);
+        Cookies.set('token', data.accessToken)
         return data
     } catch (e) {
         console.log(e)
@@ -34,7 +34,7 @@ export const login = async (values: LoginDto) => {
 export const confirm = async (token: string) => {
     const {data} = await axios.get('auth/confirm', {
         params: {
-            token: token,
+            token: token
         },
     })
     Cookies.set('token', token);

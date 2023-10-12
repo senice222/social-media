@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit';
 import {InitialState, Post} from "../../../interfaces/PostsI.ts";
 
 const initialState: InitialState = {
@@ -12,8 +12,8 @@ const PostsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        setPosts(state, action: PayloadAction<Post[]>) {
-            state.posts = action.payload
+        setPosts(state, action) {
+            state.posts = action.payload as Draft<Post[]>
         },
         setCurrentPage(state, action: PayloadAction<number>) {
             state.currentPage = action.payload
