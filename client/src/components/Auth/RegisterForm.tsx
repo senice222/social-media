@@ -6,7 +6,6 @@ import {AuthDto} from "../../api/auth/auth.dto.ts";
 import {useAppDispatch} from "../../hooks/reduxHooks.ts";
 import {registerUser} from "../../store/slices/Auth/thunks/auth.thunks.ts";
 
-
 const RegisterForm = () => {
     const [fileList, setFileList] = useState<UploadFile[]>()
     const dispatch = useAppDispatch()
