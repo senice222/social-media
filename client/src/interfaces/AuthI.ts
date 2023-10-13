@@ -1,20 +1,20 @@
 import {CreatedPost} from "./PostsI.ts";
 
 export interface User {
-    _id: string
-    email: string
-    username: string
-    password: string
-    createdPosts: CreatedPost[]
-    status: string
-    avatar: string
-    chats: any[]
+    _id: string;
+    email: string;
+    username: string;
+    password: string;
+    createdPosts: CreatedPost[];
+    status: string;
+    avatar: string;
+    chats: any[];
+    friends: [];
 }
 
 export interface IReadableUser extends User {
-    accessToken?: string
+    accessToken?: string;
 }
-
 
 export interface RegisterAndLogin {
     data: IReadableUser | string | null;
