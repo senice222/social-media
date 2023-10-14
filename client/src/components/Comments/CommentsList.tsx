@@ -30,6 +30,7 @@ const CommentsList: FC<CommentProps> = ({_id}) => {
                         currentComments.map((comment: Comment, i: number) => (
                             <CommentItem
                                 key={i}
+                                _id={comment.userId._id}
                                 commentText={comment.commentText}
                                 createdAt={comment.createdAt}
                                 avatar={comment.userId.avatar}

@@ -34,17 +34,9 @@ const Header = () => {
                         </NavLink>
                         <NavLink
                             className={
-                                location.pathname === '/friends' ? style.active : style.link
+                                location.pathname === `/profile/${currentUser?._id}` ? style.active : style.link
                             }
-                            to={'/friends'}
-                        >
-                            <p>Friends</p>
-                        </NavLink>
-                        <NavLink
-                            className={
-                                location.pathname === '/profile' ? style.active : style.link
-                            }
-                            to={'/profile'}
+                            to={`/profile/${currentUser?._id}`}
                         >
                             <p>Profile</p>
                         </NavLink>

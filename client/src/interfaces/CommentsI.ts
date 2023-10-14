@@ -8,6 +8,7 @@ export interface Comment {
     _id: string
 }
 export interface CommentItemProps {
+    _id: string;
     username: string,
     commentText: string,
     createdAt: string,

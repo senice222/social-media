@@ -9,7 +9,7 @@ export interface User {
     status: string;
     avatar: string;
     chats: any[];
-    friends: [];
+    friends: User[] | [];
 }
 
 export interface IReadableUser extends User {
@@ -28,4 +28,7 @@ export interface GetMeData {
 }
 export interface GetUserByHook {
     currentUser: User | null
+}
+export interface GetUserByIdPromise {
+    user: User | null
 }

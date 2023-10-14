@@ -18,6 +18,5 @@ export const useGetMe = (): GetUserByHook => {
         
         fetchCurrentUser();
     }, [dispatch]);
-
     return { currentUser };
 };

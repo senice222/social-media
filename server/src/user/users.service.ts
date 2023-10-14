@@ -22,7 +22,7 @@ export class UsersService {
     }
 
     async getUserById(id: string): Promise<UserI> {
-        return await this.userModel.findById(id).populate('createdPosts')
+        return await this.userModel.findById(id).populate('createdPosts').populate('friends')
     }
 
     async create(createUserDto: CreateUserDto): Promise<UserI> {

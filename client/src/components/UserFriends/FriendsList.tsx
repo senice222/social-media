@@ -1,39 +1,31 @@
-import {useEffect, useState} from "react";
-import {User} from "../../interfaces/AuthI.ts";
-import * as Api from '../../api/'
+import {Fragment} from "react";
 import FriendsItem from "./FriendsItem.tsx";
+import {useParams} from "react-router-dom";
+import {useGetUserById} from "../../hooks/useGetUserById.ts";
 
 const FriendsList = () => {
-    const [friends, setFriends] = useState<User[]>()
-
-    useEffect(() => {
-       const getUserFriends = async () => {
-           const data = await Api.friends.getAllUserFriends()
-           setFriends(data)
-       }
-
-       getUserFriends()
-    }, [])
+    const {id} = useParams()
+    const {user} = id ? useGetUserById(id) : { user: null };
 
     return (
         <>
-            {
-                friends ? (
-                    friends.map(item => (
-                        <>
-                            <FriendsItem
-                                username={item.username}
-                                avatar={item.avatar}
-                            />
-                        </>
-                    ))
-                ) : (
-                    <div>
-                        <p>No friends yet</p>
-                    </div>
-                )
-            }
+            {user?.friends?.length > 0 ? (
+                user?.friends.map((item, i) => (
+                    <Fragment key={i}>
+                        <FriendsItem
+                            _id={item._id}
+                            username={item.username}
+                            avatar={item.avatar}
+                        />
+                    </Fragment>
+                ))
+            ) : (
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p>No friends yet</p>
+                </div>
+            )}
         </>
+
     );
 };
 

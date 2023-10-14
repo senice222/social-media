@@ -1,0 +1,42 @@
+.friendContainer {
+  margin-left: 20px;
+  margin-right: 20px;
+  border-bottom: black;
+
+  .friendItem {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+
+
+    .textFriend {
+      margin-left: 20px;
+
+      .username {
+        cursor: pointer;
+      }
+
+      .textMessage {
+        cursor: pointer;
+        transition: .1s;
+      }
+
+      .call {
+        cursor: pointer;
+        margin-left: 10px;
+        transition: .1s;
+      }
+
+      .username:hover, .call:hover, .textMessage:hover {
+        color: #9a9a9a;
+      }
+    }
+
+
+    img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+    }
+  }
+}
