@@ -11,7 +11,7 @@ const Profile: FC = () => {
     const isActivePosts = currentTab === 'posts'
     const isActiveFriends = currentTab === 'friends'
     const {id} = useParams()
-    const {user} = useGetUserById(id ? id : '')
+    const {user} = id ? useGetUserById(id) : { user: null };
 
     return (
         <Layout>

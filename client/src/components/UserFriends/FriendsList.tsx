@@ -20,7 +20,7 @@ const FriendsList = () => {
                     </Fragment>
                 ))
             ) : (
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
                     <p>No friends yet</p>
                 </div>
             )}
