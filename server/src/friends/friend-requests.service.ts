@@ -47,7 +47,12 @@ export class FriendRequestsService {
 
 
     async findPendingFriendRequests(userId: string): Promise<FriendRequest[]> {
-        return this.friendRequestModel.find({toUser: userId, status: 'pending'}).populate('fromUser', 'username');
+        return this.friendRequestModel
+            .find({ toUser: userId, status: 'pending' })
+            .populate({
+                path: 'fromUser',
+                select: 'username avatar',
+            });
     }
 
     async getAllUserFriends(userId: string) {

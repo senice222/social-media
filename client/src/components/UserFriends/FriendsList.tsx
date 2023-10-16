@@ -9,7 +9,7 @@ const FriendsList = () => {
 
     return (
         <>
-            {user?.friends?.length > 0 ? (
+            {user?.friends.length ? (
                 user?.friends.map((item, i) => (
                     <Fragment key={i}>
                         <FriendsItem

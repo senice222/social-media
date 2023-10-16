@@ -4,7 +4,6 @@ import {FriendsItemProps} from "../../interfaces/FriendsI.ts";
 
 const FriendsItem: FC<FriendsItemProps> = ({_id, username, avatar}) => {
     console.log(_id)
-
     return (
         <div className={style.friendContainer}>
             <div className={style.friendItem}>
