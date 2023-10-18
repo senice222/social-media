@@ -13,6 +13,7 @@
   .btnsContainer {
     display: flex;
     padding: 20px;
+
     .btnDecline {
       margin-left: 10px;
     }
@@ -21,8 +22,7 @@
   .userProfile {
     display: flex;
     align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #9a9a9a; /* Додайте це правило */
+    padding: 5px 10px;
 
     .checkUserProfile {
       margin-left: 10px;
@@ -48,9 +48,11 @@
       white-space: nowrap;
 
     }
+
     h3:hover {
       color: #9a9a9a
     }
   }
-
 }
+
+

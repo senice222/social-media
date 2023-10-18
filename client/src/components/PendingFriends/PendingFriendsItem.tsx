@@ -9,7 +9,7 @@ const PendingFriendsItem: FC<PendingFriendsItemProps> = ({setFriendsState, reque
     const handleAccept = async () => {
         try {
             await Api.friends.acceptUserRequest(requestId);
-            setFriendsState((prevFriends) => prevFriends?.filter((friend) => friend._id !== requestId));
+            setFriendsState(prevFriends => prevFriends?.filter((friend) => friend._id !== requestId));
         } catch (e) {
             console.log(e);
         }
@@ -18,7 +18,7 @@ const PendingFriendsItem: FC<PendingFriendsItemProps> = ({setFriendsState, reque
     const handleReject = async () => {
         try {
             await Api.friends.rejectUserRequest(requestId)
-            setFriendsState((prevFriends) => prevFriends?.filter((friend) => friend._id !== requestId));
+            setFriendsState(prevFriends => prevFriends?.filter((friend) => friend._id !== requestId));
         } catch (e) {
             console.log(e)
         }
@@ -35,6 +35,8 @@ const PendingFriendsItem: FC<PendingFriendsItemProps> = ({setFriendsState, reque
                 <Button type="primary" className={style.btnAccept} onClick={handleAccept}>Accept</Button>
                 <Button type="primary" danger className={style.btnDecline} onClick={handleReject}>Decline</Button>
             </div>
+
+            <div className={style.line}/>
         </div>
     );
 };

@@ -10,7 +10,6 @@ const FriendsItem: FC<FriendsItemProps> = ({_id, username, avatar}) => {
                 <img src={`http://localhost:5000/${avatar}`} alt="/"/>
                 <div className={style.textFriend}>
                     <h3 className={style.username}>
-                        {/*<NavLink to={`http://localhost:5173/profile/${_id}`}>{username}</NavLink>*/}
                         {username}
                     </h3>
                     <div style={{display: 'flex', marginTop: '10px'}}>

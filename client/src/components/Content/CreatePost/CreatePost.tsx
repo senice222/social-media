@@ -1,14 +1,15 @@
 import style from './CreatePost.module.scss'
-import profilePic from '../../../assets/profile-pic.png'
 import photo from "../../../assets/photo.png";
 import feeling from "../../../assets/feeling.png";
 import video from "../../../assets/live-video.png";
 import {NavLink} from "react-router-dom";
 import {useState} from "react";
 import * as Api from '../../../api'
+import {useGetMe} from "../../../hooks/useGetMe.ts";
 
 const CreatePost = () => {
     const [content, setContent] = useState<string>('');
+    const {currentUser} = useGetMe()
 
     const handleCreatePost = async () => {
         await Api.posts.createPost(content)
@@ -19,9 +20,9 @@ const CreatePost = () => {
     return (
         <div className={style.middleSide}>
             <div className={style.userProfile}>
-                <img src={profilePic} alt={'/'}/>
+                <img src={`http://localhost:5000/${currentUser?.avatar}`} alt={'/'}/>
                 <div>
-                    <p>John</p>
+                    <p>{currentUser ? currentUser.username : 'Loading..'}</p>
                 </div>
             </div>
 

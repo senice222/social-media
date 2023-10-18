@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import Home from "./pages/Home.tsx";
 import {Children} from "./interfaces/ProtectedRouteI.ts";
 import Profile from "./pages/Profile/Profile.tsx";
+import Direct from "./pages/Direct/Direct.tsx";
 
 function App() {
 
@@ -39,6 +40,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <Profile />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path={'/direct'}
+                    element={
+                        <ProtectedRoute>
+                            <Direct />
                         </ProtectedRoute>
                     }
                 />

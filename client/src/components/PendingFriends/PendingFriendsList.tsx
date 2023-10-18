@@ -25,7 +25,7 @@ const PendingFriendsList = () => {
                     setFriendsState={setFriendsState}
                 />
             )): (
-                <div>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     Loading...
                 </div>
             )}
