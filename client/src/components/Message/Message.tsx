@@ -1,6 +1,5 @@
 import style from './Message.module.scss'
 
-// <div className={`${style.message} ${style.own}`}>
 
 const Message = ({own}: {own?: boolean}) => {
     return (

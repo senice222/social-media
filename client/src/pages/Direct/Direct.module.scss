@@ -9,7 +9,8 @@
     flex: 3.5;
 
     .chatMenuInput {
-      width: 90%;
+      margin-left: 10px;
+      width: 87%;
       padding: 10px 0;
       border: none;
       outline: none;
@@ -23,10 +24,26 @@
     justify-content: space-between;
 
     .chatBoxTop {
-      height: 100%;
-      overflow-y: scroll;
-      padding-right: 10px;
+      max-height: 70vh; /* Set your desired max height */
+      overflow-y: auto; /* Enable vertical scrolling */
+      padding-right: 20px;
     }
+
+
+    .chatBoxTop::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    .chatBoxTop::-webkit-scrollbar-track {
+      background: #f2f2f2; /* Light background color for the track */
+    }
+
+    .chatBoxTop::-webkit-scrollbar-thumb {
+      background-color: #ccc; /* Lighter color for the thumb */
+      border-radius: 10px;
+      border: 2px solid #ddd; /* Light border around the thumb */
+    }
+
 
     .chatBoxBottom {
       margin-top: 5px;
@@ -38,6 +55,18 @@
         width: 80%;
         height: 90px;
         padding: 10px;
+        margin-bottom: 10px;
+        position: relative;
+
+        &::before {
+          content: "";
+          width: 6px; /* Width of your scrollbar */
+          background: #999; /* Color of your scrollbar */
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+        }
       }
 
       .submitButton {

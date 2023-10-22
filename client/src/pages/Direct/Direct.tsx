@@ -2,6 +2,7 @@ import style from './Direct.module.scss'
 import Layout from "../../layouts/Layout.tsx";
 import ConversationItem from "../../components/Conversations/ConversationItem.tsx";
 import Message from "../../components/Message/Message.tsx";
+import ChatOnline from "../../components/ChatOnline/ChatOnline.tsx";
 
 const Direct = () => {
 
@@ -19,6 +20,15 @@ const Direct = () => {
                         <Message />
                         <Message own={true}/>
                         <Message />
+                        <Message />
+                        <Message />
+                        <Message own={true}/>
+                        <Message own={true}/>
+                        <Message own={true}/>
+                        <Message own={true}/>
+                        <Message own={true}/>
+                        <Message own={true}/>
+                        <Message own={true}/>
                     </div>
                     <div className={style.chatBoxBottom}>
                         <textarea className={style.chatMessageInput} placeholder={'write something..'}></textarea>
@@ -26,11 +36,15 @@ const Direct = () => {
                     </div>
                 </div>
                 <div className={style.chatOnlineWrapper}>
-                    <div className={style.chatOnline}>online</div>
+                    <div className={style.chatOnline}>
+                        <ChatOnline />
+                        <ChatOnline />
+                        <ChatOnline />
+                    </div>
                 </div>
             </div>
         </Layout>
     );
 };
 
-export default Direct;
+export default Direct
