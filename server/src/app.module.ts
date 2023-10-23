@@ -9,6 +9,8 @@ import {MailModule} from "./mail/mail.module";
 import { CommentsModule } from './comments/comments.module';
 import {DateModule} from "./date/date.module";
 import {FriendRequestsModule} from "./friends/friend-requests.module";
+import {ConversationsModule} from "./conversations/conversations.module";
+import {MessageModule} from "./messages/message.module";
 
 @Module({
     imports: [
@@ -22,7 +24,9 @@ import {FriendRequestsModule} from "./friends/friend-requests.module";
         MongooseModule
             .forRoot('mongodb+srv://admin:admin@cluster0.4deuyex.mongodb.net/?retryWrites=true&w=majority'),
         CommentsModule,
-        DateModule
+        DateModule,
+        ConversationsModule,
+        MessageModule
     ]
 
 })

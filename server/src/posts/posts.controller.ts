@@ -23,8 +23,7 @@ import {fileStorage} from "../auth/storage";
 
 @Controller('posts')
 export class PostsController {
-    constructor(private readonly postsService: PostsService, private readonly commentsService: CommentsService) {
-    }
+    constructor(private readonly postsService: PostsService, private readonly commentsService: CommentsService) { }
 
     @UseGuards(AuthGuard('jwt'))
     @Get('getOnePost/:id')
