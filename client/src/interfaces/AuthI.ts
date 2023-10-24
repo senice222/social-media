@@ -29,6 +29,3 @@ export interface GetMeData {
 export interface GetUserByHook {
     currentUser: User | null
 }
-export interface GetUserByIdPromise {
-    user: User | null
-}

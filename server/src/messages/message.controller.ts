@@ -8,7 +8,6 @@ export class MessageController {
 
     @Post('send')
     sendMessage(@Body() dto: SendMessageDto) {
-        console.log(dto)
         return this.messageService.sendMessage(dto)
     }
 
