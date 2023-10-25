@@ -1,7 +1,8 @@
 .directContainer {
   background: #FFFFFF;
-  min-height: 74vh;
+  min-height: 78vh;
   border-radius: 5px;
+  height: 100%;
   margin-left: 20px;
   display: flex;
 
@@ -25,8 +26,8 @@
     justify-content: space-between;
 
     .chatBoxTop {
-      max-height: 70vh; /* Set your desired max height */
-      overflow-y: auto; /* Enable vertical scrolling */
+      max-height: 70vh;
+      overflow-y: auto;
       padding-right: 20px;
     }
 
@@ -36,13 +37,13 @@
     }
 
     .chatBoxTop::-webkit-scrollbar-track {
-      background: #f2f2f2; /* Light background color for the track */
+      background: #f2f2f2;
     }
 
     .chatBoxTop::-webkit-scrollbar-thumb {
-      background-color: #ccc; /* Lighter color for the thumb */
+      background-color: #ccc;
       border-radius: 10px;
-      border: 2px solid #ddd; /* Light border around the thumb */
+      border: 2px solid #ddd;
     }
 
 
@@ -61,8 +62,8 @@
 
         &::before {
           content: "";
-          width: 6px; /* Width of your scrollbar */
-          background: #999; /* Color of your scrollbar */
+          width: 6px;
+          background: #999;
           position: absolute;
           top: 0;
           right: 0;

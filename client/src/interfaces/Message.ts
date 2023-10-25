@@ -11,3 +11,9 @@ export interface MessagePropsI {
     message: MessageI;
     own: boolean
 }
+
+export interface SendMessage {
+    conversationId: string | undefined;
+    text: string;
+    sender: string | undefined
+}
