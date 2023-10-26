@@ -27,5 +27,6 @@ export interface GetMeData {
     status: 'loading' | 'success' | 'error' | null
 }
 export interface GetUserByHook {
-    currentUser: User | null
+    currentUser: User | null;
+    isLoading: boolean
 }

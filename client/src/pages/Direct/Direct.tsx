@@ -2,20 +2,36 @@ import style from './Direct.module.scss'
 import Layout from "../../layouts/Layout.tsx";
 import Message from "../../components/Message/Message.tsx";
 import ChatOnline from "../../components/ChatOnline/ChatOnline.tsx";
-import {useEffect, useState} from "react";
+import {Fragment, useEffect, useRef, useState} from "react";
 import * as Api from '../../api/index.ts'
 import Conversation from "../../components/Conversations/Conversation.tsx";
 import {useGetMe} from "../../hooks/useGetMe.ts";
 import {ConversationI} from "../../interfaces/ConversationI.ts";
 import {MessageI} from "../../interfaces/Message.ts";
+import {io, Socket} from "socket.io-client";
+
 
 const Direct = () => {
     const [conversation, setConversation] = useState([]);
     const [currentChat, setCurrentChat] = useState<ConversationI>();
     const [messages, setMessages] = useState<MessageI[]>([]);
     const [newMessage, setNewMessage] = useState<string>('')
-    const {currentUser} = useGetMe()
+    const {currentUser, isLoading} = useGetMe()
     // const scrollRef = useRef<HTMLDivElement | null>(null);
+    const socket = useRef<Socket>()
+
+    useEffect(() => {
+        socket.current = io('ws://localhost:5001')
+    }, []);
+
+    useEffect(() => {
+        if (!isLoading) {
+            socket.current?.emit('addUser', currentUser?._id);
+            socket.current?.on('getUsers', users => {
+                console.log(users);
+            });
+        }
+    }, [currentUser, isLoading]);
 
     useEffect(() => {
         const getUserConv = async () => {
@@ -41,6 +57,7 @@ const Direct = () => {
         getMessages()
     }, [currentChat]);
 
+
     const handleSendMessage = async () => {
         const message = {
             conversationId: currentChat?._id,
@@ -62,8 +79,8 @@ const Direct = () => {
             <div className={style.directContainer}>
                 <div className={style.chatMenuWrapper}>
                     <input type="text" placeholder={'Search for friends'} className={style.chatMenuInput}/>
-                    {conversation.map(conv => (
-                        <div onClick={() => setCurrentChat(conv)}>
+                    {conversation.map((conv, i: number) => (
+                        <div onClick={() => setCurrentChat(conv)} key={i}>
                             <Conversation
                                 conversation={conv}
                                 currentUser={currentUser}
@@ -77,13 +94,13 @@ const Direct = () => {
                             <>
                                 <div className={style.chatBoxTop}>
                                     {
-                                        messages.map((m: MessageI) => (
-                                            <>
+                                        messages.map((m: MessageI, i: number) => (
+                                            <Fragment key={i}>
                                                 <Message
                                                     message={m}
                                                     own={m.sender === currentUser?._id}
                                                 />
-                                            </>
+                                            </Fragment>
                                         ))
                                     }
                                 </div>
