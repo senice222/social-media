@@ -2,7 +2,7 @@ import style from './Direct.module.scss'
 import Layout from "../../layouts/Layout.tsx";
 import Message from "../../components/Message/Message.tsx";
 import ChatOnline from "../../components/ChatOnline/ChatOnline.tsx";
-import {Fragment, useEffect, useRef, useState} from "react";
+import {Fragment, KeyboardEvent, useEffect, useRef, useState} from "react";
 import * as Api from '../../api/index.ts'
 import Conversation from "../../components/Conversations/Conversation.tsx";
 import {useGetMe} from "../../hooks/useGetMe.ts";
@@ -10,16 +10,17 @@ import {ConversationI} from "../../interfaces/ConversationI.ts";
 import {MessageI} from "../../interfaces/Message.ts";
 import {io, Socket} from "socket.io-client";
 
-
 const Direct = () => {
     const [conversation, setConversation] = useState([]);
     const [currentChat, setCurrentChat] = useState<ConversationI>();
     const [messages, setMessages] = useState<MessageI[]>([]);
     const [newMessage, setNewMessage] = useState<string>('')
-    const [arrivalMessage, setArrivalMessage] = useState<any>(null)
+    const [arrivalMessage, setArrivalMessage] = useState<any>()
     const {currentUser, isLoading} = useGetMe()
     // const scrollRef = useRef<HTMLDivElement | null>(null);
     const socket = useRef<Socket>()
+
+    // -----------------------------------------------------------
 
     useEffect(() => {
         socket.current = io('ws://localhost:5001')
@@ -35,10 +36,9 @@ const Direct = () => {
     }, []);
 
     useEffect(() => {
-        arrivalMessage &&
-        currentChat?.members.includes(arrivalMessage.sender) &&
-        setMessages((prev) => [...prev, arrivalMessage]);
-
+        if (arrivalMessage && currentChat?.members.includes(arrivalMessage.sender)) {
+            setMessages((prev) => [...prev, arrivalMessage]);
+        }
     }, [arrivalMessage, currentChat]);
 
 
@@ -47,6 +47,8 @@ const Direct = () => {
             socket.current?.emit('addUser', currentUser?._id);
         }
     }, [currentUser, isLoading]);
+
+    // -----------------------------------------------------------
 
     useEffect(() => {
         const getUserConv = async () => {
@@ -100,7 +102,7 @@ const Direct = () => {
         }
     }
 
-    const handleTextareaKeyDown = (e: KeyboardEvent) => {
+    const handleTextareaKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault(); // Prevents the textarea from adding a newline
             handleSendMessage();
