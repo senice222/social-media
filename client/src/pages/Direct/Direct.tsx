@@ -16,20 +16,35 @@ const Direct = () => {
     const [currentChat, setCurrentChat] = useState<ConversationI>();
     const [messages, setMessages] = useState<MessageI[]>([]);
     const [newMessage, setNewMessage] = useState<string>('')
+    const [arrivalMessage, setArrivalMessage] = useState<any>(null)
     const {currentUser, isLoading} = useGetMe()
     // const scrollRef = useRef<HTMLDivElement | null>(null);
     const socket = useRef<Socket>()
 
     useEffect(() => {
         socket.current = io('ws://localhost:5001')
+        socket.current.on("getUsers", (users) => {
+            console.log(users)
+        });
+        socket.current?.on("getMessage", (data) => {
+            setArrivalMessage({
+                sender: data.senderId,
+                text: data.text
+            })
+        })
     }, []);
+
+    useEffect(() => {
+        arrivalMessage &&
+        currentChat?.members.includes(arrivalMessage.sender) &&
+        setMessages((prev) => [...prev, arrivalMessage]);
+
+    }, [arrivalMessage, currentChat]);
+
 
     useEffect(() => {
         if (!isLoading) {
             socket.current?.emit('addUser', currentUser?._id);
-            socket.current?.on('getUsers', users => {
-                console.log(users);
-            });
         }
     }, [currentUser, isLoading]);
 
@@ -59,20 +74,38 @@ const Direct = () => {
 
 
     const handleSendMessage = async () => {
+
         const message = {
             conversationId: currentChat?._id,
             text: newMessage,
             sender: currentUser?._id
         }
+        const receiverId = currentChat?.members.find(user => user !== currentUser?._id)
 
+        if (message.text.trim() !== '') {
+            socket.current?.emit("sendMessage", {
+                senderId: currentUser?._id,
+                receiverId,
+                text: newMessage
+            })
+        }
         try {
-            const data = await Api.messages.sendMessage(message)
-            setMessages([...messages, data])
-            setNewMessage('')
+            if (message.text.trim() !== '') {
+                const data = await Api.messages.sendMessage(message)
+                setMessages([...messages, data])
+                setNewMessage('')
+            }
         } catch (e) {
             console.log(e)
         }
     }
+
+    const handleTextareaKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Prevents the textarea from adding a newline
+            handleSendMessage();
+        }
+    };
 
     return (
         <Layout>
@@ -110,6 +143,7 @@ const Direct = () => {
                                         placeholder={'write something..'}
                                         value={newMessage}
                                         onChange={(e) => setNewMessage(e.target.value)}
+                                        onKeyDown={handleTextareaKeyDown}
                                     >
 
                                     </textarea>
