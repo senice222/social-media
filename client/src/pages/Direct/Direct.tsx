@@ -9,6 +9,9 @@ import {useGetMe} from "../../hooks/useGetMe.ts";
 import {ConversationI} from "../../interfaces/ConversationI.ts";
 import {MessageI} from "../../interfaces/Message.ts";
 import {io, Socket} from "socket.io-client";
+import {getMessages, getUserConv} from "../../utils/ChatUtils.ts";
+import {User} from "../../interfaces/AuthI.ts";
+import {SocketUser} from "../../interfaces/Chat.ts";
 
 const Direct = () => {
     const [conversation, setConversation] = useState([]);
@@ -16,16 +19,15 @@ const Direct = () => {
     const [messages, setMessages] = useState<MessageI[]>([]);
     const [newMessage, setNewMessage] = useState<string>('')
     const [arrivalMessage, setArrivalMessage] = useState<any>()
+    const [onlineUsers, setOnlineUsers] = useState<SocketUser[]>()
     const {currentUser, isLoading} = useGetMe()
     // const scrollRef = useRef<HTMLDivElement | null>(null);
     const socket = useRef<Socket>()
 
-    // -----------------------------------------------------------
-
     useEffect(() => {
         socket.current = io('ws://localhost:5001')
         socket.current.on("getUsers", (users) => {
-            console.log(users)
+            setOnlineUsers(users)
         });
         socket.current?.on("getMessage", (data) => {
             setArrivalMessage({
@@ -48,30 +50,12 @@ const Direct = () => {
         }
     }, [currentUser, isLoading]);
 
-    // -----------------------------------------------------------
-
     useEffect(() => {
-        const getUserConv = async () => {
-            try {
-                const data = await Api.conversation.getUserConversations()
-                setConversation(data)
-            } catch (e) {
-                console.log(e)
-            }
-        }
-        getUserConv()
+        getUserConv(setConversation)
     }, []);
 
     useEffect(() => {
-        const getMessages = async () => {
-            try {
-                const data = await Api.messages.getMessages(currentChat ? currentChat._id : '')
-                setMessages(data)
-            } catch (e) {
-                console.log(e)
-            }
-        }
-        getMessages()
+        getMessages(currentChat, setMessages)
     }, [currentChat]);
 
 
@@ -91,6 +75,7 @@ const Direct = () => {
                 text: newMessage
             })
         }
+
         try {
             if (message.text.trim() !== '') {
                 const data = await Api.messages.sendMessage(message)
@@ -161,9 +146,11 @@ const Direct = () => {
                 </div>
                 <div className={style.chatOnlineWrapper}>
                     <div className={style.chatOnline}>
-                        <ChatOnline/>
-                        <ChatOnline/>
-                        <ChatOnline/>
+                        <ChatOnline
+                            onlineUsers={onlineUsers}
+                            currentUserId={currentUser?._id}
+                            setCurrentChat={setCurrentChat}
+                        />
                     </div>
                 </div>
             </div>

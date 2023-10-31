@@ -7,9 +7,10 @@ export const useGetMe = (): GetUserByHook => {
     const currentUser = useAppSelector(state => state.user.user);
     const dispatch = useAppDispatch();
     const [isLoading, setIsLoading] = useState(currentUser === null);
+    // currentUser === null
 
     useEffect(() => {
-        if (currentUser === null) {
+        if (isLoading) {
             const fetchCurrentUser = async () => {
                 try {
                     await dispatch(getMe());
