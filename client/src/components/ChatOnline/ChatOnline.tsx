@@ -8,6 +8,7 @@ const ChatOnline: FC<UserOnlineProps> = ({onlineUsers, setCurrentChat, currentUs
     const [friends, setFriends] = useState<User[]>()
     const [onlineFriends, setOnlineFriends] = useState<User[]>()
 
+
     useEffect(() => {
         const getFriends = async () => {
             const data = await Api.friends.getAllUserFriends()
@@ -23,11 +24,22 @@ const ChatOnline: FC<UserOnlineProps> = ({onlineUsers, setCurrentChat, currentUs
         }
     }, [friends, onlineUsers]);
 
+    const handleChangeConversation = async (user: User) => {
+        try {
+            if (currentUserId)  {
+                const data = await Api.conversation.getCurrentUserConversation(currentUserId, user._id)
+                setCurrentChat(data)
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     return (
         <div className={style.chatOnline}>
             {
                 onlineFriends?.map((friend) => (
-                    <div className={style.chatOnlineFriend}>
+                    <div className={style.chatOnlineFriend} onClick={() => handleChangeConversation(friend)}>
                         <div className={style.chatOnlineImgContainer}>
                             <img src={`http://localhost:5000/${friend.avatar}`} alt={'/'} />
                             <div className={style.chatOnlineBadge}></div>

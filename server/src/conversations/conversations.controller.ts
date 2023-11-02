@@ -20,4 +20,9 @@ export class ConversationsController {
         return this.conversationsService.getUserConversation(id)
     }
 
+    // @UseGuards(AuthGuard('jwt'))
+    @Get('find/:firstUserId/:secondUserId')
+    getUsersConversation(@Param('firstUserId') firstUserId: string, @Param('secondUserId') secondUserId: string) {
+        return this.conversationsService.getUsersConversation(firstUserId, secondUserId)
+    }
 }

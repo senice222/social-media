@@ -18,8 +18,14 @@ export class ConversationsService {
     }
 
     async getUserConversation(id: string) {
-        return await this.conversationModel.find({
+        return this.conversationModel.find({
             members: {$in: [id]}
+        });
+    }
+
+    async getUsersConversation(firstUserId: string, secondUserId: string) {
+        return await this.conversationModel.findOne({
+            members: {$all: [firstUserId, secondUserId]}
         })
     }
 

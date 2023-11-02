@@ -10,7 +10,6 @@ import {ConversationI} from "../../interfaces/ConversationI.ts";
 import {MessageI} from "../../interfaces/Message.ts";
 import {io, Socket} from "socket.io-client";
 import {getMessages, getUserConv} from "../../utils/ChatUtils.ts";
-import {User} from "../../interfaces/AuthI.ts";
 import {SocketUser} from "../../interfaces/Chat.ts";
 
 const Direct = () => {

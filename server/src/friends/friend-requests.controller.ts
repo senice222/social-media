@@ -31,4 +31,6 @@ export class FriendRequestsController {
     async getAllUserFriends(@UserId() userId: string): Promise<any> {
         return this.friendRequestsService.getAllUserFriends(userId);
     }
+
+
 }
