@@ -8,8 +8,8 @@ import Conversation from "../../components/Conversations/Conversation.tsx";
 import {useGetMe} from "../../hooks/useGetMe.ts";
 import {ConversationI} from "../../interfaces/ConversationI.ts";
 import {MessageI} from "../../interfaces/Message.ts";
-import {io, Socket} from "socket.io-client";
-import {getMessages, getUserConv} from "../../utils/ChatUtils.ts";
+import {Socket} from "socket.io-client";
+import {getMessages, getUserConv, setupSocket} from "../../utils/ChatUtils.ts";
 import {SocketUser} from "../../interfaces/Chat.ts";
 
 const Direct = () => {
@@ -23,17 +23,9 @@ const Direct = () => {
     // const scrollRef = useRef<HTMLDivElement | null>(null);
     const socket = useRef<Socket>()
 
+
     useEffect(() => {
-        socket.current = io('ws://localhost:5001')
-        socket.current.on("getUsers", (users) => {
-            setOnlineUsers(users)
-        });
-        socket.current?.on("getMessage", (data) => {
-            setArrivalMessage({
-                sender: data.senderId,
-                text: data.text
-            })
-        })
+        setupSocket(socket, setOnlineUsers, setArrivalMessage);
     }, []);
 
     useEffect(() => {
@@ -41,7 +33,6 @@ const Direct = () => {
             setMessages((prev) => [...prev, arrivalMessage]);
         }
     }, [arrivalMessage, currentChat]);
-
 
     useEffect(() => {
         if (!isLoading) {
