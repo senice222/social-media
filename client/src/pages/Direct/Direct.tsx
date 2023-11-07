@@ -11,6 +11,7 @@ import {MessageI} from "../../interfaces/Message.ts";
 import {Socket} from "socket.io-client";
 import {getMessages, getUserConv, setupSocket} from "../../utils/ChatUtils.ts";
 import {SocketUser} from "../../interfaces/Chat.ts";
+import VideoCall from "../../components/VideoCall/VideoCall.tsx";
 
 const Direct = () => {
     const [conversation, setConversation] = useState([]);
@@ -79,11 +80,10 @@ const Direct = () => {
 
     const handleTextareaKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault(); // Prevents the textarea from adding a newline
+            e.preventDefault();
             handleSendMessage();
         }
     };
-
     return (
         <Layout>
             <div className={style.directContainer}>
@@ -99,6 +99,7 @@ const Direct = () => {
                     ))}
                 </div>
                 <div className={style.chatBoxWrapper}>
+                    <VideoCall />
                     {
                         currentChat ? (
                             <>
