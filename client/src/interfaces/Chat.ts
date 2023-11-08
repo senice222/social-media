@@ -1,5 +1,6 @@
 import {ConversationI} from "./ConversationI.ts";
 import {Dispatch, SetStateAction} from "react";
+import {User} from "./AuthI.ts";
 
 export interface UserOnlineProps {
     onlineUsers: SocketUser[] | undefined,
@@ -10,4 +11,8 @@ export interface UserOnlineProps {
 export interface SocketUser {
     socketId: string,
     userId: string
+}
+export interface CurrentChatI {
+    currentChat: ConversationI | undefined;
+    currentUser: User | null;
 }

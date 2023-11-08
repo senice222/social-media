@@ -84,6 +84,7 @@ const Direct = () => {
             handleSendMessage();
         }
     };
+
     return (
         <Layout>
             <div className={style.directContainer}>
@@ -99,7 +100,7 @@ const Direct = () => {
                     ))}
                 </div>
                 <div className={style.chatBoxWrapper}>
-                    <VideoCall />
+                    {currentChat && <VideoCall currentChat={currentChat} currentUser={currentUser}/>}
                     {
                         currentChat ? (
                             <>

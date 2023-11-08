@@ -2,7 +2,7 @@ import {User} from "./AuthI.ts";
 
 export interface ConversationI {
     _id: string;
-    members: Array<string>
+    members: string[]
 }
 
 export interface ConversationProps {
