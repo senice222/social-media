@@ -30,6 +30,7 @@ export const setupSocket = (
 
     socket.current = io('ws://localhost:5001')
     socket.current.on("getUsers", (users) => {
+        console.log(users)
         setOnlineUsers(users)
     });
     socket.current?.on("getMessage", (data) => {

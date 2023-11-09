@@ -26,6 +26,9 @@ io.on("connection", (socket) => {
     // when connect
     console.log("a user connected.")
 
+    //me
+    socket.emit("me", socket.id)
+
     // add user in array
     socket.on("addUser", (userId) => {
         addUser(userId, socket.id)

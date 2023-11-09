@@ -100,7 +100,7 @@ const Direct = () => {
                     ))}
                 </div>
                 <div className={style.chatBoxWrapper}>
-                    {currentChat && <VideoCall currentChat={currentChat} currentUser={currentUser}/>}
+                    {currentChat && <VideoCall currentChat={currentChat} currentUser={currentUser} socket={socket}/>}
                     {
                         currentChat ? (
                             <>
