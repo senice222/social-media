@@ -67,7 +67,6 @@ export class PostsController {
         return this.postsService.createPost(body, id, fileList);
     }
 
-
     @UseGuards(AuthGuard('jwt'))
     @Delete('deletePost/:postId')
     deletePost(@Param('postId') postId, @UserId() id: string) {

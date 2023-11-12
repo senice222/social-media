@@ -25,6 +25,11 @@ export class UsersService {
         return await this.userModel.findById(id).populate('createdPosts').populate('friends')
     }
 
+    async getAllUserPosts(id: string) {
+        const user = await this.userModel.findById(id).populate('createdPosts')
+        return user.createdPosts
+    }
+
     async create(createUserDto: CreateUserDto): Promise<UserI> {
         const hash = await this.hashService.hashPassword(createUserDto.password)
         const createdUser = new this.userModel(_.assignIn(createUserDto, { password: hash}));

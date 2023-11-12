@@ -27,9 +27,14 @@ export class UsersController {
     }
 
     @UseGuards(AuthGuard('jwt'))
+    @Get('/getAllUserPosts/getAllUserPosts')
+    getAllUserPosts(@UserId() id: string) {
+        return this.userService.getAllUserPosts(id)
+    }
+
+    @UseGuards(AuthGuard('jwt'))
     @Get('/getMe/me')
     getMe(@UserId() id: string) {
-        console.log(id)
         return this.userService.getUserById(id)
     }
 }

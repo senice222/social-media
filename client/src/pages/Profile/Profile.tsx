@@ -39,7 +39,7 @@ const Profile: FC = () => {
                             <p>FRIENDS</p>
                         </div>
                     </div>
-                    <TabView/>
+                    <TabView />
                 </div>
             </div>
         </Layout>

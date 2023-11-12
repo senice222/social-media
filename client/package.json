@@ -18,8 +18,12 @@
     "@reduxjs/toolkit": "^1.9.5",
     "antd": "^5.8.4",
     "axios": "^1.4.0",
+    "i": "^0.3.7",
     "js-cookie": "^3.0.5",
     "material-ui-popup-state": "^5.0.9",
+    "npm": "^10.2.3",
+    "peerjs": "^1.5.1",
+    "randombytes": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
@@ -28,6 +32,7 @@
     "sass": "^1.66.1",
     "socket.io-client": "^4.7.2",
     "swr": "^2.2.2",
+    "vite-plugin-node-polyfills": "^0.16.0",
     "web-vitals": "^3.4.0"
   },
   "devDependencies": {

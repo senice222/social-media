@@ -25,11 +25,11 @@ export class PostsService {
             path: 'comments',
             populate: {
                 path: 'userId',
-                model: this.userModel, 
+                model: this.userModel,
             },
         })
     }
-    
+
     async getPaginatedPosts(page: number, perPage: number): Promise<Paginated> {
         const total = await this.postModel.countDocuments().exec()
         const totalPages = Math.ceil(total / perPage)
@@ -41,7 +41,7 @@ export class PostsService {
                 model: this.userModel,
             }
         }).populate('owner')
-    
+
         return {
           posts,
           total,
