@@ -1,9 +1,12 @@
+import {ConversationI} from './ConversationI'
 
 export interface FriendsItemProps {
     username: string;
     avatar: string;
+    userConversations: ConversationI[];
     _id: string;
 }
+
 export interface FriendRequest {
     _id: string
     fromUser: FromUser

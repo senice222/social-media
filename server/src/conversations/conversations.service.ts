@@ -13,7 +13,6 @@ export class ConversationsService {
 
     async createConversation(dto: CreateConversationDto) {
         const newConversation = await this.conversationModel.create({members: [dto.senderId, dto.receiverId]})
-
         return newConversation.save()
     }
 

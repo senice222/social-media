@@ -28,7 +28,7 @@ export const setupSocket = (
     setArrivalMessage: Dispatch<any>
 ) => {
 
-    socket.current = io('ws://localhost:5001')
+    socket.current = io('http://localhost:5001')
     socket.current.on("getUsers", (users) => {
         console.log(users)
         setOnlineUsers(users)

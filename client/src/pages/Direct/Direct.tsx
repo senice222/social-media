@@ -83,8 +83,7 @@ const Direct = () => {
             e.preventDefault();
             handleSendMessage();
         }
-    };
-
+    };    
     return (
         <Layout>
             <div className={style.directContainer}>

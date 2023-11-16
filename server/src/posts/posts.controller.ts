@@ -55,7 +55,7 @@ export class PostsController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('create')
-    @UseInterceptors(FilesInterceptor('avatar', 5, {
+    @UseInterceptors(FilesInterceptor('file', 5, {
         storage: fileStorage,
     }))
     createPost(

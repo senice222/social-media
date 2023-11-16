@@ -32,6 +32,8 @@
     "sass": "^1.66.1",
     "socket.io-client": "^4.7.2",
     "swr": "^2.2.2",
+    "timeago": "^1.6.7",
+    "timeago.js": "^4.0.2",
     "vite-plugin-node-polyfills": "^0.16.0",
     "web-vitals": "^3.4.0"
   },
