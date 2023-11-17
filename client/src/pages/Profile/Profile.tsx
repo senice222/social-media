@@ -4,6 +4,7 @@ import {FC, useState} from "react";
 import {TABS, TABS_TYPE} from "../../utils/getTab.ts";
 import {useParams} from "react-router-dom";
 import {useGetUserById} from "../../hooks/useGetUserById.ts";
+import userAvatar from "../../assets/user.png"
 
 const Profile: FC = () => {
     const [currentTab, setCurrentTab] = useState<TABS_TYPE>('posts')
@@ -18,7 +19,7 @@ const Profile: FC = () => {
             <div className={style.profileContainer}>
                 <div className={style.profile}>
                     <div className={style.userInfo}>
-                        <img src={`http://localhost:5000/${user?.avatar}`}
+                        <img src={user?.avatar ? `http://localhost:5000/${user?.avatar}` : userAvatar}
                              className={style.userAvatar}
                              alt="/"
                         />

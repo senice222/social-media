@@ -2,7 +2,7 @@ import {Fragment, useEffect, useState} from "react";
 import FriendsItem from "./FriendsItem.tsx";
 import {useParams} from "react-router-dom";
 import {useGetUserById} from "../../hooks/useGetUserById.ts";
-import {getMessages, getUserConv, setupSocket} from "../../utils/ChatUtils.ts";
+import {getUserConv} from "../../utils/ChatUtils.ts";
 
 const FriendsList = () => {
     const {id} = useParams()

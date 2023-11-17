@@ -4,6 +4,8 @@ import {MessagePropsI} from "../../interfaces/Message.ts";
 import {format} from 'timeago.js'
 
 const Message:FC<MessagePropsI> = ({message, own}) => {
+    console.log(message);
+    
     return (
         <div className={own ? `${style.message} ${style.own}` : `${style.message}`}>
             <div className={style.messageTop}>

@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom";
 import {useState} from "react";
 import * as Api from '../../../api'
 import {useGetMe} from "../../../hooks/useGetMe.ts";
+import userAvatar from "../../../assets/user.png"
 
 const CreatePost = () => {
     const [content, setContent] = useState<string>('');
@@ -20,7 +21,7 @@ const CreatePost = () => {
     return (
         <div className={style.middleSide}>
             <div className={style.userProfile}>
-                <img src={`http://localhost:5000/${currentUser?.avatar}`} alt={'/'}/>
+                <img src={currentUser?.avatar ? `http://localhost:5000/${currentUser?.avatar}` : userAvatar} alt={'/'}/>
                 <div>
                     <p>{currentUser ? currentUser.username : 'Loading..'}</p>
                 </div>

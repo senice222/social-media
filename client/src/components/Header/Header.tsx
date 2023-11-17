@@ -6,6 +6,7 @@ import {NavLink, useLocation} from "react-router-dom";
 import {useGetMe} from "../../hooks/useGetMe.ts";
 import PendingFriendsList from "../PendingFriends/PendingFriendsList.tsx";
 import {useState} from "react";
+import userAvatar from "../../assets/user.png"
 
 const Header = () => {
     const {Search} = Input;
@@ -56,7 +57,7 @@ const Header = () => {
                     <div className={style.msgCircle} onClick={() => setIsActive(prev => !prev)}>
                         <img src={not} alt="/" className={style.msg} />
                     </div>
-                    <img src={`http://localhost:5000/${currentUser?.avatar}`} alt="/" className={style.user} />
+                    <img src={currentUser?.avatar ? `http://localhost:5000/${currentUser?.avatar}` : userAvatar} alt="/" className={style.user} />
                 </div>
 
                 {isActive && <PendingFriendsList/>}

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {User} from "../interfaces/AuthI.ts";
-import * as Api from '../api'
+import * as Api from "../api"
 
 export const useGetUserById = (id: string) => {
     const [user, setUser] = useState<User | null>(null)

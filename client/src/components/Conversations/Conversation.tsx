@@ -3,6 +3,7 @@ import {FC, useEffect, useState} from "react";
 import {ConversationProps} from "../../interfaces/ConversationI.ts";
 import * as Api from '../../api/index.ts'
 import {User} from "../../interfaces/AuthI.ts";
+import userAvatar from '../../assets/user.png'
 
 const Conversation:FC<ConversationProps> = ({conversation, currentUser}) => {
     const [friend, setFriend] = useState<User>();
@@ -25,8 +26,8 @@ const Conversation:FC<ConversationProps> = ({conversation, currentUser}) => {
 
     return (
         <div className={style.conversation}>
-            <img src={`http://localhost:5000/${friend?.avatar}`} alt="/" className={style.conversationImg}/>
-            <span className={style.conversationName}>{friend?.username}</span>
+            <img src={friend?.avatar ? `http://localhost:5000/${friend?.avatar}` : userAvatar} alt="/" className={style.conversationImg}/>
+            <span className={style.conversationName}>{friend?.username ? friend?.username : 'loading..'}</span>
         </div>
     );
 };

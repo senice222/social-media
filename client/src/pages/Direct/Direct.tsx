@@ -24,7 +24,6 @@ const Direct = () => {
     // const scrollRef = useRef<HTMLDivElement | null>(null);
     const socket = useRef<Socket>()
 
-
     useEffect(() => {
         setupSocket(socket, setOnlineUsers, setArrivalMessage);
     }, []);
@@ -83,7 +82,7 @@ const Direct = () => {
             e.preventDefault();
             handleSendMessage();
         }
-    };    
+    };
     return (
         <Layout>
             <div className={style.directContainer}>
