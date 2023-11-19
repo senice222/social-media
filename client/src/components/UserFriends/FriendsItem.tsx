@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const FriendsItem: FC<FriendsItemProps> = ({_id, username, avatar, userConversations}) => {
     const {currentUser} = useGetMe()
     const navigate = useNavigate()
+    
     const isConversationExists = userConversations.some((conversation) => {
         if (currentUser) {
             return (

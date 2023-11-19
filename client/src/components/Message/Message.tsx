@@ -4,12 +4,11 @@ import {MessagePropsI} from "../../interfaces/Message.ts";
 import {format} from 'timeago.js'
 
 const Message:FC<MessagePropsI> = ({message, own}) => {
-    console.log(message);
-    
+
     return (
         <div className={own ? `${style.message} ${style.own}` : `${style.message}`}>
             <div className={style.messageTop}>
-                <img src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp" alt="" className={style.messageImg}/>
+                <img src={`http://localhost:5000/${message.senderAvatar}`} alt="" className={style.messageImg}/>
                 <p className={style.messageText}>{message.text}</p>
             </div>
             <div className={style.messageBottom}>{format(message.createdAt)}</div>

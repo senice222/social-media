@@ -1,7 +1,6 @@
 const io = require("socket.io")(5001, {
     cors: {
-        origin: "http://localhost:5173" && "http://127.0.0.1:5173",
-        // origin: "http://127.0.0.1:5173",
+        origin: "http://localhost:5173"
     }
 })
 
@@ -44,21 +43,6 @@ io.on("connection", (socket) => {
             text,
         });
     });
-
-    // disconnect from call
-    socket.on("disconnectCall", () => {
-        socket.broadcast.emit("callEnded")
-    })
-
-    // call
-    socket.on("callUser", (data) => {
-        io.to(data.userToCall).emit("callUser", {signal: data.signalData, from: data.from, name: data.name})
-    })
-
-    // answer call
-    socket.on("answerCall", (data) => {
-        io.to(data.to).emit("answerCall", data.signal)
-    })
 
     // disconnect
     socket.on("disconnect", () => {

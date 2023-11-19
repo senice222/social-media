@@ -3,7 +3,8 @@ export interface MessageI {
     conversationId: string;
     sender: string;
     text: string;
-    _id: string
+    _id: string;
+    senderAvatar: string
     createdAt: string;
     updatedAt: string;
 }

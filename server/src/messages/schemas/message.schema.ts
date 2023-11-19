@@ -15,6 +15,9 @@ export class Message {
 
     @Prop({type: String})
     text: string
+
+    @Prop()
+    senderAvatar: string
 }
 
 export const MessageSchema = SchemaFactory.createForClass(Message);
