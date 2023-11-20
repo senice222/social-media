@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as express from 'express';
 import { join } from 'path';
+import { SocketGateway } from './socket/socket.gateway';
 
 const bootstrap = async () => {
   try {
@@ -13,12 +14,17 @@ const bootstrap = async () => {
     app.useGlobalPipes(new ValidationPipe());
     app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
+    const socketGateway = app.get(SocketGateway);
+    socketGateway.server = app.getHttpServer();
+
     const options = new DocumentBuilder()
       .addBearerAuth()
       .setTitle('Social-Media Api')
       .setDescription('pet-project')
       .setVersion('1.0')
       .build();
+
+
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
 

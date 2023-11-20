@@ -1,7 +1,7 @@
 import * as Api from "../api";
 import {Dispatch, MutableRefObject, SetStateAction} from "react";
-import {ConversationI} from "../interfaces/ConversationI.ts";
-import {MessageI} from "../interfaces/Message.ts";
+import {Conv} from "../interfaces/Conversation.ts";
+import {OneMessage} from "../interfaces/Message.ts";
 import {io, Socket} from "socket.io-client";
 import {SocketUser} from "../interfaces/Chat.ts";
 
@@ -14,7 +14,7 @@ export const getUserConv = async (setConversation: Dispatch<SetStateAction<never
     }
 }
 
-export const getMessages = async (currentChat: ConversationI | undefined, setMessages: Dispatch<SetStateAction<MessageI[]>>) => {
+export const getMessages = async (currentChat: Conv | undefined, setMessages: Dispatch<SetStateAction<OneMessage[]>>) => {
     try {
         const data = await Api.messages.getMessages(currentChat ? currentChat._id : '')
         setMessages(data)
@@ -40,4 +40,3 @@ export const setupSocket = (
         })
     })
 };
-

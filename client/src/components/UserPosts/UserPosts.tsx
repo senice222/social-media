@@ -1,6 +1,9 @@
+import { UserProps } from '../../interfaces/Auth';
 import style from './UserPosts.module.scss'
+import {FC} from 'react'
 
-const UserPosts = () => {
+const UserPosts:FC<UserProps> = ({user}) => {
+    console.log(user)
     return (
         <div className={style.postsContainer}>
             <div className={style.imgList}>

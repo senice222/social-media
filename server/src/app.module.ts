@@ -11,6 +11,7 @@ import {DateModule} from "./date/date.module";
 import {FriendRequestsModule} from "./friends/friend-requests.module";
 import {ConversationsModule} from "./conversations/conversations.module";
 import {MessageModule} from "./messages/message.module";
+import { SocketModule } from './socket/socket.module';
 
 @Module({
     imports: [
@@ -26,7 +27,8 @@ import {MessageModule} from "./messages/message.module";
         CommentsModule,
         DateModule,
         ConversationsModule,
-        MessageModule
+        MessageModule,
+        SocketModule
     ]
 
 })

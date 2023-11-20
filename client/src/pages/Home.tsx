@@ -1,10 +1,12 @@
 import Layout from "../layouts/Layout.tsx";
 import ContentList from "../components/Content/ContentList.tsx";
+import { FC } from "react";
+import { UserProps } from "../interfaces/Auth.ts";
 
-const Home = () => {
+const Home:FC<UserProps> = ({user}) => {
     return (
-        <Layout>
-            <ContentList />
+        <Layout user={user}>
+            <ContentList user={user}/>
         </Layout>
     );
 };

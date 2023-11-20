@@ -1,18 +1,14 @@
-import {Fragment, useEffect, useState} from "react";
+import {Fragment, useEffect, useState, FC} from "react";
 import FriendsItem from "./FriendsItem.tsx";
-import {useParams} from "react-router-dom";
-import {useGetUserById} from "../../hooks/useGetUserById.ts";
 import {getUserConv} from "../../utils/ChatUtils.ts";
+import { UserProps } from "../../interfaces/Auth.ts";
 
-const FriendsList = () => {
-    const {id} = useParams()
+const FriendsList:FC<UserProps> = ({user}) => {
     const [conversation, setConversation] = useState([])
-    const {user} = id ? useGetUserById(id) : { user: null };
 
     useEffect(() => {
         getUserConv(setConversation)
     }, []);
-
 
     return (
         <>

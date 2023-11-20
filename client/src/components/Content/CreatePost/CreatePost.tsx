@@ -1,3 +1,4 @@
+import {FC} from "react";
 import style from './CreatePost.module.scss'
 import photo from "../../../assets/photo.png";
 import feeling from "../../../assets/feeling.png";
@@ -5,12 +6,11 @@ import video from "../../../assets/live-video.png";
 import {NavLink} from "react-router-dom";
 import {useState} from "react";
 import * as Api from '../../../api'
-import {useGetMe} from "../../../hooks/useGetMe.ts";
 import userAvatar from "../../../assets/user.png"
+import { UserProps } from '../../../interfaces/Auth.ts';
 
-const CreatePost = () => {
+const CreatePost:FC<UserProps> = ({user}) => {
     const [content, setContent] = useState<string>('');
-    const {currentUser} = useGetMe()
 
     const handleCreatePost = async () => {
         await Api.posts.createPost(content)
@@ -21,9 +21,9 @@ const CreatePost = () => {
     return (
         <div className={style.middleSide}>
             <div className={style.userProfile}>
-                <img src={currentUser?.avatar ? `http://localhost:5000/${currentUser?.avatar}` : userAvatar} alt={'/'}/>
+                <img src={user?.avatar ? `http://localhost:5000/${user?.avatar}` : userAvatar} alt={'/'}/>
                 <div>
-                    <p>{currentUser ? currentUser.username : 'Loading..'}</p>
+                    <p>{user ? user.username : 'Loading..'}</p>
                 </div>
             </div>
 

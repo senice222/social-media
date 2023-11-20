@@ -2,20 +2,17 @@ import style from './Profile.module.scss'
 import Layout from "../../layouts/Layout.tsx";
 import {FC, useState} from "react";
 import {TABS, TABS_TYPE} from "../../utils/getTab.ts";
-import {useParams} from "react-router-dom";
-import {useGetUserById} from "../../hooks/useGetUserById.ts";
 import userAvatar from "../../assets/user.png"
+import {UserProps} from '../../interfaces/Auth.ts'
 
-const Profile: FC = () => {
+const Profile: FC<UserProps> = ({user}) => {
     const [currentTab, setCurrentTab] = useState<TABS_TYPE>('posts')
-    const TabView = TABS[currentTab]
+    const TabView: FC<UserProps> = TABS[currentTab];
     const isActivePosts = currentTab === 'posts'
     const isActiveFriends = currentTab === 'friends'
-    const {id} = useParams()
-    const {user} = id ? useGetUserById(id) : { user: null };
-    
+
     return (
-        <Layout>
+        <Layout user={user}>
             <div className={style.profileContainer}>
                 <div className={style.profile}>
                     <div className={style.userInfo}>
@@ -40,11 +37,11 @@ const Profile: FC = () => {
                             <p>FRIENDS</p>
                         </div>
                     </div>
-                    <TabView />
+                    <TabView user={user}/>
                 </div>
             </div>
         </Layout>
     )
 }
 
-export default Profile
+export default Profile  

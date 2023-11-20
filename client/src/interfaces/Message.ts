@@ -1,5 +1,5 @@
 
-export interface MessageI {
+export interface OneMessage {
     conversationId: string;
     sender: string;
     text: string;
@@ -8,8 +8,8 @@ export interface MessageI {
     createdAt: string;
     updatedAt: string;
 }
-export interface MessagePropsI {
-    message: MessageI;
+export interface MessageProps {
+    message: OneMessage;
     own: boolean
 }
 
