@@ -6,5 +6,5 @@ export type TABS_TYPE = 'posts' | 'friends'
 
 export const TABS: Record<TABS_TYPE, FC> = {
     posts: UserPosts,
-    friends: FriendsList
+    friends: FriendsList    
 }
