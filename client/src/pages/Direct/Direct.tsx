@@ -20,7 +20,7 @@ const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	const [newMessage, setNewMessage] = useState<string>('')
 	const [arrivalMessage, setArrivalMessage] = useState<any>()
 	const [onlineUsers, setOnlineUsers] = useState<SocketUser[]>()
-	// const scrollRef = useRef<HTMLDivElement | null>(null);
+	const scrollRef = useRef<HTMLDivElement | null>(null);
 	const socket = useRef<Socket>()
 
 	useEffect(() => {
