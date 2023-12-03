@@ -10,9 +10,6 @@ import * as moment from 'moment';
 import {ConfigService} from "@nestjs/config";
 import {statusEnum} from "../../user/enums/status.enum";
 import {MailService} from "../../mail/mail.service";
-import {InjectModel} from "@nestjs/mongoose";
-import {User, UserDocument} from "../../user/schemas/users.schema";
-import {Model} from "mongoose";
 import {IReadableUser} from "../../user/interfaces/readable-user.interface";
 import {ITokenPayload} from "../../token/interfaces/payload-token.interface";
 import {SignInDto} from "../dto/sign-in.dto";
@@ -21,7 +18,6 @@ import {SignInDto} from "../dto/sign-in.dto";
 export class AuthService {
     private readonly clientAppUrl: string;
     constructor(
-                @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
                 private userService: UsersService,
                 private hashService: HashService,
                 private tokenService: TokenService,
@@ -67,6 +63,7 @@ export class AuthService {
 
                 const readableUser = user.toObject() as IReadableUser
                 readableUser.accessToken = token
+                await this.tokenService.deleteToken(readableUser._id, token)
 
                 const {__v, password, ...editedUser} = readableUser
                 return editedUser as IReadableUser
@@ -84,6 +81,7 @@ export class AuthService {
 
             if (user && user.status === statusEnum.pending) {
                 user.status = statusEnum.active;
+                // await this.tokenService.deleteToken(user._id, token)
                 return user.save();
             }
             throw new BadRequestException('Confirmation error');
@@ -119,7 +117,7 @@ export class AuthService {
         return this.jwtService.sign(data, options)
     }
 
-    private async verifyToken(token): Promise<any> {
+    private async verifyToken(token: string): Promise<any> {
         try {
             const data = this.jwtService.verify(token) as ITokenPayload
             const tokenExists = await this.tokenService.exists(data._id, token)
@@ -132,7 +130,6 @@ export class AuthService {
         } catch (e) {
             throw new UnauthorizedException()
         }
-
     }
 
     private async createToken(tokenDto: CreateTokenDto) {

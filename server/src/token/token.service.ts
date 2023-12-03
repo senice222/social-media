@@ -14,7 +14,7 @@ export class TokenService {
         return await userToken.save()
     }
 
-    async deleteToken(uId: string, token: string): Promise<any> {
+    async deleteToken(uId: string, token: string) {
         return await this.tokenModel.deleteOne({ uId, token })
     }
 
@@ -22,7 +22,8 @@ export class TokenService {
         return await this.tokenModel.deleteMany({ uId });
     }
 
-    async exists(uId: string, token: string): Promise<any> {
+    async exists(uId: string, token: string) {
         return await this.tokenModel.exists({ uId, token })
     }
+
 }

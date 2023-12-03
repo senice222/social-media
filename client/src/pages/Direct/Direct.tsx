@@ -1,27 +1,31 @@
 import { FC, Fragment, KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { Socket } from 'socket.io-client'
-import * as Api from '../../api/index.ts'
 import ChatOnline from '../../components/ChatOnline/ChatOnline.tsx'
 import Conversation from '../../components/Conversations/Conversation.tsx'
 import Message from '../../components/Message/Message.tsx'
 import VideoCall from '../../components/VideoCall/VideoCall'
 import { DirectProps } from '../../interfaces/Auth.ts'
 import { SocketUser } from '../../interfaces/Chat.ts'
-import { Conv } from '../../interfaces/Conversation.ts'
 import { OneMessage } from '../../interfaces/Message.ts'
 import Layout from '../../layouts/Layout.tsx'
 import { getMessages, getUserConv, setupSocket } from '../../utils/ChatUtils.ts'
 import style from './Direct.module.scss'
+import { useSendMessage } from '../../hooks/useSendMessage.ts'
 
 const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	const [conversation, setConversation] = useState([])
-	const [currentChat, setCurrentChat] = useState<Conv>()
-	const [messages, setMessages] = useState<OneMessage[]>([])
-	const [newMessage, setNewMessage] = useState<string>('')
 	const [arrivalMessage, setArrivalMessage] = useState<any>()
 	const [onlineUsers, setOnlineUsers] = useState<SocketUser[]>()
-	const scrollRef = useRef<HTMLDivElement | null>(null);
 	const socket = useRef<Socket>()
+	const {
+		messages, 
+		setMessages, 
+		newMessage,
+		setNewMessage, 
+		currentChat, 
+		setCurrentChat, 
+		handleSendMessage
+	} = useSendMessage(socket, user)
 
 	useEffect(() => {
 		setupSocket(socket, setOnlineUsers, setArrivalMessage)
@@ -49,34 +53,6 @@ const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	useEffect(() => {
 		getMessages(currentChat, setMessages)
 	}, [currentChat])
-
-	const handleSendMessage = async () => {
-		const message = {
-			conversationId: currentChat?._id,
-			text: newMessage,
-			sender: user?._id,
-			senderAvatar: user?.avatar,
-		}
-		const receiverId = currentChat?.members.find(member => member !== user?._id)
-
-		if (message.text.trim() !== '') {
-			socket.current?.emit('sendMessage', {
-				senderId: user?._id,
-				receiverId,
-				text: newMessage,
-			})
-		}
-
-		try {
-			if (message.text.trim() !== '') {
-				const data = await Api.messages.sendMessage(message)
-				setMessages([...messages, data])
-				setNewMessage('')
-			}
-		} catch (e) {
-			console.log(e)
-		}
-	}
 
 	const handleTextareaKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
 		if (e.key === 'Enter' && !e.shiftKey) {
