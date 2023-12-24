@@ -63,7 +63,6 @@ export class AuthService {
 
                 const readableUser = user.toObject() as IReadableUser
                 readableUser.accessToken = token
-                await this.tokenService.deleteToken(readableUser._id, token)
 
                 const {__v, password, ...editedUser} = readableUser
                 return editedUser as IReadableUser

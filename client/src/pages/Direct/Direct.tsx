@@ -18,12 +18,12 @@ const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	const [onlineUsers, setOnlineUsers] = useState<SocketUser[]>()
 	const socket = useRef<Socket>()
 	const {
-		messages, 
-		setMessages, 
+		messages,
+		setMessages,
 		newMessage,
-		setNewMessage, 
-		currentChat, 
-		setCurrentChat, 
+		setNewMessage,
+		currentChat,
+		setCurrentChat,
 		handleSendMessage
 	} = useSendMessage(socket, user)
 
