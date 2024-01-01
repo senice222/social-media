@@ -1,8 +1,8 @@
 import style from "./Conversation.module.scss";
 import {FC, useEffect, useState} from "react";
-import {ConversationProps} from "../../interfaces/Conversation.ts";
-import * as Api from "../../api/index.ts";
-import {User} from "../../interfaces/Auth.ts";
+import {ConversationProps} from "../../interfaces/Conversation";
+import * as Api from "../../api/index";
+import {User} from "../../interfaces/Auth";
 import userAvatar from "../../assets/user.png";
 
 const Conversation: FC<ConversationProps> = ({conversation, currentUser}) => {

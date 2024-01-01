@@ -1,5 +1,5 @@
-import axios from "../../core/axios.ts";
-import {SendMessage} from "../../interfaces/Message.ts";
+import axios from "../../core/axios";
+import {SendMessage} from "../../interfaces/Message";
 
 export const getMessages = async (convId: string) => {
     const {data} = await axios.get(`message/${convId}`)

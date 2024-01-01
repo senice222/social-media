@@ -1,7 +1,7 @@
-import Layout from "../layouts/Layout.tsx";
-import ContentList from "../components/Content/ContentList.tsx";
+import Layout from "../layouts/Layout";
+import ContentList from "../components/Content/ContentList";
 import { FC } from "react";
-import { UserProps } from "../interfaces/Auth.ts";
+import { UserProps } from "../interfaces/Auth";
 
 const Home:FC<UserProps> = ({user}) => {
     return (

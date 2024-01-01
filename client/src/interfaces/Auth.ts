@@ -1,4 +1,4 @@
-import { CreatedPost } from './Posts.ts'
+import { CreatedPost } from './Posts'
 
 export interface User {
 	_id: string

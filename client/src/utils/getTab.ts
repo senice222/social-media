@@ -1,6 +1,6 @@
 import {FC} from "react";
-import UserPosts from "../components/UserPosts/UserPosts.tsx";
-import FriendsList from "../components/UserFriends/FriendsList.tsx";
+import UserPosts from "../components/UserPosts/UserPosts";
+import FriendsList from "../components/UserFriends/FriendsList";
 
 export type TABS_TYPE = 'posts' | 'friends'
 

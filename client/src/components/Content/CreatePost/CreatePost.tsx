@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 import {useState} from "react";
 import * as Api from '../../../api'
 import userAvatar from "../../../assets/user.png"
-import { UserProps } from '../../../interfaces/Auth.ts';
+import { UserProps } from '../../../interfaces/Auth';
 
 const CreatePost:FC<UserProps> = ({user}) => {
     const [content, setContent] = useState<string>('');

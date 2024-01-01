@@ -4,10 +4,10 @@ import {Input} from 'antd';
 import facebook from '../../assets/2021_Facebook_icon.svg.png'
 import not from '../../assets/icons8-notification-48.png'
 import {NavLink, useLocation} from "react-router-dom";
-import PendingFriendsList from "../PendingFriends/PendingFriendsList.tsx";
+import PendingFriendsList from "../PendingFriends/PendingFriendsList";
 import {useState} from "react";
 import userAvatar from "../../assets/user.png"
-import {HeaderProps} from '../../interfaces/Auth.ts'
+import {HeaderProps} from '../../interfaces/Auth'
 
 const Header: FC<HeaderProps> = ({user}) => {
     const {Search} = Input;

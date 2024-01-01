@@ -1,5 +1,5 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
-import { InitialState, Post } from "../../../interfaces/Posts.ts";
+import { InitialState, Post } from "../../../interfaces/Posts";
 
 const initialState: InitialState = {
   posts: [], // array of posts

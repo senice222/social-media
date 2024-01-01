@@ -1,6 +1,6 @@
 import style from './Pagination.module.scss'
-import {setCurrentPage} from "../../../store/slices/Posts/PostsSlice.ts";
-import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks.ts";
+import {setCurrentPage} from "../../../store/slices/Posts/PostsSlice";
+import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks";
 import Pagination from '@mui/material/Pagination';
 
 const PaginationComponent = () => {
@@ -9,10 +9,9 @@ const PaginationComponent = () => {
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, pageNumber: number) => {
         dispatch(setCurrentPage(pageNumber));
-
         window.scrollTo({
             top: 0,
-            behavior: 'smooth', // adds smooth scroll
+            behavior: 'smooth',
         });
     }
 

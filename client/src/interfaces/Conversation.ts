@@ -1,4 +1,4 @@
-import { User } from "./Auth.ts";
+import { User } from "./Auth";
 
 export interface Conv {
   _id: string;

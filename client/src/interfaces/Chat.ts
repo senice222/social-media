@@ -1,7 +1,7 @@
-import { Conv } from './Conversation.ts'
+import { Conv } from './Conversation'
 import { Dispatch, SetStateAction } from 'react'
-import { User } from './Auth.ts'
-import { OneMessage } from './Message.ts'
+import { User } from './Auth'
+import { OneMessage } from './Message'
 
 export interface UserOnlineProps {
 	onlineUsers: SocketUser[] | undefined

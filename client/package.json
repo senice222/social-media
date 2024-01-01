@@ -39,9 +39,9 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
-    "@types/react": "^18.2.37",
+    "@types/react": "^18.2.46",
     "@types/react-copy-to-clipboard": "^5.0.7",
-    "@types/react-dom": "^18.2.7",
+    "@types/react-dom": "^18.2.18",
     "@types/simple-peer": "^9.11.8",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",

@@ -1,8 +1,8 @@
 import {FC} from 'react'
-import {Children} from "../interfaces/ProtectedRoute.ts";
-import Header from "../components/Header/Header.tsx";
-import Sidebar from "../components/Sidebar/Sidebar.tsx";
-import Footer from "../components/Footer/Footer.tsx";
+import {Children} from "../interfaces/ProtectedRoute";
+import Header from "../components/Header/Header";
+import Sidebar from "../components/Sidebar/Sidebar";
+import Footer from "../components/Footer/Footer";
 
 const Layout: FC<Children> = ({children, user}) => {
     return (

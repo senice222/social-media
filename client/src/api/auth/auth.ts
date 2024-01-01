@@ -1,5 +1,5 @@
-import {AuthDto, LoginDto} from "./auth.dto.ts";
-import axios from "../../core/axios.ts";
+import {AuthDto, LoginDto} from "./auth.dto";
+import axios from "../../core/axios";
 import Cookies from "js-cookie";
 
 export const register = async (values: AuthDto) => {

@@ -1,9 +1,9 @@
 import style from "./PendingFriends.module.scss";
-import {useFriendsPendingRequests} from "../../hooks/useFriendsPendingRequests.ts";
-import PendingFriendsItem from "./PendingFriendsItem.tsx";
-import {FriendRequest} from "../../interfaces/Friends.ts";
+import {useFriendsPendingRequests} from "../../hooks/useFriendsPendingRequests";
+import PendingFriendsItem from "./PendingFriendsItem";
+import {FriendRequest} from "../../interfaces/Friends";
 import {FC, useEffect, useState} from "react";
-import {HeaderProps} from '../../interfaces/Auth.ts'
+import {HeaderProps} from '../../interfaces/Auth'
 
 const PendingFriendsList: FC<HeaderProps> = ({user}) => {
     const {friends} = useFriendsPendingRequests(user?._id ? user._id : "");

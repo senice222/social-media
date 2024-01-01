@@ -1,4 +1,4 @@
-import axios from "../../core/axios.ts";
+import axios from "../../core/axios";
 
 export const getAllUserFriends = async () => {
     return (await axios.get('friends')).data

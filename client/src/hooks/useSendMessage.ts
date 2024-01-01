@@ -19,7 +19,7 @@ export const useSendMessage = (socket: MutableRefObject<Socket | undefined>, use
 			senderAvatar: user?.avatar,
 		}
 		const receiverId = currentChat?.members.find(member => member !== user?._id)
-	
+
 		if (message.text.trim() !== '') {
 			socket.current?.emit('sendMessage', {
 				senderId: user?._id,
@@ -27,7 +27,7 @@ export const useSendMessage = (socket: MutableRefObject<Socket | undefined>, use
 				text: newMessage,
 			})
 		}
-	
+
 		try {
 			if (message.text.trim() !== '') {
 				const data = await Api.messages.sendMessage(message)
@@ -38,7 +38,5 @@ export const useSendMessage = (socket: MutableRefObject<Socket | undefined>, use
 			console.log(e)
 		}
 	}
-
-
 	return {messages, setMessages, newMessage, setNewMessage, currentChat, setCurrentChat, handleSendMessage}
 }	

@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {AuthDto, LoginDto} from "../../../../api/auth/auth.dto.ts";
+import {AuthDto, LoginDto} from "../../../../api/auth/auth.dto";
 import * as Api from "../../../../api";
 
 export const registerUser = createAsyncThunk('Auth/registerUser', async (values: AuthDto) => {

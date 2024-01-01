@@ -2,9 +2,9 @@ import styles from '../../pages/auth/Auth.module.scss'
 import {Button, Form, Input, notification, Upload, UploadFile, UploadProps} from "antd";
 import {useState} from "react";
 import { UploadOutlined } from '@ant-design/icons';
-import {AuthDto} from "../../api/auth/auth.dto.ts";
-import {useAppDispatch} from "../../hooks/reduxHooks.ts";
-import {registerUser} from "../../store/slices/Auth/thunks/auth.thunks.ts";
+import {AuthDto} from "../../api/auth/auth.dto";
+import {useAppDispatch} from "../../hooks/reduxHooks";
+import {registerUser} from "../../store/slices/Auth/thunks/auth.thunks";
 
 const RegisterForm = () => {
     const [fileList, setFileList] = useState<UploadFile[]>()

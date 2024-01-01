@@ -1,4 +1,4 @@
-import { User } from "./Auth.ts";
+import { User } from "./Auth";
 
 export interface Comment {
   commentText: string;

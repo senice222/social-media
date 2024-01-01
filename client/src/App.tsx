@@ -2,13 +2,13 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "./styles/App.scss";
 import {Navigate} from "react-router-dom";
 import Cookies from "js-cookie";
-import Home from "./pages/Home.tsx";
-import {Children} from "./interfaces/ProtectedRoute.ts";
-import Profile from "./pages/Profile/Profile.tsx";
-import Direct from "./pages/Direct/Direct.tsx";
-import {useGetMe} from "./hooks/useGetMe.ts";
-import Confirm from "./pages/Auth/Confirm.tsx";
-import Auth from "./pages/Auth/Auth.tsx";
+import Home from "./pages/Home";
+import {Children} from "./interfaces/ProtectedRoute";
+import Profile from "./pages/Profile/Profile";
+import Direct from "./pages/Direct/Direct";
+import {useGetMe} from "./hooks/useGetMe";
+import Confirm from "./pages/Auth/Confirm";
+import Auth from "./pages/Auth/Auth";
 
 function App() {
     const {currentUser, isLoading} = useGetMe()

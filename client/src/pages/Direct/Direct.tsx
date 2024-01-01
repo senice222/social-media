@@ -1,16 +1,16 @@
 import { FC, Fragment, KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { Socket } from 'socket.io-client'
-import ChatOnline from '../../components/ChatOnline/ChatOnline.tsx'
-import Conversation from '../../components/Conversations/Conversation.tsx'
-import Message from '../../components/Message/Message.tsx'
+import ChatOnline from '../../components/ChatOnline/ChatOnline'
+import Conversation from '../../components/Conversations/Conversation'
+import Message from '../../components/Message/Message'
 import VideoCall from '../../components/VideoCall/VideoCall'
-import { DirectProps } from '../../interfaces/Auth.ts'
-import { SocketUser } from '../../interfaces/Chat.ts'
-import { OneMessage } from '../../interfaces/Message.ts'
-import Layout from '../../layouts/Layout.tsx'
-import { getMessages, getUserConv, setupSocket } from '../../utils/ChatUtils.ts'
+import { DirectProps } from '../../interfaces/Auth'
+import { SocketUser } from '../../interfaces/Chat'
+import { OneMessage } from '../../interfaces/Message'
+import Layout from '../../layouts/Layout'
+import { getMessages, getUserConv, setupSocket } from '../../utils/ChatUtils'
 import style from './Direct.module.scss'
-import { useSendMessage } from '../../hooks/useSendMessage.ts'
+import { useSendMessage } from '../../hooks/useSendMessage'
 
 const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	const [conversation, setConversation] = useState([])
@@ -32,10 +32,7 @@ const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	}, [])
 
 	useEffect(() => {
-		if (
-			arrivalMessage &&
-			currentChat?.members.includes(arrivalMessage.sender)
-		) {
+		if (arrivalMessage && currentChat?.members.includes(arrivalMessage.sender)) {
 			setMessages(prev => [...prev, arrivalMessage])
 		}
 	}, [arrivalMessage, currentChat])

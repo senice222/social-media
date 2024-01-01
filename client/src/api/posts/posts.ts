@@ -1,4 +1,4 @@
-import axios from "../../core/axios.ts";
+import axios from "../../core/axios";
 
 export const createComment = async (postId: string, commentText: string) => {
     const commentObj = {

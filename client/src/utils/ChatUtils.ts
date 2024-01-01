@@ -1,9 +1,9 @@
 import { Dispatch, MutableRefObject, SetStateAction } from 'react'
 import { Socket, io } from 'socket.io-client'
 import * as Api from '../api'
-import { SocketUser } from '../interfaces/Chat.ts'
-import { Conv } from '../interfaces/Conversation.ts'
-import { OneMessage } from '../interfaces/Message.ts'
+import { SocketUser } from '../interfaces/Chat'
+import { Conv } from '../interfaces/Conversation'
+import { OneMessage } from '../interfaces/Message'
 
 export const getUserConv = async (
 	setConversation: Dispatch<SetStateAction<never[]>>

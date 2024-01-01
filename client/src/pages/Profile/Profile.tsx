@@ -1,9 +1,9 @@
 import style from './Profile.module.scss'
-import Layout from "../../layouts/Layout.tsx";
+import Layout from "../../layouts/Layout";
 import {FC, useState} from "react";
-import {TABS, TABS_TYPE} from "../../utils/getTab.ts";
+import {TABS, TABS_TYPE} from "../../utils/getTab";
 import userAvatar from "../../assets/user.png"
-import {UserProps} from '../../interfaces/Auth.ts'
+import {UserProps} from '../../interfaces/Auth'
 
 const Profile: FC<UserProps> = ({user}) => {
     const [currentTab, setCurrentTab] = useState<TABS_TYPE>('posts')
