@@ -24,8 +24,10 @@ export const register = async (values: AuthDto) => {
 export const login = async (values: LoginDto) => {
     try {
         const { data } = await axios.post('auth/signIn', values)
-        Cookies.set('token', data.accessToken)
-        return data
+        if (data.accessToken) {
+            Cookies.set('token', data.accessToken)
+            return data
+        }
     } catch (e) {
         console.log(e)
     }

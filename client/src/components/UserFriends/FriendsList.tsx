@@ -1,7 +1,7 @@
 import {Fragment, useEffect, useState} from "react";
-import FriendsItem from "./FriendsItem.tsx";
-import {getUserConv} from "../../utils/ChatUtils.ts";
-import { HeaderProps } from "../../interfaces/Auth.ts";
+import FriendsItem from "./FriendsItem";
+import {getUserConv} from "../../utils/ChatUtils";
+import { HeaderProps } from "../../interfaces/Auth";
 
 const FriendsList = ({user}: HeaderProps) => {
     const [conversation, setConversation] = useState([])

@@ -5,9 +5,9 @@ import friends from "../../assets/friends.png";
 import group from "../../assets/group.png";
 import market from "../../assets/marketplace.png";
 import watch from "../../assets/watch.png";
-import {Children} from "../../interfaces/ProtectedRoute.ts";
-import Shortcuts from "../Shortcuts/Shortcuts.tsx";
-import RightSidebar from "../RightSidebar/RightSidebar.tsx";
+import {Children} from "../../interfaces/ProtectedRoute";
+import Shortcuts from "../Shortcuts/Shortcuts";
+import RightSidebar from "../RightSidebar/RightSidebar";
 
 const Sidebar = ({children}: Children) => {
     return (

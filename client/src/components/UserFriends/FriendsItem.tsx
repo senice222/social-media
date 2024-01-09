@@ -1,8 +1,8 @@
 import {FC} from "react";
 import style from "./Friends.module.scss";
-import {FriendsItemProps} from "../../interfaces/Friends.ts";
-import {useGetMe} from "../../hooks/useGetMe.ts";
-import * as Api from "../../api/index.ts";
+import {FriendsItemProps} from "../../interfaces/Friends";
+import {useGetMe} from "../../hooks/useGetMe";
+import * as Api from "../../api/index";
 import {useNavigate} from "react-router-dom";
 
 const FriendsItem: FC<FriendsItemProps> = ({_id, username, avatar, userConversations}) => {

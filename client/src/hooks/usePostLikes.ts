@@ -1,6 +1,6 @@
 import useSWR, { mutate } from 'swr';
-import * as Api from "../api/index.ts";
-import {fetcher} from "../core/axios.ts";
+import * as Api from "../api/index";
+import {fetcher} from "../core/axios";
 
 export const usePostLikes = (postId: string) => {
     const { data: likes, mutate: mutateLikes } = useSWR(`posts/likes/${postId}`, fetcher);

@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import * as Api from "../api/index.ts";
-import {fetcher} from "../core/axios.ts";
+import * as Api from "../api/index";
+import {fetcher} from "../core/axios";
 import {SetStateAction, Dispatch} from "react";
 
 export const usePostComments = (_id: string, comment: string, setComment: Dispatch<SetStateAction<string>>) => {

@@ -1,6 +1,5 @@
 import {FC} from 'react'
 import style from './Header.module.scss'
-import {Input} from 'antd';
 import facebook from '../../assets/2021_Facebook_icon.svg.png'
 import not from '../../assets/icons8-notification-48.png'
 import {NavLink, useLocation} from "react-router-dom";
@@ -10,22 +9,14 @@ import userAvatar from "../../assets/user.png"
 import {HeaderProps} from '../../interfaces/Auth'
 
 const Header: FC<HeaderProps> = ({user}) => {
-    const {Search} = Input;
     const location = useLocation()
     const [isActive, setIsActive] = useState<boolean>(false);
-    const onSearch = (value: string) => console.log(value);
 
     return (
         <div className={style.headerContainer}>
             <nav className={style.header}>
                 <div className={style.leftContainer}>
                     <img src={facebook} className={style.img} alt="/" />
-                    <Search
-                        className={style.search}
-                        placeholder="Input search text"
-                        onSearch={onSearch}
-                        enterButton
-                    />
                 </div>
                 <div className={style.middleContainer}>
                     <div className={style.links}>

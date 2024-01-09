@@ -1,42 +1,25 @@
-// import { useEffect, useState } from "react";
-import { User } from "../interfaces/Auth.ts";
+import {User} from "../interfaces/Auth";
 import * as Api from "../api";
-import useSWR, { mutate as swrMutate } from 'swr'
+import useSWR, {mutate as swrMutate} from 'swr'
 
 const fetchUserById = async (id: string): Promise<User> => {
-  const data = await Api.user.getUserById(id);
-  return data;
+    const data = await Api.user.getUserById(id);
+    return data;
 };
 
 export const useGetUserById = (id: string) => {
-  // const [user, setUser] = useState<User | null>(null);
-  
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       const data = await Api.user.getUserById(id);
-  //       setUser(data);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
+    const {data: user, error} = useSWR(`user/getUser/${id}`, () => fetchUserById(id))
 
-  //   fetchUser();
-  // }, [id]);
+    const isLoading = !user && !error;
 
-  // return { user, setUser };
-  const {data: user, error} = useSWR(`user/getUser/${id}`, () => fetchUserById(id))
+    const setUser = (newUser: User | null) => {
+        swrMutate(`/api/user/${id}`, newUser, false);
+    };
 
-  const isLoading = !user && !error;
-
-  const setUser = (newUser: User | null) => {
-    swrMutate(`/api/user/${id}`, newUser, false);
-  };
-
-  return {
-    user,
-    isLoading,
-    error,
-    setUser,
-  };
+    return {
+        user,
+        isLoading,
+        error,
+        setUser,
+    };
 };

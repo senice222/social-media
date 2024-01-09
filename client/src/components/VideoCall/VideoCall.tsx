@@ -1,7 +1,7 @@
 import style from './VideoCall.module.scss'
 import {FC, useEffect, useState} from "react";
-import {CurrentChat} from "../../interfaces/Chat.ts";
-import * as Api from '../../api/index.ts'
+import {CurrentChat} from "../../interfaces/Chat";
+import * as Api from '../../api/index'
 
 
 const VideoCall: FC<CurrentChat> = ({currentChat, currentUser}) => {
@@ -17,7 +17,6 @@ const VideoCall: FC<CurrentChat> = ({currentChat, currentUser}) => {
         }
         getUserById()
     }, [currentChat])
-
 
     return (
         <div className={style.userContainer}>

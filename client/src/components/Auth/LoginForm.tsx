@@ -1,10 +1,11 @@
 import styles from '../../pages/auth/Auth.module.scss'
 import {Button, Form, Input, notification} from "antd";
-import {LoginDto} from "../../api/auth/auth.dto.ts";
-import {useAppDispatch} from "../../hooks/reduxHooks.ts";
+import {LoginDto} from "../../api/auth/auth.dto";
+import {useAppDispatch} from "../../hooks/reduxHooks";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {loginUser} from "../../store/slices/Auth/thunks/auth.thunks.ts";
+import {loginUser} from "../../store/slices/Auth/thunks/auth.thunks";
+import Cookies from "js-cookie";
 
 const LoginForm = () => {
     const dispatch = useAppDispatch()
@@ -13,15 +14,24 @@ const LoginForm = () => {
 
     const onSubmit = async (values: LoginDto) => {
         try {
-            dispatch(loginUser(values));
-            notification.success({
-                message: "Success!",
-                description: "You successfully entered.",
+            dispatch(loginUser(values)).then(() => {
+                const cookieValue = Cookies.get('token');
+                if (cookieValue) {
+                    notification.success({
+                        message: "Success!",
+                        description: "You successfully entered.",
+                        duration: 1.5
+                    })
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 1500);
+                }
+            });
+            notification.error({
+                message: "Error!",
+                description: "Something went wrong.",
                 duration: 1.5
             })
-            setTimeout(() => {
-                navigate('/');
-            }, 1500);
         } catch (e) {
             console.log(e)
             setErr(true)
@@ -47,7 +57,7 @@ const LoginForm = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -60,7 +70,7 @@ const LoginForm = () => {
                         },
                     ]}
                 >
-                    <Input.Password />
+                    <Input.Password/>
                 </Form.Item>
 
                 <Form.Item
