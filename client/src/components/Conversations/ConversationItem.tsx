@@ -5,11 +5,11 @@ import * as Api from "../../api/index";
 import {User} from "../../interfaces/Auth";
 import userAvatar from "../../assets/user.png";
 
-const Conversation: FC<ConversationProps> = ({conversation, currentUser}) => {
+const ConversationItem: FC<ConversationProps> = ({conversation, currentUser}) => {
     const [friend, setFriend] = useState<User>();
 
     useEffect(() => {
-        const friendId = conversation.members.find((member) => member !== currentUser?._id);
+        const friendId = conversation.members.find(member => member !== currentUser?._id);
         const getUserById = async () => {
             try {
                 if (friendId) {
@@ -42,4 +42,4 @@ const Conversation: FC<ConversationProps> = ({conversation, currentUser}) => {
     );
 };
 
-export default Conversation;
+export default ConversationItem;

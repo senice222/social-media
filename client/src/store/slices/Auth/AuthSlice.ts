@@ -33,7 +33,6 @@ const UserSlice = createSlice({
                 state.status = "loading";
             })
             .addCase(loginUser.fulfilled, (state, action: PayloadAction<any>) => {
-                console.log(action);
                 state.data = action.payload;
                 state.status = "success"; // Update the status as needed
             })
