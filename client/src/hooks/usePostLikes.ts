@@ -1,14 +1,14 @@
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 import * as Api from "../api/index";
-import {fetcher} from "../core/axios";
+import {fetcher} from "../helpers/fetcher";
+import {Post} from "../interfaces/Posts";
 
 export const usePostLikes = (postId: string) => {
-    const { data: likes, mutate: mutateLikes } = useSWR(`posts/likes/${postId}`, fetcher);
+    const { data: likes, mutate } = useSWR<Post>(`posts/likes/${postId}`, fetcher);
 
     const handleLike = async () => {
         try {
             await Api.posts.like(postId);
-            mutateLikes();
             mutate(`/posts/likes/${postId}`);
         } catch (e) {
             console.log(e)

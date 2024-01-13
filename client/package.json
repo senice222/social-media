@@ -20,6 +20,7 @@
     "axios": "^1.4.0",
     "i": "^0.3.7",
     "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.0.9",
     "npm": "^10.2.3",
     "peerjs": "^1.5.1",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
+    "@types/lodash": "^4.14.202",
     "@types/react": "^18.2.46",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^18.2.18",

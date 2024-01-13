@@ -39,6 +39,6 @@ export interface HeaderProps {
 }
 
 export interface GetUserByHook {
-	currentUser: User | null
+	currentUser?: User | null
 	isLoading: boolean
 }

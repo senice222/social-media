@@ -38,7 +38,7 @@ const Sidebar = ({children}: Children) => {
                     <div>
                         <NavLink to={"/"}>
                             <img src={watch} alt="/"/> Watch
-                        </NavLink>
+                            </NavLink>
                     </div>
                     <NavLink className={style.lastChild} to={"/"}>
                         See more

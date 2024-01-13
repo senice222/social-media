@@ -34,7 +34,6 @@ export const setupSocket = (
 ) => {
     socket.current = io('http://localhost:5000')
     socket.current.on('getUsers', users => {
-        console.log(users)
         setOnlineUsers(users)
     })
     socket.current?.on('getMessage', data => {

@@ -2,38 +2,39 @@ import {FC} from "react";
 import style from "./Content.module.scss";
 import CreatePost from "./CreatePost/CreatePost";
 import ContentItem from "./ContentItem";
-import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
-import {useEffect} from "react";
-import {loadPosts} from "../../store/slices/Posts/thunks/post.thunks";
-import PaginationComponent from "./ContentPagination/Pagination";
-import {Post} from "../../interfaces/Posts";
+import {useAppSelector} from "../../hooks/reduxHooks";
 import {UserProps} from "../../interfaces/Auth";
+import useSWR from "swr";
+import {fetcher} from "../../helpers/fetcher";
+import PaginationComponent from "./ContentPagination/Pagination";
+import {InitialState, Post} from "../../interfaces/Posts";
 
 const ContentList: FC<UserProps> = ({user}) => {
-    const dispatch = useAppDispatch();
-    const {posts, currentPage} = useAppSelector((state) => state.posts);
+    const {currentPage} = useAppSelector((state) => state.posts);
 
-    // getting 5 posts per page
-    useEffect(() => {
-        dispatch(loadPosts({page: currentPage, perPage: 5}));
-    }, [currentPage, dispatch]);
+    const {data} = useSWR<InitialState>(
+        `posts/getPaginatedPosts?page=${currentPage}&perPage=${5}`,
+        () => fetcher(`posts/getPaginatedPosts?page=${currentPage}&perPage=${5}`)
+    );
 
     return (
         <div className={style.middleSide}>
-            <CreatePost user={user}/>
-            {posts.map((item: Post, i: number) => (
-                <ContentItem
-                    key={i}
-                    _id={item._id}
-                    content={item.content}
-                    comments={item.comments}
-                    urls={item.urls}
-                    createdAt={item.createdAt}
-                    owner={item.owner}
-                    user={user}
-                />
-            ))}
-            <PaginationComponent/>
+            <CreatePost user={user} currentPage={+currentPage}/>
+            {data ?
+                data.posts.map((item: Post, i: number) => (
+                    <ContentItem
+                        key={i}
+                        _id={item._id}
+                        content={item.content}
+                        comments={item.comments}
+                        urls={item.urls}
+                        createdAt={item.createdAt}
+                        owner={item.owner}
+                        user={user}
+                    />
+                )) : <p>Loading</p>
+            }
+            {data && <PaginationComponent currentPage={+data.currentPage} totalPages={data.totalPages} />}
         </div>
     );
 };

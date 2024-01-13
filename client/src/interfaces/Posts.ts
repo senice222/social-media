@@ -1,4 +1,4 @@
-import { User } from "./Auth";
+import {User, UserProps} from "./Auth";
 
 export interface Post {
   _id: string;
@@ -27,11 +27,14 @@ export interface FunctionArguments {
 
 export interface InitialState {
   posts: Post[];
-  currentPage: number;
+  currentPage: number | string;
   totalPosts: number;
   totalPages: number;
 }
 
 export interface ContentItemProps extends Post {
     user: User | null
+}
+export interface CreatePostProps extends UserProps {
+  currentPage: number
 }

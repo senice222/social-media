@@ -1,8 +1,9 @@
 import useSWR from 'swr';
-import { fetcher } from '../core/axios';
+import {fetcher} from "../helpers/fetcher";
+import {FriendRequest} from "../interfaces/Friends";
 
 export const useFriendsPendingRequests = (userId: string) => {
-    const { data: friends } = useSWR(`friends/${userId}/pending`, fetcher);
+    const { data: friends } = useSWR<FriendRequest>(`friends/${userId}/pending`, fetcher);
 
     return { friends };
 }

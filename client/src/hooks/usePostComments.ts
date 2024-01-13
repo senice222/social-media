@@ -1,10 +1,11 @@
 import useSWR from 'swr';
 import * as Api from "../api/index";
-import {fetcher} from "../core/axios";
+import {fetcher} from "../helpers/fetcher";
 import {SetStateAction, Dispatch} from "react";
+import {Post} from "../interfaces/Posts";
 
 export const usePostComments = (_id: string, comment: string, setComment: Dispatch<SetStateAction<string>>) => {
-    const { data: comments, mutate: mutateComments } = useSWR(`posts/comments/${_id}`, fetcher)
+    const { data: comments, mutate: mutateComments } = useSWR<Post>(`posts/comments/${_id}`, fetcher)
 
     const handleComment = async () => {
         try {

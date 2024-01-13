@@ -11,6 +11,11 @@ import {HeaderProps} from '../../interfaces/Auth'
 const Header: FC<HeaderProps> = ({user}) => {
     const location = useLocation()
     const [isActive, setIsActive] = useState<boolean>(false);
+    const [menu, setMenu] = useState(false);
+
+    const toggleMenu = () => {
+        setMenu(!menu);
+    };
 
     return (
         <div className={style.headerContainer}>

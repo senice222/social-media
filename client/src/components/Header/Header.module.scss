@@ -146,8 +146,47 @@
   border-bottom-color: #1B74E4;
 }
 
-@media screen and (max-width: 600px) {
-  .container {
-    width: 100%
+.burgerIcon {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+
+  .line {
+    height: 3px;
+    width: 25px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .burgerIcon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .burgerMenu {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 65px; /* Adjust based on your header height */
+    right: 0;
+    width: 200px;
+    border: 1px solid #ddd;
+    z-index: 10;
+
+    a {
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #ddd;
+      }
+    }
   }
 }
