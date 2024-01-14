@@ -64,6 +64,7 @@ export class PostsController {
         @UserId() id: string
     ) {
         const fileList = files.map(item => item.path)
+        console.log(files)
         return this.postsService.createPost(body, id, fileList);
     }
 
@@ -90,6 +91,7 @@ export class PostsController {
     getPostComments(@Param('id') id: string) {
         return this.commentsService.getPostComments(id)
     }
+
     @UseGuards(AuthGuard('jwt'))
     @Get('likes/:id')
     getPostLikes(@Param('id') id: string) {

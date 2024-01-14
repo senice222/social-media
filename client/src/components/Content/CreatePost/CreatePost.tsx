@@ -6,21 +6,22 @@ import {NavLink} from "react-router-dom";
 import {useState} from "react";
 import * as Api from '../../../api'
 import userAvatar from "../../../assets/user.png"
-import {Button, message, Upload} from 'antd';
+import {Button, message, Upload, UploadFile} from 'antd';
 import {useSWRConfig} from "swr";
 import {CreatePostProps} from "../../../interfaces/Posts";
+import {UploadChangeParam} from "antd/es/upload";
+import {File} from "../../../interfaces/File";
 
 const CreatePost: FC<CreatePostProps> = ({user, currentPage}) => {
     const { mutate } = useSWRConfig();
     const [content, setContent] = useState<string>('');
-
+    const [fileList, setFileList] = useState<File[]>()
 
     const handleCreatePost = async () => {
-        await Api.posts.createPost(content);
+        await Api.posts.createPost(content, fileList);
         setContent('');
         mutate(`posts/getPaginatedPosts?page=${currentPage}&perPage=${5}`);
     };
-
     return (
         <div className={style.middleSide}>
             <div className={style.userProfile}>
@@ -54,16 +55,14 @@ const CreatePost: FC<CreatePostProps> = ({user, currentPage}) => {
                             }
                         })
                     }}
-                            onChange={(response) => {
+                            onChange={(response: UploadChangeParam<UploadFile<File>>) => {
                                 if (response.file.status !== 'uploading') {
-                                    console.log(response.file, response.fileList);
+                                    setFileList([response.file]);
                                 }
                                 if (response.file.status === 'done') {
-                                    message.success(`${response.file.name}  
-                               file uploaded successfully`);
+                                    console.log(response.file)
                                 } else if (response.file.status === 'error') {
-                                    message.error(`${response.file.name}  
-                             file upload failed.`);
+                                    message.error(`${response.file.name} file upload failed.`)
                                 }
                             }}
                     >
