@@ -23,7 +23,7 @@ export class Post {
     @Prop({default: []})
     comments: CommentI[];
 
-    @Prop()
+    @Prop({default: []})
     urls: string[]
 
     @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'User'})

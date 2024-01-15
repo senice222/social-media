@@ -22,6 +22,7 @@ const CreatePost: FC<CreatePostProps> = ({user, currentPage}) => {
         setContent('');
         mutate(`posts/getPaginatedPosts?page=${currentPage}&perPage=${5}`);
     };
+
     return (
         <div className={style.middleSide}>
             <div className={style.userProfile}>
@@ -57,7 +58,7 @@ const CreatePost: FC<CreatePostProps> = ({user, currentPage}) => {
                     }}
                             onChange={(response: UploadChangeParam<UploadFile<File>>) => {
                                 if (response.file.status !== 'uploading') {
-                                    setFileList([response.file]);
+                                    setFileList(response.fileList);
                                 }
                                 if (response.file.status === 'done') {
                                     console.log(response.file)

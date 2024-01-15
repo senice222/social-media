@@ -2,7 +2,6 @@ import {FC} from "react";
 import style from "./Content.module.scss";
 import profilePic from "../../assets/profile-pic.png";
 import {NavLink} from "react-router-dom";
-import postImg from "../../assets/feed-image-1.png";
 import blueLike from "../../assets/like-blue.png";
 import like from "../../assets/like.png";
 import comment from "../../assets/comments.png";
@@ -10,13 +9,27 @@ import share from "../../assets/share.png";
 import {ContentItemProps, likes} from "../../interfaces/Posts";
 import CommentsList from "../Comments/CommentsList";
 import {usePostLikes} from "../../hooks/usePostLikes";
+import {Carousel} from "antd";
 
-const ContentItem: FC<ContentItemProps> = ({_id, content, comments, owner, createdAt, user}) => {
+const ContentItem: FC<ContentItemProps> = ({_id, content, comments, owner, createdAt, user, urls}) => {
     const {likes, handleLike} = usePostLikes(_id);
 
     const isUserLiked =
         likes?.length > 0 &&
-            likes.some((item: likes) => item.id === user?._id);
+        likes.some((item: likes) => item.id === user?._id);
+
+    const contentStyle: React.CSSProperties = {
+        margin: 0,
+        height: '160px',
+        color: '#fff',
+        lineHeight: '160px',
+        textAlign: 'center',
+        background: '#364d79',
+    };
+
+    const onChange = (currentSlide: number) => {
+        console.log(currentSlide);
+    };
 
     return (
         <div className={style.middleSide}>
@@ -32,7 +45,15 @@ const ContentItem: FC<ContentItemProps> = ({_id, content, comments, owner, creat
                     <NavLink to={"/"}>...</NavLink>
                 </div>
                 <p className={style.postText}>{content}</p>
-                <img src={postImg} className={style.postImg} alt="/"/>
+                <Carousel afterChange={onChange} style={{width: "100px"}} dots={true}>
+                    {
+                        urls.map(item => (
+                            <div>
+                                <img src={`http://localhost:5000/${item}`} style={contentStyle} alt="/"/>
+                            </div>
+                        ))
+                    }
+                </Carousel>
 
                 <div className={style.postRow}>
                     <div className={style.activityIcons}>
