@@ -18,8 +18,8 @@ export const createPost = async (content: string, fileList?: File[]) => {
     const formData: any = new FormData()
     formData.append('content', content)
 
-    fileList?.forEach((firstScope: any) => {
-        firstScope.forEach((secondScope: File) => formData.append('file', secondScope.originFileObj))
+    fileList?.forEach((firstScope: File) => {
+        formData.append('file', firstScope.originFileObj)
     });
 
     const config = {

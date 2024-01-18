@@ -1,10 +1,10 @@
 import useSWR from 'swr';
 import * as Api from "../api/index";
 import {fetcher} from "../helpers/fetcher";
-import {Post} from "../interfaces/Posts";
+// import {Post} from "../interfaces/Posts";
 
 export const usePostLikes = (postId: string) => {
-    const { data: likes, mutate } = useSWR<Post>(`posts/likes/${postId}`, fetcher);
+    const { data: likes, mutate } = useSWR<any>(`posts/likes/${postId}`, fetcher);
 
     const handleLike = async () => {
         try {
@@ -14,5 +14,6 @@ export const usePostLikes = (postId: string) => {
             console.log(e)
         }
     }
+
     return { likes, handleLike };
 };

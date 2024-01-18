@@ -9,9 +9,7 @@ const PendingFriendsItem: FC<PendingFriendsItemProps> = ({setFriendsState, reque
     const handleAccept = async () => {
         try {
             await Api.friends.acceptUserRequest(requestId);
-            setFriendsState((prevFriends) =>
-                prevFriends?.filter((friend) => friend._id !== requestId)
-            );
+            setFriendsState(prevFriends => prevFriends?.filter((friend) => friend._id !== requestId));
         } catch (e) {
             console.log(e);
         }
@@ -20,9 +18,7 @@ const PendingFriendsItem: FC<PendingFriendsItemProps> = ({setFriendsState, reque
     const handleReject = async () => {
         try {
             await Api.friends.rejectUserRequest(requestId);
-            setFriendsState((prevFriends) =>
-                prevFriends?.filter((friend) => friend._id !== requestId)
-            );
+            setFriendsState(prevFriends => prevFriends?.filter((friend) => friend._id !== requestId));
         } catch (e) {
             console.log(e);
         }
@@ -36,7 +32,7 @@ const PendingFriendsItem: FC<PendingFriendsItemProps> = ({setFriendsState, reque
                 alt={"/"}
             />
             <div className={style.user}>
-                <h3>{username}</h3>
+                <h3>{username && username}</h3>
                 <p>Friend request</p>
             </div>
             <div className={style.btnsContainer}>

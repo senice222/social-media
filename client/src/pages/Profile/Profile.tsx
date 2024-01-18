@@ -22,9 +22,8 @@ const Profile: FC<UserProps> = ({user}) => {
                         />
                         <h3>{user?.username}</h3>
                         <div className={style.currentFriends}>
-                            <p><strong>0</strong> публикаций</p>
-                            <p><strong>66 </strong> подписчиков</p>
-                            <p><strong>42</strong> подписок</p>
+                            <p><strong>{user?.createdPosts.length}</strong> posts</p>
+                            <p><strong>{user?.friends.length}</strong> friends</p>
                         </div>
                     </div>
                     <div className={style.friendsOrPostsContainer}>

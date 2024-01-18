@@ -6,16 +6,15 @@ import {NavLink} from "react-router-dom";
 import {useState} from "react";
 import * as Api from '../../../api'
 import userAvatar from "../../../assets/user.png"
-import {Button, message, Upload, UploadFile} from 'antd';
+import {Button, message, Upload} from 'antd';
 import {useSWRConfig} from "swr";
 import {CreatePostProps} from "../../../interfaces/Posts";
-import {UploadChangeParam} from "antd/es/upload";
 import {File} from "../../../interfaces/File";
 
 const CreatePost: FC<CreatePostProps> = ({user, currentPage}) => {
     const { mutate } = useSWRConfig();
     const [content, setContent] = useState<string>('');
-    const [fileList, setFileList] = useState<File[]>()
+    const [fileList, setFileList] = useState<File[]>([])
 
     const handleCreatePost = async () => {
         await Api.posts.createPost(content, fileList);
@@ -56,7 +55,7 @@ const CreatePost: FC<CreatePostProps> = ({user, currentPage}) => {
                             }
                         })
                     }}
-                            onChange={(response: UploadChangeParam<UploadFile<File>>) => {
+                            onChange={(response) => {
                                 if (response.file.status !== 'uploading') {
                                     setFileList(response.fileList);
                                 }

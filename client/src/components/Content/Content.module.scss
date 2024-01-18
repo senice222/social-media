@@ -109,3 +109,24 @@
   width: 950px;
   margin-bottom: 10px;
 }
+.middleSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    width: 100px;
+    border-radius: 5px;
+    height: 100px;
+  }
+}

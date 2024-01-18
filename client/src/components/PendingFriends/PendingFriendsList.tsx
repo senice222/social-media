@@ -30,7 +30,7 @@ const PendingFriendsList: FC<HeaderProps> = ({user}) => {
                     Loading...
                 </div>
             )}
-            {friends && friends.length === 0 && (
+            {friends && friends?.length === 0 && (
                 <div className={style.noFriends}>
                     <p>You don't have any friends requests</p>
                 </div>

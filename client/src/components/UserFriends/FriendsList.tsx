@@ -1,9 +1,9 @@
-import {Fragment, useEffect, useState} from "react";
+import {FC, Fragment, useEffect, useState} from "react";
 import FriendsItem from "./FriendsItem";
 import {getUserConv} from "../../utils/ChatUtils";
 import { HeaderProps } from "../../interfaces/Auth";
 
-const FriendsList = ({user}: HeaderProps) => {
+const FriendsList: FC<HeaderProps> = ({user}) => {
     const [conversation, setConversation] = useState([])
 
     useEffect(() => {

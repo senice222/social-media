@@ -32,9 +32,13 @@ const ContentList: FC<UserProps> = ({user}) => {
                         owner={item.owner}
                         user={user}
                     />
-                )) : <p>Loading</p>
+                )) : <div className={style.loadingContainer}>
+                    <div className={style.loading}>
+                        Loading..
+                    </div>
+                </div>
             }
-            {data && <PaginationComponent currentPage={+data.currentPage} totalPages={data.totalPages} />}
+            {data && <PaginationComponent currentPage={+data.currentPage} totalPages={data.totalPages}/>}
         </div>
     );
 };
