@@ -21,6 +21,11 @@ export class UsersService {
         return await this.userModel.findOne({email}).exec()
     }
 
+    async searchUser(username: string) {
+        const users = await this.userModel.find()
+        return users.filter(item => item.username.toLowerCase().includes(username.toLowerCase()))
+    }
+
     async getUserById(id: string): Promise<UserI> {
         return await this.userModel.findById(id).populate('createdPosts').populate('friends')
     }

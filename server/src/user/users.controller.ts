@@ -21,6 +21,12 @@ export class UsersController {
     }
 
     @UseGuards(AuthGuard('jwt'))
+    @Get('search/:username')
+    searchUser(@Param('username') username) {
+        return this.userService.searchUser(username);
+    }
+
+    @UseGuards(AuthGuard('jwt'))
     @Get('getUser/:id')
     getUserById(@Param('id') id: string) {
         return this.userService.getUserById(id)

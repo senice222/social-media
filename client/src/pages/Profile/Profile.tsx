@@ -1,15 +1,30 @@
 import style from './Profile.module.scss'
 import Layout from "../../layouts/Layout";
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {TABS, TABS_TYPE} from "../../utils/getTab";
 import userAvatar from "../../assets/user.png"
-import {UserProps} from '../../interfaces/Auth'
-
-const Profile: FC<UserProps> = ({user}) => {
+import {User, UserProps} from '../../interfaces/Auth'
+import {useLocation} from "react-router-dom";
+import * as Api from '../../api/index'
+// {user}
+const Profile: FC<UserProps> = () => {
     const [currentTab, setCurrentTab] = useState<TABS_TYPE>('posts')
+    const [user, setUser] = useState<User>();
+    const location = useLocation()
     const TabView: FC<UserProps> = TABS[currentTab];
     const isActivePosts = currentTab === 'posts'
     const isActiveFriends = currentTab === 'friends'
+    const currentId = location.pathname.split('/')[2]
+
+    useEffect(() => {
+        if (location) {
+            const getUser = async () => {
+                const data = await Api.user.getUserById(currentId)
+                setUser(data)
+            }
+            getUser()
+        }
+    }, [location])
 
     return (
         <Layout user={user}>

@@ -11,6 +11,7 @@ import { getMessages, getUserConv, setupSocket } from '../../utils/ChatUtils'
 import style from './Direct.module.scss'
 import { useSendMessage } from '../../hooks/useSendMessage'
 import ConversationList from "../../components/Conversations/ConversationList";
+import Search from "../../components/Search/Search";
 
 const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	const [conversation, setConversation] = useState([])
@@ -62,11 +63,7 @@ const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 		<Layout user={user}>
 			<div className={style.directContainer}>
 				<div className={style.chatMenuWrapper}>
-					<input
-						type='text'
-						placeholder={'Search for friends'}
-						className={style.chatMenuInput}
-					/>
+					<Search />
 					<ConversationList conversation={conversation} currentUser={user} setCurrentChat={setCurrentChat} />
 				</div>
 				<div className={style.chatBoxWrapper}>

@@ -1,0 +1,40 @@
+.chatMenuInput {
+  margin-left: 10px;
+  width: 90%;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+}
+
+.container {
+  position: relative;
+  background: gray;
+  margin-left: 5px;
+  .ulAutoComplete {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    background: #f3f3f3;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+    z-index: 111;
+    max-height: 240px;
+    height: auto;
+    overflow: auto;
+
+    .liAutoComplete {
+      padding: 10px;
+
+    }
+
+    .liAutoComplete:hover {
+      background: rgb(225, 225, 225);
+      cursor: pointer;
+      transition: cubic-bezier(1, 0, 0, 1) .3s all;
+    }
+  }
+}
