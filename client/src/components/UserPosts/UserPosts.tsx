@@ -10,8 +10,8 @@ const UserPosts: FC<HeaderProps> = ({user}) => {
             <div className={style.imgList}>
                 {
                     user ? (
-                        user.createdPosts.map(item => (
-                            <img src={`http://localhost:5000/${item.urls[0]}`} alt="/"/>
+                        user.createdPosts.map((item, i) => (
+                            <img key={i} src={`http://localhost:5000/${item.urls[0]}`} alt="/"/>
                         ))
                     ) : (
                         <div className={style.loading}>loading</div>

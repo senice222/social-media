@@ -31,7 +31,7 @@ export interface GetMeData {
 	status: 'loading' | 'success' | 'error' | null
 }
 export interface UserProps {
-	user: User | null
+	user?: User | null
 }
 
 export interface HeaderProps {

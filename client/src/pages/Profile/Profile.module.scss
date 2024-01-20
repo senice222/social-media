@@ -28,11 +28,16 @@
 
       .currentFriends {
         display: flex;
-        margin-left: 22vw;
+        margin-left: 15vw;
+        align-items: center;
 
+        .loading {
+          width: 120px;
+          margin-left: 80px;
+        }
         p {
           word-break: break-all;
-          margin-right: 10px;
+          margin-left: 10px;
         }
       }
     }
@@ -65,4 +70,9 @@
       }
     }
   }
+}
+.loadingDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

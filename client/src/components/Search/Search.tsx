@@ -12,7 +12,6 @@ const Search = () => {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const navigate = useNavigate()
 
-
     useEffect(() => {
         const searchUser = async () => {
             const data = await Api.user.searchUser(debouncedValue)
@@ -28,7 +27,8 @@ const Search = () => {
     const itemClickHandler = (e: any) => {
         const clickedUsername = e.target.textContent
         setValue(clickedUsername)
-        const profileUrl = `/profile/${users[0]._id}`
+        const choseUser = users.filter(item => item.username === clickedUsername)
+        const profileUrl = `/profile/${choseUser[0]._id}`
         if (clickedUsername) {
             navigate(profileUrl, { replace: true })
         }
@@ -46,17 +46,17 @@ const Search = () => {
                 onClick={() => setIsOpen(true)}
             />
             <div className={style.container}>
-                <ul className={style.ulAutoComplete}>
+                <ul className={style.ulAutoComplete}> 
                     {
                         (users && isOpen) && users.map((item, i) => (
-                            <>
-                                <li key={i}
+                            <div key={i}>
+                                <li
                                     onClick={itemClickHandler}
                                     className={style.liAutoComplete}
                                 >
                                     {item.username}
                                 </li>
-                            </>
+                            </div>
                         ))
                     }
                 </ul>

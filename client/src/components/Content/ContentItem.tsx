@@ -5,11 +5,10 @@ import {NavLink} from "react-router-dom";
 import blueLike from "../../assets/like-blue.png";
 import like from "../../assets/like.png";
 import comment from "../../assets/comments.png";
-import share from "../../assets/share.png";
 import {ContentItemProps, Likes} from "../../interfaces/Posts";
 import CommentsList from "../Comments/CommentsList";
 import {usePostLikes} from "../../hooks/usePostLikes";
-import {Carousel} from "antd";
+import {Carousel, Image} from "antd";
 
 const ContentItem: FC<ContentItemProps> = ({_id, content, comments, owner, createdAt, user, urls}) => {
     const {likes, handleLike} = usePostLikes(_id);
@@ -32,11 +31,14 @@ const ContentItem: FC<ContentItemProps> = ({_id, content, comments, owner, creat
                     <NavLink to={"/"}>...</NavLink>
                 </div>
                 <p className={style.postText}>{content}</p>
-                <Carousel afterChange={onChange} style={{width: "250px"}}  dots={true}>
+                <Carousel afterChange={onChange} style={{width: "200px"}} dots={true}>
                     {
                         urls.map(((item, i) => (
                             <div key={i}>
-                                <img src={`http://localhost:5000/${item}`} className={style.postImg} alt="/"/>
+                                <Image
+                                    width={200}
+                                    src={`http://localhost:5000/${item}`}
+                                />
                             </div>
                         )))
                     }
@@ -50,9 +52,6 @@ const ContentItem: FC<ContentItemProps> = ({_id, content, comments, owner, creat
                         </div>
                         <div>
                             <img src={comment} alt="/"/> {comments ? comments.length : 0}
-                        </div>
-                        <div>
-                            <img src={share} alt="/"/> 20
                         </div>
                     </div>
                     <div className={style.postProfileIcon}>

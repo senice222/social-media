@@ -49,7 +49,7 @@ const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	}, [])
 
 	useEffect(() => {
-		getMessages(currentChat, setMessages)
+		if (currentChat) getMessages(currentChat, setMessages)
 	}, [currentChat])
 
 	const handleTextareaKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
