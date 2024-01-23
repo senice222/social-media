@@ -6,9 +6,9 @@ import {NavLink, useLocation} from "react-router-dom";
 import PendingFriendsList from "../PendingFriends/PendingFriendsList";
 import {useState} from "react";
 import userAvatar from "../../assets/user.png"
-import {HeaderProps} from '../../interfaces/Auth'
+import {UserProps} from '../../interfaces/Auth'
 
-const Header: FC<HeaderProps> = ({user}) => {
+const Header: FC<UserProps> = ({user}) => {
     const location = useLocation()
     const [isActive, setIsActive] = useState<boolean>(false);
     const [menu, setMenu] = useState(false);

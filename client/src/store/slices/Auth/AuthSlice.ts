@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RegisterAndLogin} from "../../../interfaces/Auth";
+import {ReadableUser, RegisterAndLogin} from "../../../interfaces/Auth";
 import {loginUser, registerUser} from "./thunks/auth.thunks";
 
 const initialState: RegisterAndLogin = {
@@ -13,28 +13,26 @@ const UserSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            // user register
             .addCase(registerUser.pending, (state) => {
                 state.data = null;
                 state.status = "loading";
             })
             .addCase(registerUser.fulfilled, (state, action: PayloadAction<any>) => {
                 state.data = action.payload;
-                state.status = "success"; // Update the status as needed
+                state.status = "success"; 
             })
             .addCase(registerUser.rejected, (state) => {
                 state.data = null;
                 state.status = "error";
             });
-        // user login
         builder
             .addCase(loginUser.pending, (state) => {
                 state.data = null;
                 state.status = "loading";
             })
-            .addCase(loginUser.fulfilled, (state, action: PayloadAction<any>) => {
-                state.data = action.payload;
-                state.status = "success"; // Update the status as needed
+            .addCase(loginUser.fulfilled, (state, action: PayloadAction<ReadableUser>) => {
+                state.data = JSON.stringify(action.payload);
+                state.status = "success"; 
             })
             .addCase(loginUser.rejected, (state) => {
                 state.data = null;

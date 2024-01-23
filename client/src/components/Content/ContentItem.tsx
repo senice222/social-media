@@ -15,8 +15,6 @@ const ContentItem: FC<ContentItemProps> = ({_id, content, comments, owner, creat
     const likesArray = Array.isArray(likes) ? likes : [likes];
     const isUserLiked = likesArray?.length > 0 && likesArray.some((item: Likes) => item?.id === user?._id);
 
-    const onChange = (currentSlide: number) => { };
-
     return (
         <div className={style.middleSide}>
             <div className={style.postContainer}>
@@ -31,7 +29,7 @@ const ContentItem: FC<ContentItemProps> = ({_id, content, comments, owner, creat
                     <NavLink to={"/"}>...</NavLink>
                 </div>
                 <p className={style.postText}>{content}</p>
-                <Carousel afterChange={onChange} style={{width: "200px"}} dots={true}>
+                <Carousel style={{width: "200px"}} dots={true}>
                     {
                         urls.map(((item, i) => (
                             <div key={i}>

@@ -1,4 +1,5 @@
 import axios from "../../core/axios";
+import { FriendRequest } from "../../interfaces/Friends";
 
 export const getAllUserFriends = async () => {
     return (await axios.get('friends')).data
@@ -22,4 +23,10 @@ export const rejectUserRequest = async (requestId: string) => {
     }
 
     return (await axios.put(`friends/${requestId}`, statusObject)).data
+}
+
+export const sendFriendRequest = async (userId: string): Promise<FriendRequest> => {
+    const toUser = { toUser: userId }
+
+    return (await axios.post('friends/request/send', toUser)).data
 }

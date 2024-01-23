@@ -1,5 +1,5 @@
 import style from './Search.module.scss'
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, MouseEventHandler, useEffect, useState} from "react";
 import {useDebounce} from "../../hooks/useDebouce";
 import * as Api from '../../api/index'
 import {User} from "../../interfaces/Auth";
@@ -20,11 +20,9 @@ const Search = () => {
         searchUser()
     }, [debouncedValue])
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value)
-    }
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => setValue(event.target.value)
 
-    const itemClickHandler = (e: any) => {
+    const itemClickHandler = (e: MouseEventHandler<HTMLLIElement>) => {
         const clickedUsername = e.target.textContent
         setValue(clickedUsername)
         const choseUser = users.filter(item => item.username === clickedUsername)

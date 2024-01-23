@@ -6,7 +6,8 @@ import {
     WebSocketGateway,
     WebSocketServer,
 } from '@nestjs/websockets';
-import {Server} from 'socket.io';
+import {Server, Socket} from 'socket.io';
+import {Message} from "./interfaces/message";
 
 @WebSocketGateway({cors: {origin: '*'}})
 export class ChatGateway
@@ -20,25 +21,26 @@ export class ChatGateway
         this.logger.log('Initialized');
     }
 
-    handleConnection(client: any, ...args: any[]) {
+    handleConnection(client: Socket) {
         this.logger.log(`Client id: ${client.id} connected`);
         this.logger.debug(`Number of connected clients: ${Object.keys(this.io.sockets.sockets).length}`);
     }
 
-    handleDisconnect(client: any) {
+    handleDisconnect(client: Socket) {
         this.logger.log(`Client id: ${client.id} disconnected`);
         this.removeUser(client.id);
         this.io.emit('getUsers', this.users);
     }
 
     @SubscribeMessage('addUser')
-    handleAddUser(client: any, userId: string) {
+    handleAddUser(client: Socket, userId: string) {
+        console.log(userId, client.id)
         this.addUser(userId, client.id);
         this.io.emit('getUsers', this.users);
     }
 
     @SubscribeMessage('sendMessage')
-    handleMessage(client: any, data: any) {
+    handleMessage(client: Socket, data: Message) {
         const {senderId, receiverId, text} = data;
         const user = this.getUser(receiverId);
         this.io.to(user.socketId).emit('getMessage', {

@@ -33,7 +33,7 @@ export interface InitialState {
 }
 
 export interface ContentItemProps extends Post {
-    user: User | null
+    user?: User | null
 }
 export interface CreatePostProps extends UserProps {
   currentPage: number

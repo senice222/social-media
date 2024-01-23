@@ -34,10 +34,6 @@ export interface UserProps {
 	user?: User | null
 }
 
-export interface HeaderProps {
-	user?: User | null
-}
-
 export interface GetUserByHook {
 	currentUser?: User | null
 	isLoading: boolean
