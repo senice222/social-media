@@ -50,6 +50,8 @@
         padding: 10px;
         margin-bottom: 10px;
         position: relative;
+        resize: none;
+        outline: none;
 
         &::before {
           content: "";
@@ -87,6 +89,5 @@
   top: 10%;
   font-size: 25px;
   color: gray;
-  //text-align: center;
   cursor: default;
 }

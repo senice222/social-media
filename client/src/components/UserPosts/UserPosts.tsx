@@ -1,8 +1,8 @@
 import style from './UserPosts.module.scss'
 import {FC} from "react";
-import {HeaderProps} from "../../interfaces/Auth";
+import {UserProps} from "../../interfaces/Auth";
 
-const UserPosts: FC<HeaderProps> = ({user}) => {
+const UserPosts: FC<UserProps> = ({user}) => {
 
 
     return (

@@ -7,15 +7,16 @@
 
   .imgList {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); // Display 3 images in a row
+    grid-template-columns: repeat(3, 1fr); 
     gap: 8px;
 
     img {
       cursor: pointer;
+      object-fit: cover;
       opacity: 1;
       display: block;
       width: 100%;
-      height: 350px; /* Set the desired height for your images */
+      height: 350px; 
       transition: .1s ease;
       backface-visibility: hidden;
     }

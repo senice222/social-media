@@ -6,7 +6,7 @@ import { OneMessage } from '../interfaces/Message'
 import * as Api from '../api/index'
 import { SendMessagePromise } from '../interfaces/Chat'
 
-export const useSendMessage = (socket: MutableRefObject<Socket | undefined>, user: User | null): SendMessagePromise => {
+export const useSendMessage = (socket: MutableRefObject<Socket | undefined>, user?: User | null): SendMessagePromise => {
 	const [newMessage, setNewMessage] = useState<string>('')
 	const [currentChat, setCurrentChat] = useState<Conv>()
 	const [messages, setMessages] = useState<OneMessage[]>([])

@@ -15,7 +15,7 @@ export interface SocketUser {
 }
 export interface CurrentChat {
 	currentChat: Conv | undefined
-	currentUser: User | null
+	currentUser?: User | null
 }
 
 export interface SendMessagePromise {

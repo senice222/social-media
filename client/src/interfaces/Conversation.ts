@@ -8,10 +8,10 @@ export interface Conv {
 
 export interface ConversationProps {
   conversation: Conv;
-  currentUser: User | null;
+  currentUser?: User | null;
 }
 export interface ConversationItemProps {
   conversation: Conv[];
   setCurrentChat: Dispatch<SetStateAction<Conv | undefined>>
-  currentUser: User | null
+  currentUser?: User | null
 }

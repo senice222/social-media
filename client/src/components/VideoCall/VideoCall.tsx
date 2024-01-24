@@ -3,7 +3,6 @@ import {FC, useEffect, useState} from "react";
 import {CurrentChat} from "../../interfaces/Chat";
 import * as Api from '../../api/index'
 
-
 const VideoCall: FC<CurrentChat> = ({currentChat, currentUser}) => {
     const [currentChatUsername, setCurrentChatUsername] = useState<string>()
     const friendId = currentChat?.members.filter(user => user !== currentUser?._id).toString()
@@ -26,7 +25,6 @@ const VideoCall: FC<CurrentChat> = ({currentChat, currentUser}) => {
 
             <div className={style.callItems}>
                 <p>call</p>
-                <p>video call</p>
             </div>
         </div>
     );

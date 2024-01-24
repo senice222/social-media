@@ -1,4 +1,5 @@
 import { CreatedPost } from './Posts'
+import {SocketUser} from "./Chat";
 
 export interface User {
 	_id: string
@@ -17,8 +18,10 @@ export interface ReadableUser extends User {
 }
 
 export interface DirectProps {
-	user: User | null
-	isLoading: boolean
+	user?: User | null
+	arrivalMessage: any
+	onlineUsers?: SocketUser[]
+	socket: any
 }
 
 export interface RegisterAndLogin {

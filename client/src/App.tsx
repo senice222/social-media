@@ -9,9 +9,16 @@ import Direct from "./pages/Direct/Direct";
 import {useGetMe} from "./hooks/useGetMe";
 import Confirm from "./pages/Auth/Confirm";
 import Auth from "./pages/Auth/Auth";
+import {useEffect, useRef, useState} from "react";
+import {setupSocket} from "./utils/ChatUtils";
+import {SocketUser} from "./interfaces/Chat";
+import {Socket} from "socket.io-client";
 
 function App() {
     const {currentUser, isLoading} = useGetMe()
+    const [arrivalMessage, setArrivalMessage] = useState<any>()
+    const [onlineUsers, setOnlineUsers] = useState<SocketUser[]>()
+    const socket = useRef<Socket>()
 
     const ProtectedRoute = ({children}: Children) => {
         const token = Cookies.get("token");
@@ -20,6 +27,12 @@ function App() {
         }
         return children
     };
+
+    useEffect(() => {
+        if (currentUser) {
+            setupSocket(socket, setOnlineUsers, setArrivalMessage, currentUser);
+        }
+    }, [currentUser]);
 
     return (
         <BrowserRouter>
@@ -48,7 +61,8 @@ function App() {
                     path={"/direct"}
                     element={
                         <ProtectedRoute>
-                            <Direct user={currentUser} isLoading={isLoading}/>
+                            <Direct user={currentUser} onlineUsers={onlineUsers}
+                                    arrivalMessage={arrivalMessage} socket={socket}/>
                         </ProtectedRoute>
                     }
                 />

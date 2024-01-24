@@ -1,6 +1,6 @@
 import style from './Message.module.scss'
 import {FC} from "react";
-import {MessageProps} from "../../interfaces/Message.ts";
+import {MessageProps} from "../../interfaces/Message";
 import {format} from 'timeago.js'
 
 const Message:FC<MessageProps> = ({message, own}) => {

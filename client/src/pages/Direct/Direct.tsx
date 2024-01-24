@@ -1,23 +1,18 @@
-import { FC, Fragment, KeyboardEvent, useEffect, useRef, useState } from 'react'
-import { Socket } from 'socket.io-client'
+import { FC, Fragment, KeyboardEvent, useEffect, useState } from 'react'
 import ChatOnline from '../../components/ChatOnline/ChatOnline'
 import Message from '../../components/Message/Message'
 import VideoCall from '../../components/VideoCall/VideoCall'
 import { DirectProps } from '../../interfaces/Auth'
-import { SocketUser } from '../../interfaces/Chat'
 import { OneMessage } from '../../interfaces/Message'
 import Layout from '../../layouts/Layout'
-import { getMessages, getUserConv, setupSocket } from '../../utils/ChatUtils'
+import { getMessages, getUserConv } from '../../utils/ChatUtils'
 import style from './Direct.module.scss'
 import { useSendMessage } from '../../hooks/useSendMessage'
 import ConversationList from "../../components/Conversations/ConversationList";
 import Search from "../../components/Search/Search";
 
-const Direct: FC<DirectProps> = ({ user, isLoading }) => {
+const Direct: FC<DirectProps> = ({ user, arrivalMessage, onlineUsers, socket }) => {
 	const [conversation, setConversation] = useState([])
-	const [arrivalMessage, setArrivalMessage] = useState<any>()
-	const [onlineUsers, setOnlineUsers] = useState<SocketUser[]>()
-	const socket = useRef<Socket>()
 	const {
 		messages,
 		setMessages,
@@ -29,20 +24,10 @@ const Direct: FC<DirectProps> = ({ user, isLoading }) => {
 	} = useSendMessage(socket, user)
 
 	useEffect(() => {
-		setupSocket(socket, setOnlineUsers, setArrivalMessage)
-	}, [])
-
-	useEffect(() => {
 		if (arrivalMessage && currentChat?.members.includes(arrivalMessage.sender)) {
 			setMessages(prev => [...prev, arrivalMessage])
 		}
 	}, [arrivalMessage, currentChat])
-
-	useEffect(() => {
-		if (!isLoading) {
-			socket.current?.emit('addUser', user?._id)
-		}
-	}, [user, isLoading])
 
 	useEffect(() => {
 		getUserConv(setConversation)

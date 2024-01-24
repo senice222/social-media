@@ -34,7 +34,6 @@ export class ChatGateway
 
     @SubscribeMessage('addUser')
     handleAddUser(client: Socket, userId: string) {
-        console.log(userId, client.id)
         this.addUser(userId, client.id);
         this.io.emit('getUsers', this.users);
     }
@@ -43,6 +42,7 @@ export class ChatGateway
     handleMessage(client: Socket, data: Message) {
         const {senderId, receiverId, text} = data;
         const user = this.getUser(receiverId);
+        console.log(user)
         this.io.to(user.socketId).emit('getMessage', {
             senderId,
             text,
